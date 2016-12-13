@@ -1,0 +1,1001 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-tw">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="SQL," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Programming blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="ANSI-standard SQL&amp;#x6709;&amp;#x4E94;&amp;#x7A2E;JOIN&amp;#xFF1A;
+
+INNER JOIN
+LEFT OUTER JOIN
+RIGHT OUTER JOIN
+FULL OUTER JOIN
+CROSS JOIN
+
+A Visual Explanation of SQL Joins&amp;#x7528;Venn diagrams&amp;#x65B9;&amp;#x5F0F;&amp;#x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[SQL] 5 types of SQL JOIN">
+<meta property="og:url" content="https://pandaforme.github.io/2016/12/09/SQL-5-types-of-SQL-JOIN/index.html">
+<meta property="og:site_name" content="Programming blog">
+<meta property="og:description" content="ANSI-standard SQL&amp;#x6709;&amp;#x4E94;&amp;#x7A2E;JOIN&amp;#xFF1A;
+
+INNER JOIN
+LEFT OUTER JOIN
+RIGHT OUTER JOIN
+FULL OUTER JOIN
+CROSS JOIN
+
+A Visual Explanation of SQL Joins&amp;#x7528;Venn diagrams&amp;#x65B9;&amp;#x5F0F;&amp;#x">
+<meta property="og:image" content="http://blog.codinghorror.com/content/images/uploads/2007/10/6a0120a85dcdae970b012877702708970c-pi.png">
+<meta property="og:image" content="http://blog.codinghorror.com/content/images/uploads/2007/10/6a0120a85dcdae970b01287770273e970c-pi.png">
+<meta property="og:image" content="http://blog.codinghorror.com/content/images/uploads/2007/10/6a0120a85dcdae970b012877702725970c-pi.png">
+<meta property="og:image" content="http://edwarcardona.files.wordpress.com/2013/03/sql_server_joins.jpg">
+<meta property="og:updated_time" content="2016-12-13T07:16:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[SQL] 5 types of SQL JOIN">
+<meta name="twitter:description" content="ANSI-standard SQL&amp;#x6709;&amp;#x4E94;&amp;#x7A2E;JOIN&amp;#xFF1A;
+
+INNER JOIN
+LEFT OUTER JOIN
+RIGHT OUTER JOIN
+FULL OUTER JOIN
+CROSS JOIN
+
+A Visual Explanation of SQL Joins&amp;#x7528;Venn diagrams&amp;#x65B9;&amp;#x5F0F;&amp;#x">
+<meta name="twitter:image" content="http://blog.codinghorror.com/content/images/uploads/2007/10/6a0120a85dcdae970b012877702708970c-pi.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://pandaforme.github.io/2016/12/09/SQL-5-types-of-SQL-JOIN/"/>
+
+
+
+
+
+  <title> [SQL] 5 types of SQL JOIN | Programming blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-53742025-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Programming blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">This is a programming blog</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            關於
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            Sitemap
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            檢索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://pandaforme.github.io/2016/12/09/SQL-5-types-of-SQL-JOIN/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="pandaforme">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Programming blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Programming blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                [SQL] 5 types of SQL JOIN
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-09T17:30:08+08:00">
+                2016-12-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SQL/" itemprop="url" rel="index">
+                    <span itemprop="name">SQL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2016/12/09/SQL-5-types-of-SQL-JOIN/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/12/09/SQL-5-types-of-SQL-JOIN/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>ANSI-standard SQL&#x6709;&#x4E94;&#x7A2E;JOIN&#xFF1A;</p>
+<ol>
+<li>INNER JOIN</li>
+<li>LEFT OUTER JOIN</li>
+<li>RIGHT OUTER JOIN</li>
+<li>FULL OUTER JOIN</li>
+<li>CROSS JOIN</li>
+</ol>
+<p><a href="http://blog.codinghorror.com/a-visual-explanation-of-sql-joins/" target="_blank" rel="external">A Visual Explanation of SQL Joins</a>&#x7528;<a href="http://en.wikipedia.org/wiki/Venn_diagram" target="_blank" rel="external">Venn diagrams</a>&#x65B9;&#x5F0F;&#x5716;&#x89E3;JOIN&#x3002;</p>
+<h3 id="&#x7BC4;&#x4F8B;&#xFF1A;"><a href="#&#x7BC4;&#x4F8B;&#xFF1A;" class="headerlink" title="&#x7BC4;&#x4F8B;&#xFF1A;"></a>&#x7BC4;&#x4F8B;&#xFF1A;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">TableA        TableB</div><div class="line">id name       id  name</div><div class="line">-- ----       --  ----</div><div class="line">1  Pirate     1   Rutabaga</div><div class="line">2  Monkey     2   Pirate</div><div class="line">3  Ninja      3   Darth Vader</div><div class="line">4  Spaghetti  4   Ninja</div></pre></td></tr></table></figure>
+<ul>
+<li>INNER JOIN&#xFF1A;</li>
+</ul>
+<p>SQL&#xFF1A;<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> TableA</div><div class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> TableB</div><div class="line"><span class="keyword">ON</span> TableA.name = TableB.name</div></pre></td></tr></table></figure></p>
+<p>&#x7D50;&#x679C;&#xFF1A;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">TableA         TableB</div><div class="line">id  name       id   name</div><div class="line">--  ----       --   ----</div><div class="line">1   Pirate     2    Pirate</div><div class="line">3   Ninja      4    Ninja</div></pre></td></tr></table></figure></p>
+<p>Venn diagram&#xFF1A;<br><img src="http://blog.codinghorror.com/content/images/uploads/2007/10/6a0120a85dcdae970b012877702708970c-pi.png" alt=""></p>
+<p><em>&#x5217;&#x51FA;&#x5169;&#x500B;Table&#x5171;&#x6709;&#x7684;&#x8CC7;&#x6599;&#xFF0C;&#x5373;&#x5169;&#x500B;Table&#x7684;&#x4EA4;&#x96C6;&#x3002;</em></p>
+<hr>
+<ul>
+<li>LEFT OUTER JOIN&#xFF1A;</li>
+</ul>
+<p>SQL&#xFF1A;<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> TableA</div><div class="line"><span class="keyword">LEFT</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span> TableB</div><div class="line"><span class="keyword">ON</span> TableA.name = TableB.name</div></pre></td></tr></table></figure></p>
+<p>&#x7D50;&#x679C;&#xFF1A;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">TableA         TableB</div><div class="line">id  name       id    name</div><div class="line">--  ----       --    ----</div><div class="line">1   Pirate     2     Pirate</div><div class="line">2   Monkey     null  null</div><div class="line">3   Ninja      4     Ninja</div><div class="line">4   Spaghetti  null  null</div></pre></td></tr></table></figure></p>
+<p>Venn diagram&#xFF1A;<br><img src="http://blog.codinghorror.com/content/images/uploads/2007/10/6a0120a85dcdae970b01287770273e970c-pi.png" alt=""><br><em>&#x4EE5;&#x5DE6;&#x908A;Table&#x70BA;&#x4E3B;&#xFF0C;&#x82E5;&#x6C92;&#x6709;&#x914D;&#x5C0D;&#x5230;&#x8CC7;&#x6599;&#xFF0C;&#x986F;&#x793A;null&#x3002;</em></p>
+<hr>
+<ul>
+<li>RIGHT OUTER JOIN&#xFF1A;</li>
+</ul>
+<p>&#x8DDF;LEFT OUTER JOIN&#x5927;&#x540C;&#x5C0F;&#x7570;&#xFF0C;&#x7D50;&#x679C;&#x6539;&#x6210;&#x4EE5;Table B&#x70BA;&#x4E3B;&#xFF0C;&#x4E0D;&#x518D;&#x8D05;&#x8FF0;&#x3002;</p>
+<hr>
+<ul>
+<li>FULL OUTER JOIN&#xFF1A;</li>
+</ul>
+<p>SQL&#xFF1A;<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> TableA</div><div class="line"><span class="keyword">FULL</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span> TableB</div><div class="line"><span class="keyword">ON</span> TableA.name = TableB.name</div></pre></td></tr></table></figure></p>
+<p>&#x7D50;&#x679C;&#xFF1A;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">TableA           TableB</div><div class="line">id    name       id    name</div><div class="line">--    ----       --    ----</div><div class="line">1     Pirate     2     Pirate</div><div class="line">2     Monkey     null  null</div><div class="line">3     Ninja      4     Ninja</div><div class="line">4     Spaghetti  null  null</div><div class="line">null  null       1     Rutabaga</div><div class="line">null  null       3     Darth Vader</div></pre></td></tr></table></figure></p>
+<p>Venn diagram&#xFF1A;<br><img src="http://blog.codinghorror.com/content/images/uploads/2007/10/6a0120a85dcdae970b012877702725970c-pi.png" alt=""><br><em>&#x70BA;&#x5169;&#x500B;Table&#x7684;&#x806F;&#x96C6;&#xFF0C;&#x82E5;&#x6C92;&#x6709;&#x914D;&#x5C0D;&#x5230;&#x8CC7;&#x6599;&#x4EE5;null&#x986F;&#x793A;&#x3002;</em></p>
+<hr>
+<ul>
+<li>CROSS JOIN&#xFF1A;<br>&#x5373;&#x662F;<a href="http://en.wikipedia.org/wiki/Cartesian_product" target="_blank" rel="external">Cartesian product</a>&#xFF0C;&#x6703;&#x7522;&#x751F;&#x5169;&#x500B;Table&#x6240;&#x6709;&#x7684;&#x7D44;&#x5408;&#x3002;<br>SQL&#xFF1A;<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> TableA</div><div class="line"><span class="keyword">CROSS</span> <span class="keyword">JOIN</span> TableB</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>&#x7D50;&#x679C;&#xFF1A;<br>4*4 = 16&#x7A2E;&#x7D44;&#x5408;</p>
+<p><em>&#x56E0;&#x70BA;CROSS JOIN&#x6703;&#x5C07;&#x6240;&#x6709;&#x7D44;&#x5408;&#x5217;&#x51FA;&#x4F86;&#xFF0C;&#x6240;&#x4EE5;&#x7576;&#x8CC7;&#x6599;&#x91CF;&#x9F90;&#x5927;&#x6642;&#x5019;&#xFF0C;&#x6548;&#x80FD;&#x6703;&#x8B8A;&#x5F97;&#x5F88;&#x5DEE;&#x3002;</em></p>
+<h3 id="&#x7E3D;&#x7D50;&#xFF1A;"><a href="#&#x7E3D;&#x7D50;&#xFF1A;" class="headerlink" title="&#x7E3D;&#x7D50;&#xFF1A;"></a>&#x7E3D;&#x7D50;&#xFF1A;</h3><p>&#x53EF;&#x4EE5;&#x5229;&#x7528;&#x4EE5;&#x4E0A;&#x7684;&#x4E94;&#x7A2E;JOIN&#x548C;&#x904E;&#x6FFE;&#x65B9;&#x5F0F;&#xFF0C;&#x5C0D;&#x5169;&#x500B;&#x96C6;&#x5408;&#x9032;&#x884C;&#x4EA4;&#x96C6;&#x3001;&#x806F;&#x96C6;&#x3001;&#x5DEE;&#x96C6;&#x7B49;&#x64CD;&#x4F5C;&#x3002;<br><img src="http://edwarcardona.files.wordpress.com/2013/03/sql_server_joins.jpg" alt="SQL JOINS"></p>
+<h3 id="&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;"><a href="#&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;" class="headerlink" title="&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;"></a>&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;</h3><ul>
+<li><a href="http://blog.codinghorror.com/a-visual-explanation-of-sql-joins/" target="_blank" rel="external">A Visual Explanation of SQL Joins</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Join_(SQL" target="_blank" rel="external">Join (SQL)</a>)</li>
+<li><a href="http://coolshell.cn/articles/3463.html" target="_blank" rel="external">&#x5716;&#x89E3;SQL&#x7684;Join</a>&#x3000;</li>
+<li><a href="http://www.codeproject.com/Articles/33052/Visual-Representation-of-SQL-Joins" target="_blank" rel="external">Visual Representation of SQL Joins</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SQL/" rel="tag"># SQL</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/09/使用Tor隱藏身份/" rel="next" title="使用Tor隱藏身份">
+                <i class="fa fa-chevron-left"></i> 使用Tor隱藏身份
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/09/Java-Synchronize-in-Java/" rel="prev" title="[Java] Synchronize in Java">
+                [Java] Synchronize in Java <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="pandaforme" />
+          <p class="site-author-name" itemprop="name">pandaforme</p>
+          <p class="site-description motion-element" itemprop="description">This is a programming blog</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pandaforme" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://tw.linkedin.com/in/chien-ku-chen-78334745" target="_blank" title="Linkedin">
+                  
+                    <i class="fa fa-fw fa-linkedin"></i>
+                  
+                  Linkedin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#範例："><span class="nav-number">1.</span> <span class="nav-text">範例：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#總結："><span class="nav-number">2.</span> <span class="nav-text">總結：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#參考資料："><span class="nav-number">3.</span> <span class="nav-text">參考資料：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">pandaforme</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'pandaforme';
+      var disqus_identifier = '2016/12/09/SQL-5-types-of-SQL-JOIN/';
+
+      var disqus_title = "[SQL] 5 types of SQL JOIN";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+
+    </script>
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

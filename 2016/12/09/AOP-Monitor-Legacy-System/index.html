@@ -1,0 +1,987 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-tw">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Java,AOP," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Programming blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="&amp;#x6700;&amp;#x8FD1;&amp;#x8981;&amp;#x5728;&amp;#x4E00;&amp;#x500B;&amp;#x820A;&amp;#x7684;scala&amp;#x7CFB;&amp;#x7D71;&amp;#x52A0;&amp;#x5165;&amp;#x4E00;&amp;#x4E9B;&amp;#x76E3;&amp;#x63A7;&amp;#x7684;&amp;#x7A0B;&amp;#x5F0F;&amp;#x78BC;&amp;#xFF0C;&amp;#x627E;&amp;#x51FA;&amp;#x5F71;&amp;#x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[AOP] Monitor Legacy System">
+<meta property="og:url" content="https://pandaforme.github.io/2016/12/09/AOP-Monitor-Legacy-System/index.html">
+<meta property="og:site_name" content="Programming blog">
+<meta property="og:description" content="&amp;#x6700;&amp;#x8FD1;&amp;#x8981;&amp;#x5728;&amp;#x4E00;&amp;#x500B;&amp;#x820A;&amp;#x7684;scala&amp;#x7CFB;&amp;#x7D71;&amp;#x52A0;&amp;#x5165;&amp;#x4E00;&amp;#x4E9B;&amp;#x76E3;&amp;#x63A7;&amp;#x7684;&amp;#x7A0B;&amp;#x5F0F;&amp;#x78BC;&amp;#xFF0C;&amp;#x627E;&amp;#x51FA;&amp;#x5F71;&amp;#x">
+<meta property="og:updated_time" content="2016-12-09T08:54:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[AOP] Monitor Legacy System">
+<meta name="twitter:description" content="&amp;#x6700;&amp;#x8FD1;&amp;#x8981;&amp;#x5728;&amp;#x4E00;&amp;#x500B;&amp;#x820A;&amp;#x7684;scala&amp;#x7CFB;&amp;#x7D71;&amp;#x52A0;&amp;#x5165;&amp;#x4E00;&amp;#x4E9B;&amp;#x76E3;&amp;#x63A7;&amp;#x7684;&amp;#x7A0B;&amp;#x5F0F;&amp;#x78BC;&amp;#xFF0C;&amp;#x627E;&amp;#x51FA;&amp;#x5F71;&amp;#x">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://pandaforme.github.io/2016/12/09/AOP-Monitor-Legacy-System/"/>
+
+
+
+
+
+  <title> [AOP] Monitor Legacy System | Programming blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-53742025-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Programming blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">This is a programming blog</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            關於
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            Sitemap
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            檢索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://pandaforme.github.io/2016/12/09/AOP-Monitor-Legacy-System/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="pandaforme">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Programming blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Programming blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                [AOP] Monitor Legacy System
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-09T16:48:00+08:00">
+                2016-12-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2016/12/09/AOP-Monitor-Legacy-System/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/12/09/AOP-Monitor-Legacy-System/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&#x6700;&#x8FD1;&#x8981;&#x5728;&#x4E00;&#x500B;&#x820A;&#x7684;scala&#x7CFB;&#x7D71;&#x52A0;&#x5165;&#x4E00;&#x4E9B;&#x76E3;&#x63A7;&#x7684;&#x7A0B;&#x5F0F;&#x78BC;&#xFF0C;&#x627E;&#x51FA;&#x5F71;&#x97FF;&#x6548;&#x80FD;&#x7684;&#x5730;&#x65B9;&#xFF0E;</p>
+<p>&#x60F3;&#x4E86;&#x5169;&#x500B;&#x505A;&#x6CD5;&#x53EF;&#x4EE5;&#x89E3;&#x6C7A;&#xFF1A;</p>
+<p>&#x65B9;&#x6CD5;&#x4E00;&#xFF1A; &#x5728;&#x61F7;&#x7591;&#x7684;&#x7A0B;&#x5F0F;&#x78BC;&#x5730;&#x65B9;&#x4E0A;&#x4E0B;&#x593E;log&#xFF0C;&#x8A08;&#x7B97;&#x51FA;&#x57F7;&#x884C;&#x6642;&#x9593;&#xFF0E;</p>
+<p>&#x65B9;&#x6CD5;&#x4E8C;&#xFF1A; &#x5229;&#x7528;AOP&#x65B9;&#x5F0F;&#x6514;&#x622A;&#x6BCF;&#x500B;function&#x57F7;&#x884C;&#x6642;&#x958B;&#x59CB;&#x9EDE;&#x548C;&#x7D50;&#x675F;&#x9EDE;&#xFF0C;&#x8A08;&#x7B97;&#x51FA;&#x57F7;&#x884C;&#x6642;&#x9593;&#xFF0E;</p>
+<p>&#x4F86;&#x5206;&#x6790;&#x4E00;&#x4E0B;&#x9019;&#x5169;&#x500B;&#x65B9;&#x6CD5;&#x7684;&#x512A;&#x7F3A;&#x9EDE;&#xFF1A;</p>
+<p>&#x65B9;&#x6CD5;&#x4E00;&#xFF1A;</p>
+<p>&#x512A;&#x9EDE;&#xFF1A;&#x4E0D;&#x7528;&#x5927;&#x8166;&#x5C31;&#x53EF;&#x4EE5;&#x89E3;&#x6C7A;</p>
+<p>&#x7F3A;&#x9EDE;&#xFF1A;&#x9700;&#x8981;&#x5728;&#x6240;&#x6709;&#x7684;&#x9EDE;&#x63D2;&#x5165;log&#xFF0C;&#x9020;&#x6210;&#x7A0B;&#x5F0F;&#x5145;&#x6EFF;&#x4E00;&#x5806;log</p>
+<p>&#x65B9;&#x6CD5;&#x4E8C;&#xFF1A;</p>
+<p>&#x512A;&#x9EDE;&#xFF1A;&#x53EF;&#x4EE5;&#x4E0D;&#x7528;&#x52D5;&#x5230;&#x539F;&#x672C;&#x7684;&#x7A0B;&#x5F0F;&#x78BC;</p>
+<p>&#x7F3A;&#x9EDE;&#xFF1A;&#x9700;&#x8981;&#x5BEB;&#x4E00;&#x4E9B;&#x7A0B;&#x5F0F;&#x78BC;</p>
+<p>&#x5F8C;&#x4F86;&#x63A1;&#x7528;<a href="https://eclipse.org/aspectj/" target="_blank" rel="external">Aspectj</a>&#x4F86;&#x89E3;&#x6C7A;&#x9019;&#x500B;&#x554F;&#x984C;.</p>
+<ul>
+<li><p>&#x65B0;&#x589E;&#x4E00;&#x500B;Monitor Aspect</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> aspectj;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.aspectj.lang.JoinPoint;</div><div class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.After;</div><div class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Aspect;</div><div class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Before;</div><div class="line"><span class="keyword">import</span> org.slf4j.Logger;</div><div class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</div><div class="line"></div><div class="line"><span class="meta">@Aspect</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MonitorAspect</span> </span>{</div><div class="line">  <span class="keyword">private</span> <span class="keyword">long</span> startTime;</div><div class="line">  <span class="keyword">private</span> Logger logger = LoggerFactory.getLogger(MonitorAspect.class);</div><div class="line"></div><div class="line">  <span class="meta">@Before</span>(value = <span class="string">&quot;execution (* *(..))&quot;</span>, argNames = <span class="string">&quot;joinPoint&quot;</span>)</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">before</span><span class="params">(JoinPoint joinPoint)</span> </span>{</div><div class="line">    startTime = System.currentTimeMillis();</div><div class="line">  }</div><div class="line"></div><div class="line">  <span class="meta">@After</span>(value = <span class="string">&quot;execution (* *(..))&quot;</span>, argNames = <span class="string">&quot;joinPoint&quot;</span>)</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">after</span><span class="params">(JoinPoint joinPoint)</span> </span>{</div><div class="line">    <span class="keyword">long</span> executionTime = System.currentTimeMillis() - startTime;</div><div class="line">    logger.debug(<span class="string">&quot;Signature : {}, Source Line : {}, Execute Time : {}&quot;</span>,</div><div class="line">                 joinPoint.getSignature(),</div><div class="line">                 joinPoint.getSourceLocation(),</div><div class="line">                 executionTime);</div><div class="line">  }</div><div class="line">}</div></pre></td></tr></table></figure>
+</li>
+<li><p>&#x52A0;&#x5165;aspectj jar</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="string">&quot;org.aspectj&quot;</span> % <span class="string">&quot;aspectjweaver&quot;</span> % <span class="string">&quot;1.8.7&quot;</span>,</div><div class="line"><span class="string">&quot;org.aspectj&quot;</span> % <span class="string">&quot;aspectjrt&quot;</span>     % <span class="string">&quot;1.8.7&quot;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>&#x5229;&#x7528;load time weaving&#x65B9;&#x5F0F;&#xFF0E;&#x9700;&#x8981;&#x5728;resource&#x8CC7;&#x6599;&#x593E;&#x4E0B;&#x65B0;&#x589E;<code>META-INF/aop.xml</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">aspectj</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">aspects</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">aspect</span> <span class="attr">name</span>=<span class="string">&quot;aspectj.MonitorAspect&quot;</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">aspects</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">weaver</span> <span class="attr">options</span>=<span class="string">&quot;-verbose -showWeaveInfo&quot;</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">include</span> <span class="attr">within</span>=<span class="string">&quot;xxx.yyy.*&quot;</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">include</span> <span class="attr">within</span>=<span class="string">&quot;xxx.zzz.*&quot;</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">include</span> <span class="attr">within</span>=<span class="string">&quot;aspectj.*&quot;</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">weaver</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">aspectj</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>&#x8A73;&#x7D30;&#x53C3;&#x6578;&#x53EF;&#x4EE5;&#x53C3;&#x8003;&#xFF1A;<a href="https://eclipse.org/aspectj/doc/next/devguide/ltw-configuration.html" target="_blank" rel="external">Chapter 5. Load-Time Weaving</a></p>
+<ul>
+<li>&#x56E0;&#x70BA;&#x820A;&#x7CFB;&#x7D71;&#x662F;&#x7528;<code>java</code>&#x555F;&#x52D5;&#xFF0C;&#x6240;&#x4EE5;&#x9700;&#x8981;&#x52A0;&#x5165;<code>javaagent</code>&#x53C3;&#x6578;&#xFF0C;&#x6307;&#x5B9A;<code>aspectjweaver.jar</code>&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;<code>java -javaagent=/jars/aspectjweaver-1.8.7.jar ...</code></li>
+</ul>
+<p>&#x5728;&#x5BE6;&#x4F5C;&#x904E;&#x7A0B;&#x4E2D;&#x9047;&#x5230;&#x4E86;&#x4E0D;&#x5C11;&#x7684;&#x5751;&#xFF0C;&#x7D00;&#x9304;&#x4E00;&#x4E0B;&#xFF1A;</p>
+<ul>
+<li>&#x7B2C;&#x4E00;&#x500B;&#x5751;&#xFF1A;</li>
+</ul>
+<p>&#x5728;&#x5BE6;&#x4F5C;Aspect&#x6642;&#xFF0C;Annotation&#x4E2D;&#x53EF;&#x4EE5;&#x51C6;&#x8A31;&#x4E0D;&#x7528;&#x5C0D;&#x6BCF;&#x500B;&#x53C3;&#x6578;&#x7D66;&#x503C;&#xFF0C;&#x4F46;&#x662F;&#x6703;&#x5674;&#x932F;&#x2026;</p>
+<p>&#x4EE5;&#x4E0B;&#x5BEB;&#x6CD5;&#x662F;&#x51C6;&#x8A31;&#x7684;&#xFF0C;&#x4F46;&#x662F;load time weaving&#x6642;&#x6703;&#x5674;&#x932F;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Before</span>(<span class="string">&quot;execution (* *(..))&quot;</span>)</div></pre></td></tr></table></figure></p>
+<p>&#x5F8C;&#x4F86;&#x6539;&#x6210;&#x4EE5;&#x4E0B;&#x5BEB;&#x6CD5;&#x5C31;&#x6C92;&#x4E8B;&#x4E86;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Before</span>(value = <span class="string">&quot;execution (* *(..))&quot;</span>, argNames = <span class="string">&quot;joinPoint&quot;</span>)</div></pre></td></tr></table></figure></p>
+<ul>
+<li>&#x7B2C;&#x4E8C;&#x500B;&#x5751;&#xFF1A;</li>
+</ul>
+<p>&#x70BA;&#x4E86;&#x53EF;&#x4EE5;&#x52D5;&#x614B;&#x4FEE;&#x6539;aop.xml&#xFF0C;&#x5FC5;&#x9808;&#x5C07;&#x9019;&#x500B;&#x6A94;&#x6848;&#x5F9E;jar&#x62C9;&#x51FA;&#x4F86;&#x653E;&#xFF0E;&#x53EF;&#x4EE5;&#x900F;&#x904E;<code>-Dorg.aspectj.weaver.loadtime.configuration=file:{aop.xml&#x4F4D;&#x7F6E;}</code><br>&#x4F86;&#x6307;&#x5B9A;aop&#x4F4D;&#x7F6E;&#xFF0E;</p>
+<p>&#x4F46;&#x662F;&#x555F;&#x52D5;&#x7A0B;&#x5F0F;&#x6642;&#x537B;&#x53C8;&#x5674;&#x932F;<code>java.lang.RuntimeException: Cannot register non aspect:...</code>&#xFF0C;<br>&#x539F;&#x56E0;&#x662F;<code>javax.management.remote.rmi.NoCallStackClassLoader</code><br>&#x4E0D;&#x80FD;&#x8F09;&#x5165;&#x6211;&#x5BEB;&#x597D;&#x7684;aspect&#xFF0E;&#xFF08;&#x9019;&#x908A;&#x65E5;&#x5F8C;&#x6709;&#x6642;&#x9593;&#x9700;&#x8981;&#x4F86;&#x7814;&#x7A76;&#x4E00;&#x4E0B;&#xFF0C;&#x61C9;&#x8A72;&#x662F;&#x57F7;&#x884C;&#x9806;&#x5E8F;&#x7684;&#x554F;&#x984C;&#x2026;&#xFF09;</p>
+<p>&#x900F;&#x904E;<code>-Daj.weaving.loadersToSkip=javax.management.remote.rmi.NoCallStackClassLoader</code><br>&#x7565;&#x904E;&#x5B83;&#x5C31;&#x53EF;&#x4EE5;&#x57F7;&#x884C;&#x4E86;&#xFF0E;<br>&#x8A73;&#x7D30;&#x53EF;&#x53C3;&#x8003;&#xFF1A;<a href="http://stackoverflow.com/questions/18194719/aspectj-classloading-issue-when-trying-to-use-external-aop-xml-file" target="_blank" rel="external">AspectJ: ClassLoading issue when trying to use external aop.xml file</a></p>
+<ul>
+<li>&#x7B2C;&#x4E09;&#x500B;&#x5751;&#xFF1A;</li>
+</ul>
+<p>&#x4E00;&#x958B;&#x59CB;&#x6C92;&#x6709;&#x5728;<code>aop.xml</code>&#x7684;<code>weaver</code> tag&#x4E2D;&#x52A0;&#x5165;MonitorAspect&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x53C8;&#x5674;&#x932F;<br><code>java.lang.NoSuchMethodError: aspectj.MonitorAspect.aspectOf()Laspectj/MonitorAspect</code><br>&#x52A0;&#x5165;MonitorAspect&#x7684;&#x4F4D;&#x7F6E;&#x5C31;&#x6B63;&#x5E38;&#x4E86;&#xFF01;<br>&#x8A73;&#x7D30;&#x53EF;&#x53C3;&#x8003;&#xFF1A;<a href="http://findingthecomputer.blogspot.tw/2013/09/aspectj-javalangnosuchmethoderror.html" target="_blank" rel="external">AspectJ java.lang.NoSuchMethodError: aspectOf</a></p>
+<ul>
+<li>&#x7B2C;&#x56DB;&#x500B;&#x5751;&#xFF1A;</li>
+</ul>
+<p>&#x70BA;&#x4E86;&#x53EF;&#x4EE5;&#x5728;<code>aop.xml</code>&#x52D5;&#x614B;&#x6307;&#x5B9A;&#x8981;waving&#x7684;type&#xFF0C;&#x5343;&#x842C;&#x4E0D;&#x80FD;&#x5728;annotation&#x7684;value&#x6B04;&#x4F4D;&#x5BEB;&#x6B7B;&#xFF0E;</p>
+<p>&#x4F8B;&#x5982;&#xFF1A;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Before</span>(value = <span class="string">&quot;execution (* xxx.yyy.*(..))&quot;</span>, argNames = <span class="string">&quot;joinPoint&quot;</span>)</div></pre></td></tr></table></figure></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">aspectj</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">aspects</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">aspect</span> <span class="attr">name</span>=<span class="string">&quot;aspectj.MonitorAspect&quot;</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">aspects</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">weaver</span> <span class="attr">options</span>=<span class="string">&quot;-verbose -showWeaveInfo&quot;</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">include</span> <span class="attr">within</span>=<span class="string">&quot;xxx.yyy.*&quot;</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">include</span> <span class="attr">within</span>=<span class="string">&quot;xxx.zzz.*&quot;</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">include</span> <span class="attr">within</span>=<span class="string">&quot;aspectj.*&quot;</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">weaver</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">aspectj</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>&#x7D50;&#x679C;&#xFF1A;&#x53EA;&#x80FD;waving&#x5230;<code>xxx.yyy.*</code>&#xFF0C;&#x4E0D;&#x80FD;waving <code>xxx.zzz.*</code></p>
+<p>&#x6539;&#x6210;&#x4EE5;&#x4E0B;&#xFF1A;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Before</span>(value = <span class="string">&quot;execution (* *(..))&quot;</span>, argNames = <span class="string">&quot;joinPoint&quot;</span>)</div></pre></td></tr></table></figure></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">aspectj</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">aspects</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">aspect</span> <span class="attr">name</span>=<span class="string">&quot;aspectj.MonitorAspect&quot;</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">aspects</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">weaver</span> <span class="attr">options</span>=<span class="string">&quot;-verbose -showWeaveInfo&quot;</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">include</span> <span class="attr">within</span>=<span class="string">&quot;xxx.yyy.*&quot;</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">include</span> <span class="attr">within</span>=<span class="string">&quot;xxx.zzz.*&quot;</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">include</span> <span class="attr">within</span>=<span class="string">&quot;aspectj.*&quot;</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">weaver</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">aspectj</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>&#x7D50;&#x679C;&#xFF1A;&#x53EF;&#x4EE5;waving&#x5230;<code>xxx.yyy.*</code>&#x548C;<code>xxx.zzz.*</code></p>
+<h4 id="&#x5FC3;&#x5F97;&#xFF1A;"><a href="#&#x5FC3;&#x5F97;&#xFF1A;" class="headerlink" title="&#x5FC3;&#x5F97;&#xFF1A;"></a>&#x5FC3;&#x5F97;&#xFF1A;</h4><p>AOP&#x7684;&#x6982;&#x5FF5;&#x771F;&#x7684;&#x5F88;&#x5F37;&#x5927;&#xFF0C;&#x53EF;&#x4EE5;&#x8B93;&#x4F60;&#x4E0D;&#x8CBB;&#x5439;&#x7070;&#x4E4B;&#x529B;&#x53BB;&#x76E3;&#x63A7;Legacy System&#xFF0E;&#x4E0D;&#x7528;&#x66F4;&#x6539;&#x820A;&#x6709;&#x7A0B;&#x5F0F;&#xFF0C;&#x4E5F;&#x4E0D;&#x6703;&#x6709;&#x591A;&#x9918;&#x4E14;&#x91CD;&#x8907;&#x7684;&#x7A0B;&#x5F0F;&#x78BC;&#xFF0C;&#x4E4B;&#x5F8C;&#x53EF;&#x4EE5;&#x4F86;&#x60F3;&#x770B;&#x770B;&#x6709;&#x4EC0;&#x9EBC;&#x5730;&#x65B9;&#x53EF;&#x4EE5;&#x5229;&#x7528;AOP&#xFF0E;</p>
+<p>&#x56E0;&#x70BA;scala&#x7248;&#x672C;&#x592A;&#x820A;&#x4E86;(2.9.1, jdk 6)&#xFF0C;&#x5229;&#x7528;compile weaving&#x65B9;&#x5F0F;&#x5931;&#x6557;&#x4E86;&#xFF0C;&#x53EA;&#x597D;&#x7528;load time weaving&#x65B9;&#x5F0F;&#xFF0E;<br>&#x5047;&#x5982;&#x63A1;&#x7528;&#x8F03;&#x65B0;&#x7684;scala&#x7248;&#x672C;&#x6216;&#x8A31;&#x53EF;&#x4EE5;&#x8003;&#x616E; <a href="https://github.com/sbt/sbt-aspectj/tree/v0.10.4/src/sbt-test/weave/load-time" target="_blank" rel="external">sbt-aspectj</a>&#xFF0E;</p>
+<h4 id="&#x53C3;&#x8003;&#xFF1A;"><a href="#&#x53C3;&#x8003;&#xFF1A;" class="headerlink" title="&#x53C3;&#x8003;&#xFF1A;"></a>&#x53C3;&#x8003;&#xFF1A;</h4><ul>
+<li><a href="https://dzone.com/articles/aspectj-akka-and-scala" target="_blank" rel="external">AspectJ with Akka and Scala</a></li>
+<li><a href="http://stackoverflow.com/questions/18194719/aspectj-classloading-issue-when-trying-to-use-external-aop-xml-file" target="_blank" rel="external">AspectJ: ClassLoading issue when trying to use external aop.xml file</a></li>
+<li><a href="http://findingthecomputer.blogspot.tw/2013/09/aspectj-javalangnosuchmethoderror.html" target="_blank" rel="external">AspectJ java.lang.NoSuchMethodError: aspectOf</a></li>
+<li><a href="https://eclipse.org/aspectj/doc/next/devguide/ltw-configuration.html" target="_blank" rel="external">Chapter 5. Load-Time Weaving</a></li>
+<li><a href="https://github.com/sbt/sbt-aspectj/tree/v0.10.4/src/sbt-test/weave/load-time" target="_blank" rel="external">sbt-aspectj</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/AOP/" rel="tag"># AOP</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/09/Jersey-RESTful-service-starter-kit-2/" rel="next" title="[Jersey] RESTful service starter-kit (2)">
+                <i class="fa fa-chevron-left"></i> [Jersey] RESTful service starter-kit (2)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/09/Git-Moving-A-Git-Repository-To-A-New-Server/" rel="prev" title="[Git] Moving A Git Repository To A New Server">
+                [Git] Moving A Git Repository To A New Server <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="pandaforme" />
+          <p class="site-author-name" itemprop="name">pandaforme</p>
+          <p class="site-description motion-element" itemprop="description">This is a programming blog</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pandaforme" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://tw.linkedin.com/in/chien-ku-chen-78334745" target="_blank" title="Linkedin">
+                  
+                    <i class="fa fa-fw fa-linkedin"></i>
+                  
+                  Linkedin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#心得："><span class="nav-number">1.</span> <span class="nav-text">心得：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#參考："><span class="nav-number">2.</span> <span class="nav-text">參考：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">pandaforme</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'pandaforme';
+      var disqus_identifier = '2016/12/09/AOP-Monitor-Legacy-System/';
+
+      var disqus_title = "[AOP] Monitor Legacy System";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+
+    </script>
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
