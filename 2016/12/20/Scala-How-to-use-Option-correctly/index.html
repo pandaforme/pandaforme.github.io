@@ -86,16 +86,16 @@
 
 
 
-<meta name="description" content="&amp;#x5C0D;&amp;#x65BC;Scala&amp;#x4E00;&amp;#x76F4;&amp;#x628A;&amp;#x5B83;&amp;#x7576;&amp;#x6210;&amp;#x9032;&amp;#x968E;&amp;#x7248;&amp;#x672C;&amp;#x7684;Java&amp;#xFF0C;&amp;#x7576;&amp;#x8D8A;&amp;#x4F86;&amp;#x8D8A;&amp;#x4E86;&amp;#x89E3;Functional Programming&amp;#x7684;&amp;">
+<meta name="description" content="&amp;#x5C0D;&amp;#x65BC;Scala&amp;#x6211;&amp;#x4E00;&amp;#x76F4;&amp;#x628A;&amp;#x5B83;&amp;#x7576;&amp;#x6210;&amp;#x9032;&amp;#x968E;&amp;#x7248;&amp;#x672C;&amp;#x7684;Java&amp;#xFF0C;&amp;#x7576;&amp;#x8D8A;&amp;#x4F86;&amp;#x8D8A;&amp;#x4E86;&amp;#x89E3;Functional Programming&amp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[Scala] How to use Option correctly">
 <meta property="og:url" content="https://pandaforme.github.io/2016/12/20/Scala-How-to-use-Option-correctly/index.html">
 <meta property="og:site_name" content="Programming blog">
-<meta property="og:description" content="&amp;#x5C0D;&amp;#x65BC;Scala&amp;#x4E00;&amp;#x76F4;&amp;#x628A;&amp;#x5B83;&amp;#x7576;&amp;#x6210;&amp;#x9032;&amp;#x968E;&amp;#x7248;&amp;#x672C;&amp;#x7684;Java&amp;#xFF0C;&amp;#x7576;&amp;#x8D8A;&amp;#x4F86;&amp;#x8D8A;&amp;#x4E86;&amp;#x89E3;Functional Programming&amp;#x7684;&amp;">
-<meta property="og:updated_time" content="2016-12-20T07:11:55.163Z">
+<meta property="og:description" content="&amp;#x5C0D;&amp;#x65BC;Scala&amp;#x6211;&amp;#x4E00;&amp;#x76F4;&amp;#x628A;&amp;#x5B83;&amp;#x7576;&amp;#x6210;&amp;#x9032;&amp;#x968E;&amp;#x7248;&amp;#x672C;&amp;#x7684;Java&amp;#xFF0C;&amp;#x7576;&amp;#x8D8A;&amp;#x4F86;&amp;#x8D8A;&amp;#x4E86;&amp;#x89E3;Functional Programming&amp;">
+<meta property="og:updated_time" content="2017-02-15T09:51:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Scala] How to use Option correctly">
-<meta name="twitter:description" content="&amp;#x5C0D;&amp;#x65BC;Scala&amp;#x4E00;&amp;#x76F4;&amp;#x628A;&amp;#x5B83;&amp;#x7576;&amp;#x6210;&amp;#x9032;&amp;#x968E;&amp;#x7248;&amp;#x672C;&amp;#x7684;Java&amp;#xFF0C;&amp;#x7576;&amp;#x8D8A;&amp;#x4F86;&amp;#x8D8A;&amp;#x4E86;&amp;#x89E3;Functional Programming&amp;#x7684;&amp;">
+<meta name="twitter:description" content="&amp;#x5C0D;&amp;#x65BC;Scala&amp;#x6211;&amp;#x4E00;&amp;#x76F4;&amp;#x628A;&amp;#x5B83;&amp;#x7576;&amp;#x6210;&amp;#x9032;&amp;#x968E;&amp;#x7248;&amp;#x672C;&amp;#x7684;Java&amp;#xFF0C;&amp;#x7576;&amp;#x8D8A;&amp;#x4F86;&amp;#x8D8A;&amp;#x4E86;&amp;#x89E3;Functional Programming&amp;">
 
 
 
@@ -339,7 +339,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-20T14:31:00+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-20T15:13:00+08:00">
                 2016-12-20
               </time>
             
@@ -400,7 +400,7 @@
       
 
       
-        <p>&#x5C0D;&#x65BC;Scala&#x4E00;&#x76F4;&#x628A;&#x5B83;&#x7576;&#x6210;&#x9032;&#x968E;&#x7248;&#x672C;&#x7684;Java&#xFF0C;&#x7576;&#x8D8A;&#x4F86;&#x8D8A;&#x4E86;&#x89E3;Functional Programming&#x7684;&#x7CBE;&#x795E;&#xFF0C;&#x624D;&#x767C;&#x73FE;&#x4E4B;&#x524D;&#x60F3;&#x6CD5;&#x9084;&#x883B;&#x5929;&#x771F;&#x7684;&#xFF0E;</p>
+        <p>&#x5C0D;&#x65BC;Scala&#x6211;&#x4E00;&#x76F4;&#x628A;&#x5B83;&#x7576;&#x6210;&#x9032;&#x968E;&#x7248;&#x672C;&#x7684;Java&#xFF0C;&#x7576;&#x8D8A;&#x4F86;&#x8D8A;&#x4E86;&#x89E3;Functional Programming&#x7684;&#x7CBE;&#x795E;&#xFF0C;&#x624D;&#x767C;&#x73FE;&#x4E4B;&#x524D;&#x60F3;&#x6CD5;&#x9084;&#x883B;&#x5929;&#x771F;&#x7684;&#xFF0E;</p>
 <p>&#x53EF;&#x4EE5;&#x5F9E;&#x5982;&#x4F55;&#x6B63;&#x78BA;&#x4F7F;&#x7528; <code>Option</code> &#xFF0C;&#x8B93;&#x6211;&#x5011;&#x6162;&#x6162;&#x4F86;&#x9032;&#x5165;Functional Programming&#x7684;&#x4E16;&#x754C;&#xFF0E;</p>
 <p>&#x5148;&#x5F9E;&#x4E00;&#x500B;&#x7C21;&#x55AE;&#x7684;API&#x5BE6;&#x4F8B;&#x4F86;&#x958B;&#x59CB;&#xFF1A; &#x5047;&#x5982;&#x6709;&#x4E00;&#x500B;API&#xFF0C;Admin&#x4F7F;&#x7528;&#x8005;&#x53EF;&#x4EE5;&#x627E;&#x51FA;&#x67D0;&#x500B;&#x570B;&#x5BB6;&#x7684;&#x6240;&#x6709;&#x4F7F;&#x7528;&#x8005;&#xFF1B;&#x4E0D;&#x662F;Admin&#x4F7F;&#x7528;&#x8005;&#x5C31;&#x56DE;&#x50B3;&#x7A7A;&#x5B57;&#x4E32;&#xFF0E;</p>
 <p>&#x4F7F;&#x7528;&#x8005;&#x6703;&#x5E36;&#x4E0A; <code>userName</code> , <code>password</code> &#x548C; <code>country</code> &#x547C;&#x53EB;&#x6B64;API&#xFF0C;&#x9019;&#x500B;API&#x6703;</p>
@@ -409,7 +409,7 @@
 <li>&#x67E5;&#x8A62;&#x8CC7;&#x6599;&#x5EAB;&#x662F;&#x5426;&#x6709;&#x4F7F;&#x7528;&#x8005;</li>
 <li>&#x82E5;&#x6709;&#xFF0C;&#x6AA2;&#x67E5; <code>userType</code> &#x4F7F;&#x5426;&#x70BA; <code>Admin</code></li>
 <li>&#x6839;&#x64DA; <code>country</code> &#x53BB;&#x8CC7;&#x6599;&#x5EAB;&#x6488;&#x53D6;&#x8A72;&#x570B;&#x5BB6;&#x7684;&#x6240;&#x6709;&#x4F7F;&#x7528;&#x8005;</li>
-<li>&#x5C07;&#x7D50;&#x679C;&#x8F49;&#x6210; json &#x4E1F;&#x5230; http response</li>
+<li>&#x5C07;&#x7D50;&#x679C;&#x8F49;&#x6210; <code>json</code> &#x653E;&#x5230; http response</li>
 </ol>
 <p>&#x5148;&#x5B9A;&#x7FA9; <code>Data Type</code>&#xFF1A;<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">sealed</span> <span class="class"><span class="keyword">trait</span> <span class="title">Name</span></span></div><div class="line"><span class="keyword">final</span> <span class="keyword">case</span> <span class="class"><span class="keyword">class</span> <span class="title">UserName</span>(<span class="params">name: <span class="type">String</span></span>) <span class="keyword">extends</span> <span class="title">Password</span></span></div><div class="line"></div><div class="line"><span class="keyword">sealed</span> <span class="class"><span class="keyword">trait</span> <span class="title">Password</span></span></div><div class="line"><span class="keyword">final</span> <span class="keyword">case</span> <span class="class"><span class="keyword">class</span> <span class="title">MD5Password</span>(<span class="params">plainText: <span class="type">String</span></span>) <span class="keyword">extends</span> <span class="title">Password</span></span></div><div class="line"></div><div class="line"><span class="keyword">sealed</span> <span class="class"><span class="keyword">trait</span> <span class="title">Country</span></span></div><div class="line"><span class="keyword">final</span> <span class="keyword">case</span> <span class="class"><span class="keyword">object</span> <span class="title">TAIWAN</span> <span class="keyword">extends</span> <span class="title">Country</span></span></div><div class="line"><span class="keyword">final</span> <span class="keyword">case</span> <span class="class"><span class="keyword">object</span> <span class="title">CHINA</span> <span class="keyword">extends</span> <span class="title">Country</span></span></div><div class="line"></div><div class="line"><span class="keyword">sealed</span> <span class="class"><span class="keyword">trait</span> <span class="title">UserType</span></span></div><div class="line"><span class="keyword">final</span> <span class="keyword">case</span> <span class="class"><span class="keyword">object</span> <span class="title">ADMIN</span> <span class="keyword">extends</span> <span class="title">UserType</span></span></div><div class="line"><span class="keyword">final</span> <span class="keyword">case</span> <span class="class"><span class="keyword">object</span> <span class="title">EMAIL</span> <span class="keyword">extends</span> <span class="title">UserType</span></span></div><div class="line"><span class="keyword">final</span> <span class="keyword">case</span> <span class="class"><span class="keyword">object</span> <span class="title">PHONE</span> <span class="keyword">extends</span> <span class="title">UserType</span></span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">sealed</span> <span class="class"><span class="keyword">trait</span> <span class="title">Account</span> </span>{</div><div class="line">  <span class="keyword">val</span> name: <span class="type">String</span></div><div class="line">}</div><div class="line"><span class="keyword">final</span> <span class="keyword">case</span> <span class="class"><span class="keyword">class</span> <span class="title">AccountWithCredential</span>(<span class="params">name: <span class="type">UserName</span>, password: <span class="type">Password</span>, userType: <span class="type">UserType</span></span>) <span class="keyword">extends</span> <span class="title">Account</span></span></div><div class="line"><span class="keyword">final</span> <span class="keyword">case</span> <span class="class"><span class="keyword">class</span> <span class="title">AccountWithProfile</span>(<span class="params">name: <span class="type">UserName</span>, country: <span class="type">Country</span>, age: <span class="type">Int</span></span>) <span class="keyword">extends</span> <span class="title">Account</span></span></div></pre></td></tr></table></figure></p>
 <p>&#x9019;&#x6A23;&#x7684; <code>Data Type</code> &#x4E5F;&#x662F;&#x6240;&#x8B02;&#x7684; <code>Algebraic Type</code>&#xFF0C;<br>&#x4EE5; <code>Account</code> &#x70BA;&#x4F8B;&#xFF1A;</p>
@@ -417,7 +417,7 @@
 <li>&#x5B83;&#x6709;&#x5169;&#x7A2E; subtype <code>AccountWithCredential</code> &#x548C; <code>AccountWithProfile</code>&#xFF0C;&#x70BA; <code>Account</code> &#x7684; <code>Sum Type</code></li>
 <li>&#x5404;&#x7A2E;&#x4E0D;&#x540C; subtype &#x6709;&#x5B83;&#x5011;&#x7684;&#x53C3;&#x6578;&#xFF0C;&#x4E5F;&#x7A31;&#x4E4B;  <code>Product Type</code></li>
 </ul>
-<p>&#x9019;&#x7A2E;&#x5B9A;&#x7FA9;&#x65B9;&#x5F0F;&#x6709;&#x9EDE;&#x50CF;Java&#x4E16;&#x754C;&#x4E2D;&#x7684; <code>Value Object</code>&#xFF0C;&#x628A;&#x8CC7;&#x6599;&#x548C;&#x884C;&#x70BA;&#x5206;&#x958B;&#x662F;&#x6709;&#x597D;&#x8655;&#x7684;&#xFF0C;&#x907F;&#x514D;&#x8CC7;&#x6599;&#x548C;&#x884C;&#x70BA;&#x8026;&#x5408;&#x904E;&#x7DCA;&#xFF0E;<br><a href="https://en.wikipedia.org/wiki/Software_design_pattern" target="_blank" rel="external">Design Pattern</a>&#x4E2D;&#x6240;&#x63D0;&#x5230;&#x7684;pattern&#x4E5F;&#x662F;&#x5617;&#x8A66;&#x8457;&#x53BB;&#x5206;&#x96E2;&#x8CC7;&#x6599;&#x548C;&#x884C;&#x70BA;&#xFF0E;</p>
+<p>&#x9019;&#x7A2E;&#x5B9A;&#x7FA9;&#x65B9;&#x5F0F;&#x6709;&#x9EDE;&#x50CF;Java&#x4E16;&#x754C;&#x4E2D;&#x7684; <code>Value Object</code>&#xFF0C;&#x628A;&#x8CC7;&#x6599;&#x548C;&#x884C;&#x70BA;&#x5206;&#x958B;&#x662F;&#x6709;&#x597D;&#x8655;&#x7684;&#xFF0C;&#x907F;&#x514D;&#x8CC7;&#x6599;&#x548C;&#x884C;&#x70BA;&#x8026;&#x5408;&#x904E;&#x7DCA;&#xFF0E;<a href="https://en.wikipedia.org/wiki/Software_design_pattern" target="_blank" rel="external">Design Pattern</a> &#x4E5F;&#x662F;&#x900F;&#x904E;pattern&#x53BB;&#x5206;&#x96E2;&#x8CC7;&#x6599;&#x548C;&#x884C;&#x70BA;&#xFF0E;</p>
 <p>&#x518D;&#x4F86;&#x6211;&#x5011;&#x4F86;&#x5B9A;&#x7FA9;&#x884C;&#x70BA;&#xFF1A;<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">trait</span> <span class="title">Repo</span> </span>{</div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">login</span></span>(name: <span class="type">UserName</span>, password: <span class="type">Password</span>): <span class="type">Option</span>[<span class="type">AccountWithCredential</span>]</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">getAccountsByCountry</span></span>(country: <span class="type">Country</span>): <span class="type">Option</span>[<span class="type">List</span>[<span class="type">AccountWithProfile</span>]]</div><div class="line">}</div></pre></td></tr></table></figure></p>
 <p><code>login</code> &#x7684;&#x56DE;&#x50B3;&#x503C;&#x70BA;&#x4E00;&#x500B; <code>Option</code> context&#xFF0C;&#x88E1;&#x9762;&#x88DD;&#x8457; <code>AccountWithCredential</code>&#xFF0E;</p>
 <ul>
@@ -441,8 +441,9 @@
 <li>&#x5C07;&#x8CC7;&#x6599;&#x653E;&#x5165;context</li>
 <li>&#x5229;&#x7528; <code>flatMap</code>, <code>map</code> &#x8F49;&#x63DB;context&#x88E1;&#x9762;&#x7684;&#x503C;</li>
 </ol>
-<h3 id="&#x884D;&#x751F;&#x554F;&#x984C;"><a href="#&#x884D;&#x751F;&#x554F;&#x984C;" class="headerlink" title="&#x884D;&#x751F;&#x554F;&#x984C;"></a>&#x884D;&#x751F;&#x554F;&#x984C;</h3><p>&#x5728;&#x6700;&#x5F8C;&#x4E00;&#x500B;&#x7248;&#x672C;&#x4E2D;&#x53EA;&#x8981;&#x904E;&#x7A0B;&#x4E2D;&#x56DE;&#x50B3; <code>None</code> &#xFF0C;&#x6703;&#x5C0E;&#x81F4;json&#x70BA;&#x7A7A;&#x5B57;&#x4E32;&#xFF0E;&#x4F8B;&#x5982;&#xFF1A;payload&#x4E0D;&#x6B63;&#x78BA;&#x8DDF;&#x67D0;&#x570B;&#x5BB6;&#x4F7F;&#x7528;&#x8005;&#x70BA;&#x96F6;&#x7684;&#x7D50;&#x679C;&#x90FD;&#x4E00;&#x6A23;&#x662F;&#x7A7A;&#x5B57;&#x4E32;&#xFF0E;&#x9019;&#x6A23;&#x6703;&#x9020;&#x6210;&#x4F7F;&#x7528;&#x8005;&#x56F0;&#x60D1;&#x548C;&#x65E5;&#x5F8C;&#x7DAD;&#x8B77;&#x7684;&#x56F0;&#x96E3;&#xFF0C;&#x90A3;&#x6211;&#x5011;&#x8A72;&#x5982;&#x4F55;&#x89E3;&#x6C7A;&#x5462;&#xFF1F;</p>
-<p>&#x6211;&#x5011;&#x53EF;&#x4EE5;&#x5617;&#x8A66;&#x4F7F;&#x7528; &#x2018;Either&#x2019; &#x4F86;&#x6536;&#x96C6;&#x932F;&#x8AA4;&#x6216;&#x7528; <code>Try</code> &#x8868;&#x793A;&#x932F;&#x8AA4;&#xFF0C;&#x4E0B;&#x4E00;&#x7BC7;&#x518D;&#x4F86;&#x4ECB;&#x7D39; &#x2018;Either&#x2019; &#x548C; <code>Try</code>&#xFF0E;</p>
+<h3 id="&#x884D;&#x751F;&#x9700;&#x6C42;"><a href="#&#x884D;&#x751F;&#x9700;&#x6C42;" class="headerlink" title="&#x884D;&#x751F;&#x9700;&#x6C42;"></a>&#x884D;&#x751F;&#x9700;&#x6C42;</h3><p>&#x6700;&#x5F8C;&#x4E00;&#x500B;&#x7248;&#x672C;&#x53EF;&#x4EE5;&#x767C;&#x73FE;<br>payload&#x4E0D;&#x6B63;&#x78BA;&#x6216;&#x67D0;&#x500B;&#x570B;&#x5BB6;&#x7684;&#x4F7F;&#x7528;&#x8005;&#x70BA;&#x96F6;</p>
+<p>&#x7D50;&#x679C;&#x7ADF;&#x7136;&#x90FD;&#x662F;<code>None</code>&#xFF0C;&#x9019;&#x6A23;&#x6703;&#x9020;&#x6210;&#x4F7F;&#x7528;&#x8005;&#x9AD4;&#x9A57;&#x4E0D;&#x4F73;&#x548C;&#x7DAD;&#x8B77;&#x4E0A;&#x7684;&#x56F0;&#x96E3;&#xFF0E;&#x90A3;&#x6211;&#x5011;&#x53EF;&#x4EE5;&#x600E;&#x9EBC;&#x6539;&#x5584;&#x5462;&#xFF1F;</p>
+<p>&#x53EF;&#x4EE5;&#x6539;&#x7528; <code>Try</code> &#x6216; <code>Either</code> &#x4F86;&#x8868;&#x9054;&#x932F;&#x8AA4;&#xFF0C;&#x5728;&#x9019;&#x908A;&#x4F7F;&#x7528; <code>Option</code> &#x4F86;&#x8868;&#x793A;parse&#x5B8C;&#x7684;&#x7D50;&#x679C;&#x4E0D;&#x592A;&#x6D3D;&#x7576;&#xFF0C;&#x4E3B;&#x8981;&#x662F;&#x5C55;&#x793A;&#x53EF;&#x4EE5;&#x900F;&#x904E;compse&#x65B9;&#x5F0F;&#x4F86;&#x4E32;&#x63A5;&#x591A;&#x500B;function&#xFF0C;&#x4E0B;&#x4E00;&#x7BC7;&#x5C07;&#x6539;&#x7528; <code>Try</code> &#x6216; <code>Either</code> &#xFF0C;&#x8B93;&#x524D;&#x7AEF;&#x53EF;&#x4EE5;&#x6E05;&#x695A;&#x77E5;&#x9053;&#x932F;&#x8AA4;&#x8A0A;&#x606F;&#xFF0E;</p>
 <h3 id="&#x53C3;&#x8003;&#xFF1A;"><a href="#&#x53C3;&#x8003;&#xFF1A;" class="headerlink" title="&#x53C3;&#x8003;&#xFF1A;"></a>&#x53C3;&#x8003;&#xFF1A;</h3><ol>
 <li><a href="http://tpolecat.github.io/presentations/algebraic_types.html#1" target="_blank" rel="external">Introduction to Algebraic Types in Scala</a></li>
 </ol>
@@ -490,8 +491,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/12/20/Scala-How-to-use-Option-correctly/" rel="prev" title="[Scala] How to use Option correctly">
-                [Scala] How to use Option correctly <i class="fa fa-chevron-right"></i>
+              <a href="/2017/02/15/Scala-Use-Either-Try-to-hand-error/" rel="prev" title="[Scala] Use Either to hand error cases">
+                [Scala] Use Either to hand error cases <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -584,7 +585,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">標籤</span>
               </a>
             </div>
@@ -646,7 +647,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#衍生問題"><span class="nav-number">1.</span> <span class="nav-text">衍生問題</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#參考："><span class="nav-number">2.</span> <span class="nav-text">參考：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#衍生需求"><span class="nav-number">1.</span> <span class="nav-text">衍生需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#參考："><span class="nav-number">2.</span> <span class="nav-text">參考：</span></a></li></ol></div>
             
 
           </div>
@@ -667,7 +668,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
