@@ -1,0 +1,1001 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-tw">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Scala,Recursion,Tail recursion," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Programming blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="&amp;#x905E;&amp;#x8FF4;&amp;#x5728;functional programming&amp;#x4E16;&amp;#x754C;&amp;#x4E2D;&amp;#x662F;&amp;#x4E0D;&amp;#x51C6;&amp;#x8A31;&amp;#x6709;mutable&amp;#x8B8A;&amp;#x6578;&amp;#xFF0C;&amp;#x610F;&amp;#x5473;&amp;#x8457;&amp;#x6211;&amp;#x5011;&amp;#x719F;&amp;#x6089;&amp;#x">
+<meta name="keywords" content="Scala,Recursion,Tail recursion">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Scala] The importance of recursion">
+<meta property="og:url" content="https://pandaforme.github.io/2017/04/26/Scala-The-importance-of-recursion/index.html">
+<meta property="og:site_name" content="Programming blog">
+<meta property="og:description" content="&amp;#x905E;&amp;#x8FF4;&amp;#x5728;functional programming&amp;#x4E16;&amp;#x754C;&amp;#x4E2D;&amp;#x662F;&amp;#x4E0D;&amp;#x51C6;&amp;#x8A31;&amp;#x6709;mutable&amp;#x8B8A;&amp;#x6578;&amp;#xFF0C;&amp;#x610F;&amp;#x5473;&amp;#x8457;&amp;#x6211;&amp;#x5011;&amp;#x719F;&amp;#x6089;&amp;#x">
+<meta property="og:updated_time" content="2017-04-26T11:15:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Scala] The importance of recursion">
+<meta name="twitter:description" content="&amp;#x905E;&amp;#x8FF4;&amp;#x5728;functional programming&amp;#x4E16;&amp;#x754C;&amp;#x4E2D;&amp;#x662F;&amp;#x4E0D;&amp;#x51C6;&amp;#x8A31;&amp;#x6709;mutable&amp;#x8B8A;&amp;#x6578;&amp;#xFF0C;&amp;#x610F;&amp;#x5473;&amp;#x8457;&amp;#x6211;&amp;#x5011;&amp;#x719F;&amp;#x6089;&amp;#x">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://pandaforme.github.io/2017/04/26/Scala-The-importance-of-recursion/"/>
+
+
+
+
+
+  <title> [Scala] The importance of recursion | Programming blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-53742025-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Programming blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">This is a programming blog</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            關於
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            Sitemap
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            檢索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="https://pandaforme.github.io/2017/04/26/Scala-The-importance-of-recursion/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="pandaforme">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Programming blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Programming blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                [Scala] The importance of recursion
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-26T17:55:00+08:00">
+                2017-04-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Scala/" itemprop="url" rel="index">
+                    <span itemprop="name">Scala</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2017/04/26/Scala-The-importance-of-recursion/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/04/26/Scala-The-importance-of-recursion/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="&#x905E;&#x8FF4;"><a href="#&#x905E;&#x8FF4;" class="headerlink" title="&#x905E;&#x8FF4;"></a>&#x905E;&#x8FF4;</h1><p>&#x5728;functional programming&#x4E16;&#x754C;&#x4E2D;&#x662F;&#x4E0D;&#x51C6;&#x8A31;&#x6709;mutable&#x8B8A;&#x6578;&#xFF0C;&#x610F;&#x5473;&#x8457;&#x6211;&#x5011;&#x719F;&#x6089;&#x7684; <code>while</code>, <code>for</code> &#x8FF4;&#x5708;&#x90FD;&#x662F;&#x7981;&#x6B62;&#x4F7F;&#x7528;&#x3002;<br>&#x90A3;&#x6211;&#x5011;&#x61C9;&#x8A72;&#x600E;&#x9EBC;&#x8FA6;&#x5462;&#xFF1F; &#x9019;&#x908A;&#x6703;&#x8209;&#x500B;&#x6578;&#x500B;&#x4F8B;&#x5B50;&#xFF0C;&#x4F86;&#x89E3;&#x91CB;&#x662F;&#x900F;&#x904E;&#x905E;&#x8FF4;&#x65B9;&#x5F0F;&#x4F86;&#x5B8C;&#x6210; <code>while</code> &#x6216; <code>for</code> &#x8FF4;&#x5708;&#x3002;</p>
+<h2 id="&#x5F9E;&#x4E00;&#x500B;&#x4E32;&#x5217;&#x4E2D;&#x627E;&#x51FA;&#x6700;&#x5927;&#x503C;"><a href="#&#x5F9E;&#x4E00;&#x500B;&#x4E32;&#x5217;&#x4E2D;&#x627E;&#x51FA;&#x6700;&#x5927;&#x503C;" class="headerlink" title="&#x5F9E;&#x4E00;&#x500B;&#x4E32;&#x5217;&#x4E2D;&#x627E;&#x51FA;&#x6700;&#x5927;&#x503C;"></a>&#x5F9E;&#x4E00;&#x500B;&#x4E32;&#x5217;&#x4E2D;&#x627E;&#x51FA;&#x6700;&#x5927;&#x503C;</h2><p>&#x5982;&#x679C;&#x5728; <code>Java</code> &#x6211;&#x5011;&#x6703;&#x600E;&#x9EBC;&#x505A;&#x5462;&#xFF1F;</p>
+<ol>
+<li>&#x5BA3;&#x500B;&#x4E00;&#x500B;&#x8B8A;&#x6578;(max)&#x5B58;&#x653E;&#x76EE;&#x524D;&#x7684;&#x6700;&#x5927;&#x503C;</li>
+<li>&#x900F;&#x904E;<code>while</code> &#x6216; <code>for</code> &#x8FF4;&#x5708;&#xFF0C;&#x5C07;&#x4E32;&#x5217;&#x4E2D;&#x7684;&#x6BCF;&#x500B;&#x5143;&#x7D20;&#x8DDF;&#x6211;&#x5011;&#x5BA3;&#x544A;&#x7684;&#x8B8A;&#x6578;(max)&#x6BD4;&#x5927;&#x5C0F;<br>2.1 &#x82E5;&#x5143;&#x7D20;&#x7684;&#x503C;&#x5927;&#x65BC;max&#xFF0C;max&#x7684;&#x503C;&#x5C31;&#x6539;&#x70BA;&#x6B64;&#x5143;&#x7D20;&#x7684;&#x503C;<br>2.2 &#x82E5;&#x5143;&#x7D20;&#x7684;&#x503C;&#x5C0F;&#x65BC;&#x6216;&#x7B49;&#x65BC;max&#xFF0C;&#x4E0D;&#x505A;&#x4EFB;&#x4F55;&#x4E8B;</li>
+</ol>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> max = <span class="type">Int</span>.<span class="type">MinValue</span></div><div class="line"></div><div class="line"><span class="keyword">for</span>(i &lt;- <span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)){</div><div class="line">  <span class="keyword">if</span>(i &gt; max)</div><div class="line">    max = i</div><div class="line">}</div></pre></td></tr></table></figure>
+<p>&#x900F;&#x904E;&#x905E;&#x8FF4;&#x65B9;&#x5F0F;&#x6211;&#x5011;&#x6703;&#x600E;&#x9EBC;&#x89E3;&#x6C7A;&#x5462;&#xFF1F;</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">findMax(<span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>))</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">findMax</span></span>(list: <span class="type">List</span>[<span class="type">Int</span>]): <span class="type">Int</span> = {</div><div class="line">   list <span class="keyword">match</span>{</div><div class="line">     <span class="comment">// &#x5047;&#x5982;&#x662F;&#x7A7A;&#x7684;&#x4E32;&#x5217;&#xFF0C;&#x6211;&#x5011;&#x56DE;&#x50B3;0</span></div><div class="line">     <span class="keyword">case</span> <span class="type">Nil</span> =&gt; <span class="number">0</span></div><div class="line">     <span class="comment">// &#x5047;&#x5982;&#x53EA;&#x6709;&#x4E00;&#x500B;&#x5143;&#x7D20;&#x7684;&#x4E32;&#x5217;&#xFF0C;&#x90A3;&#x6700;&#x5927;&#x503C;&#x5C31;&#x70BA;&#x8A72;&#x5143;&#x7D20;</span></div><div class="line">     <span class="keyword">case</span> h :: <span class="type">Nil</span> =&gt; h</div><div class="line">     </div><div class="line">     <span class="comment">// &#x4E3B;&#x8981;&#x908F;&#x8F2F;</span></div><div class="line">     <span class="keyword">case</span> h :: t =&gt; <span class="type">Math</span>.max(h, findMax(t))</div><div class="line">   }</div><div class="line">}</div></pre></td></tr></table></figure>
+<ul>
+<li>&#x5728;&#x8FF4;&#x5708;&#x7248;&#x672C;&#x4E2D;&#xFF0C;&#x9010;&#x4E00;&#x6BCF;&#x500B;&#x5143;&#x7D20;&#x8DDF;&#x67D0;&#x4E00;&#x500B;mutable&#x8B8A;&#x6578;&#x6BD4;&#x5927;&#x5C0F;&#x3002;</li>
+<li>&#x5728;&#x8FF4;&#x905E;&#x7248;&#x672C;&#x4E2D;&#xFF0C;&#x7B2C;&#x4E00;&#x500B;&#x5143;&#x7D20;&#x8DDF;&#x53BB;&#x9664;&#x7B2C;&#x4E00;&#x500B;&#x5143;&#x7D20;&#x7684;&#x4E32;&#x5217;&#x7684;&#x6700;&#x5927;&#x503C;&#x6BD4;&#x5927;&#x5C0F;&#x3002;</li>
+</ul>
+<p>&#x8FF4;&#x905E;&#x7684;&#x5BEB;&#x6CD5;&#x66F4;&#x662F;&#x7C21;&#x6F54;&#x548C;&#x8868;&#x9054;&#x51FA;&#x6574;&#x500B;&#x7A0B;&#x5F0F;&#x4E3B;&#x8981;&#x908F;&#x8F2F;&#xFF0C;&#x6211;&#x5011;&#x518D;&#x4F86;&#x591A;&#x8A66;&#x770B;&#x770B;&#x5E7E;&#x500B;&#x984C;&#x76EE;&#x3002;</p>
+<h2 id="&#x5F9E;&#x4E00;&#x500B;&#x4E32;&#x5217;&#x4E2D;&#x627E;&#x51FA;&#x6700;&#x5C0F;&#x503C;"><a href="#&#x5F9E;&#x4E00;&#x500B;&#x4E32;&#x5217;&#x4E2D;&#x627E;&#x51FA;&#x6700;&#x5C0F;&#x503C;" class="headerlink" title="&#x5F9E;&#x4E00;&#x500B;&#x4E32;&#x5217;&#x4E2D;&#x627E;&#x51FA;&#x6700;&#x5C0F;&#x503C;"></a>&#x5F9E;&#x4E00;&#x500B;&#x4E32;&#x5217;&#x4E2D;&#x627E;&#x51FA;&#x6700;&#x5C0F;&#x503C;</h2><p>&#x505A;&#x6CD5;&#x8DDF;&#x627E;&#x51FA;&#x6700;&#x5927;&#x503C;&#x985E;&#x4F3C;&#xFF0C;&#x7B2C;&#x4E00;&#x500B;&#x5143;&#x7D20;&#x8DDF;&#x53BB;&#x9664;&#x7B2C;&#x4E00;&#x500B;&#x5143;&#x7D20;&#x7684;&#x4E32;&#x5217;&#x7684;&#x6700;&#x5C0F;&#x503C;&#x6BD4;&#x5927;&#x5C0F;&#x3002;</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">findMin(<span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>))</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">findMin</span></span>(list: <span class="type">List</span>[<span class="type">Int</span>]): <span class="type">Int</span> = {</div><div class="line">   list <span class="keyword">match</span>{</div><div class="line">     <span class="comment">// &#x5047;&#x5982;&#x662F;&#x7A7A;&#x7684;&#x4E32;&#x5217;&#xFF0C;&#x6211;&#x5011;&#x56DE;&#x50B3;0</span></div><div class="line">     <span class="keyword">case</span> <span class="type">Nil</span> =&gt; <span class="number">0</span></div><div class="line">     <span class="comment">// &#x5047;&#x5982;&#x53EA;&#x6709;&#x4E00;&#x500B;&#x5143;&#x7D20;&#x7684;&#x4E32;&#x5217;&#xFF0C;&#x90A3;&#x6700;&#x5C0F;&#x503C;&#x5C31;&#x70BA;&#x8A72;&#x5143;&#x7D20;</span></div><div class="line">     <span class="keyword">case</span> h :: <span class="type">Nil</span> =&gt; h</div><div class="line">     </div><div class="line">     <span class="comment">// &#x4E3B;&#x8981;&#x908F;&#x8F2F;</span></div><div class="line">     <span class="keyword">case</span> h :: t =&gt; <span class="type">Math</span>.min(h, findMin(t))</div><div class="line">   }</div><div class="line">}</div></pre></td></tr></table></figure>
+<h2 id="&#x6AA2;&#x67E5;&#x4E00;&#x500B;&#x4E32;&#x5217;&#x4E2D;&#x662F;&#x5426;&#x5B58;&#x5728;&#x67D0;&#x500B;&#x7279;&#x5B9A;&#x503C;"><a href="#&#x6AA2;&#x67E5;&#x4E00;&#x500B;&#x4E32;&#x5217;&#x4E2D;&#x662F;&#x5426;&#x5B58;&#x5728;&#x67D0;&#x500B;&#x7279;&#x5B9A;&#x503C;" class="headerlink" title="&#x6AA2;&#x67E5;&#x4E00;&#x500B;&#x4E32;&#x5217;&#x4E2D;&#x662F;&#x5426;&#x5B58;&#x5728;&#x67D0;&#x500B;&#x7279;&#x5B9A;&#x503C;"></a>&#x6AA2;&#x67E5;&#x4E00;&#x500B;&#x4E32;&#x5217;&#x4E2D;&#x662F;&#x5426;&#x5B58;&#x5728;&#x67D0;&#x500B;&#x7279;&#x5B9A;&#x503C;</h2><p>&#x6AA2;&#x67E5;&#x7B2C;&#x4E00;&#x500B;&#x5143;&#x7D20;&#x662F;&#x5426;&#x7B49;&#x65BC;&#x76EE;&#x6A19;&#x503C;&#x6216;&#x662F;&#x53BB;&#x9664;&#x7B2C;&#x4E00;&#x500B;&#x5143;&#x7D20;&#x7684;&#x4E32;&#x5217;&#x6709;&#x76EE;&#x6A19;&#x503C;</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">find(<span class="type">List</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>), <span class="number">5</span>)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">find</span></span>(list: <span class="type">List</span>[<span class="type">Int</span>], target: <span class="type">Int</span>): <span class="type">Boolean</span> = {</div><div class="line">   list <span class="keyword">match</span>{</div><div class="line">     <span class="comment">// &#x5047;&#x5982;&#x662F;&#x7A7A;&#x7684;&#x4E32;&#x5217;&#xFF0C;&#x56DE;&#x50B3;false</span></div><div class="line">     <span class="keyword">case</span> <span class="type">Nil</span> =&gt; <span class="literal">false</span></div><div class="line">     <span class="comment">// &#x5047;&#x5982;&#x53EA;&#x6709;&#x4E00;&#x500B;&#x5143;&#x7D20;&#x7684;&#x4E32;&#x5217;&#xFF0C;&#x800C;&#x4E14;&#x8A72;&#x5143;&#x7D20;&#x7B49;&#x65BC;target&#xFF0C;&#x56DE;&#x50B3;true</span></div><div class="line">     <span class="keyword">case</span> h :: <span class="type">Nil</span> <span class="keyword">if</span> (h == target) =&gt; <span class="literal">true</span></div><div class="line">     </div><div class="line">     <span class="comment">// &#x4E3B;&#x8981;&#x908F;&#x8F2F;</span></div><div class="line">     <span class="keyword">case</span> h :: t =&gt; (h == target) || find(t, target)</div><div class="line">   }</div><div class="line">}</div></pre></td></tr></table></figure>
+<h2 id="&#x53CD;&#x8F49;&#x4E00;&#x500B;&#x5B57;&#x4E32;"><a href="#&#x53CD;&#x8F49;&#x4E00;&#x500B;&#x5B57;&#x4E32;" class="headerlink" title="&#x53CD;&#x8F49;&#x4E00;&#x500B;&#x5B57;&#x4E32;"></a>&#x53CD;&#x8F49;&#x4E00;&#x500B;&#x5B57;&#x4E32;</h2><p>&#x5148;&#x53CD;&#x8F49;&#x53BB;&#x9664;&#x7B2C;&#x4E00;&#x500B;&#x5B57;&#x5143;&#x7684;&#x4E32;&#x5217;&#xFF0C;&#x4E4B;&#x5F8C;&#x518D;&#x5C07;&#x7B2C;&#x4E00;&#x5B57;&#x5143;&#x653E;&#x5728;&#x6700;&#x5F8C;&#x9762;</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">reverse(<span class="string">&quot;I should learn scala seriously!&quot;</span>.toList)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">reverse</span></span>(list: <span class="type">List</span>[<span class="type">Char</span>]): <span class="type">String</span> = {</div><div class="line">  list <span class="keyword">match</span> {</div><div class="line">    <span class="comment">// &#x5047;&#x5982;&#x662F;&#x7A7A;&#x7684;&#x4E32;&#x5217;&#xFF0C;&#x56DE;&#x50B3;false</span></div><div class="line">    <span class="keyword">case</span> <span class="type">Nil</span> =&gt; <span class="string">&quot;&quot;</span></div><div class="line">    <span class="comment">// &#x5047;&#x5982;&#x53EA;&#x6709;&#x4E00;&#x500B;&#x5143;&#x7D20;&#x7684;&#x4E32;&#x5217;&#xFF0C;&#x56DE;&#x50B3;&#x8A72;&#x5143;&#x7D20;</span></div><div class="line">    <span class="keyword">case</span> h :: <span class="type">Nil</span> =&gt; h.toString</div><div class="line"></div><div class="line">    <span class="comment">// &#x4E3B;&#x8981;&#x908F;&#x8F2F;</span></div><div class="line">    <span class="keyword">case</span> h :: t =&gt; reverse(t) + h</div><div class="line">  }</div><div class="line">}</div></pre></td></tr></table></figure>
+<h2 id="&#x5224;&#x65B7;&#x4E00;&#x500B;&#x5B57;&#x4E32;&#x662F;&#x5426;&#x70BA;&#x53E6;&#x5916;&#x4E00;&#x500B;&#x5B57;&#x4E32;&#x7684;&#x5B50;&#x5B57;&#x4E32;"><a href="#&#x5224;&#x65B7;&#x4E00;&#x500B;&#x5B57;&#x4E32;&#x662F;&#x5426;&#x70BA;&#x53E6;&#x5916;&#x4E00;&#x500B;&#x5B57;&#x4E32;&#x7684;&#x5B50;&#x5B57;&#x4E32;" class="headerlink" title="&#x5224;&#x65B7;&#x4E00;&#x500B;&#x5B57;&#x4E32;&#x662F;&#x5426;&#x70BA;&#x53E6;&#x5916;&#x4E00;&#x500B;&#x5B57;&#x4E32;&#x7684;&#x5B50;&#x5B57;&#x4E32;"></a>&#x5224;&#x65B7;&#x4E00;&#x500B;&#x5B57;&#x4E32;&#x662F;&#x5426;&#x70BA;&#x53E6;&#x5916;&#x4E00;&#x500B;&#x5B57;&#x4E32;&#x7684;&#x5B50;&#x5B57;&#x4E32;</h2><p>&#x5B50;&#x5B57;&#x4E32;&#x7684;&#x5B9A;&#x7FA9;&#xFF1A;&#x5B57;&#x6578;&#xFF0C;&#x5167;&#x5BB9;&#x548C;&#x9806;&#x5E8F;&#x9700;&#x8981;&#x7B26;&#x5408;&#xFF0C;&#x7A7A;&#x5B57;&#x4E32;&#x70BA;&#x4EFB;&#x4F55;&#x5B57;&#x4E32;&#x7684;&#x5B50;&#x5B57;&#x4E32;<br>&#x4F8B;&#x5982;&#xFF1A;</p>
+<ul>
+<li>&#x201C;abc&#x201D; &#x70BA; &#x201C;XXXYYYabc&#x201D;&#x7684;&#x5B50;&#x5B57;&#x4E32;</li>
+<li>&#x201C;XXXY&#x201D; &#x70BA; &#x201C;XXXYYYabc&#x201D;&#x7684;&#x5B50;&#x5B57;&#x4E32;</li>
+<li>&#x201C;&#x201D; &#x70BA; &#x201C;XXXYYYabc&#x201D;&#x7684;&#x5B50;&#x5B57;&#x4E32;</li>
+<li>&#x201C;ABC&#x201D; &#x4E0D;&#x70BA; &#x201C;XXXYYYabc&#x201D;&#x7684;&#x5B50;&#x5B57;&#x4E32;</li>
+<li>&#x201C;QQWW&#x201D; &#x4E0D;&#x70BA; &#x201C;XXXYYYabc&#x201D;&#x7684;&#x5B50;&#x5B57;&#x4E32;</li>
+</ul>
+<p>&#x5148;&#x6BD4;&#x8F03;&#x4E3B;&#x8981;&#x5B57;&#x4E32;&#x548C;&#x5B50;&#x5B57;&#x4E32;&#x7684;&#x7B2C;&#x4E00;&#x500B;&#x5B57;&#x6BCD;&#x662F;&#x5426;&#x4E00;&#x6A23;&#xFF0C;</p>
+<ul>
+<li>&#x82E5;&#x4E00;&#x6A23;&#x5247;&#x9019;&#x5169;&#x500B;&#x5B57;&#x4E32;&#x53BB;&#x9664;&#x7B2C;&#x4E00;&#x500B;&#x5B57;&#x6BCD;&#x7E7C;&#x7E8C;&#x6BD4;</li>
+<li>&#x82E5;&#x4E0D;&#x4E00;&#x6A23;&#xFF0C;&#x4E3B;&#x8981;&#x5B57;&#x4E32;&#x53BB;&#x9664;&#x7B2C;&#x4E00;&#x500B;&#x5B57;&#x6BCD;&#x548C;&#x5B50;&#x5B57;&#x4E32;&#x7E7C;&#x7E8C;&#x6BD4;</li>
+</ul>
+<p>&#x4F8B;&#x5982;&#xFF1A;<br>&#x4E3B;&#x8981;&#x5B57;&#x4E32;&#xFF1A;&#x201D;abcdefghi&#x201D;<br>&#x5B50;&#x5B57;&#x4E32;: &#x201C;abc&#x201D;<br>&#x56E0;&#x70BA;&#x7B2C;&#x4E00;&#x500B;&#x5B57;&#x6BCD;&#x4E00;&#x6A23;&#xFF0C;&#x5247;&#x201D;bcdefghi&#x201D;&#x548C;&#x201D;bc&#x201D;&#x7E7C;&#x7E8C;&#x6BD4;</p>
+<p>&#x4E3B;&#x8981;&#x5B57;&#x4E32;&#xFF1A;&#x201D;abcdefghi&#x201D;<br>&#x5B50;&#x5B57;&#x4E32;: &#x201C;defgh&#x201D;<br>&#x56E0;&#x70BA;&#x7B2C;&#x4E00;&#x500B;&#x5B57;&#x6BCD;&#x4E0D;&#x4E00;&#x6A23;&#xFF0C;&#x5247;&#x201D;bcdefghi&#x201D;&#x548C;&#x201D;defgh&#x201D;&#x7E7C;&#x7E8C;&#x6BD4;</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">isSubString(<span class="string">&quot;I should learn scala seriously!&quot;</span>.toList, <span class="string">&quot;scala&quot;</span>.toList)</div><div class="line">isSubString(<span class="string">&quot;I should learn scala seriously!&quot;</span>.toList, <span class="string">&quot;XXOO&quot;</span>.toList)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">isSubString</span></span>(original: <span class="type">List</span>[<span class="type">Char</span>], target: <span class="type">List</span>[<span class="type">Char</span>]): <span class="type">Boolean</span> = {</div><div class="line">  (original, target) <span class="keyword">match</span> {</div><div class="line">    <span class="keyword">case</span> (<span class="type">Nil</span>, _) =&gt; <span class="literal">false</span></div><div class="line">    <span class="keyword">case</span> (_, <span class="type">Nil</span>) =&gt; <span class="literal">true</span></div><div class="line">    <span class="keyword">case</span> (o :: <span class="type">Nil</span>, t :: <span class="type">Nil</span>) <span class="keyword">if</span> (o == t) =&gt; <span class="literal">true</span></div><div class="line">    <span class="keyword">case</span> (o :: <span class="type">Nil</span>, t :: <span class="type">Nil</span>) <span class="keyword">if</span> (o != t) =&gt; <span class="literal">false</span></div><div class="line">    <span class="keyword">case</span> (oh :: ot, th :: tt) <span class="keyword">if</span> (oh == th) =&gt; isSubString(ot, tt)</div><div class="line">    <span class="keyword">case</span> (oh :: ot, th :: tt) <span class="keyword">if</span> (oh != th) =&gt; isSubString(ot, target)</div><div class="line">  }</div><div class="line">}</div></pre></td></tr></table></figure>
+<h2 id="&#x5C07;&#x4E00;&#x500B;&#x4E32;&#x5217;&#x7531;&#x5C0F;&#x6392;&#x5230;&#x5927;"><a href="#&#x5C07;&#x4E00;&#x500B;&#x4E32;&#x5217;&#x7531;&#x5C0F;&#x6392;&#x5230;&#x5927;" class="headerlink" title="&#x5C07;&#x4E00;&#x500B;&#x4E32;&#x5217;&#x7531;&#x5C0F;&#x6392;&#x5230;&#x5927;"></a>&#x5C07;&#x4E00;&#x500B;&#x4E32;&#x5217;&#x7531;&#x5C0F;&#x6392;&#x5230;&#x5927;</h2><p>&#x6211;&#x5011;&#x4F86;&#x5BE6;&#x4F5C;<a href="https://zh.wikipedia.org/wiki/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F" target="_blank" rel="external">Quicksort</a></p>
+<ol>
+<li>&#x5F9E;&#x6578;&#x5217;&#x4E2D;&#x6311;&#x51FA;&#x4E00;&#x500B;&#x5143;&#x7D20;&#xFF0C;&#x7A31;&#x70BA;&#x201D;&#x57FA;&#x6E96;&#x201D;&#xFF08;pivot&#xFF09;&#x3002;</li>
+<li>&#x91CD;&#x65B0;&#x6392;&#x5E8F;&#x6578;&#x5217;&#xFF0C;&#x6240;&#x6709;&#x6BD4;&#x57FA;&#x6E96;&#x503C;&#x5C0F;&#x7684;&#x5143;&#x7D20;&#x64FA;&#x653E;&#x5728;&#x57FA;&#x6E96;&#x524D;&#x9762;&#xFF0C;&#x6240;&#x6709;&#x6BD4;&#x57FA;&#x6E96;&#x503C;&#x5927;&#x7684;&#x5143;&#x7D20;&#x64FA;&#x5728;&#x57FA;&#x6E96;&#x5F8C;&#x9762;&#xFF08;&#x76F8;&#x540C;&#x7684;&#x6578;&#x53EF;&#x4EE5;&#x5230;&#x4EFB;&#x4E00;&#x908A;&#xFF09;&#x3002;&#x5728;&#x9019;&#x500B;&#x5206;&#x5272;&#x7D50;&#x675F;&#x4E4B;&#x5F8C;&#xFF0C;&#x8A72;&#x57FA;&#x6E96;&#x5C31;&#x8655;&#x65BC;&#x6578;&#x5217;&#x7684;&#x4E2D;&#x9593;&#x4F4D;&#x7F6E;&#x3002;&#x9019;&#x500B;&#x7A31;&#x70BA;&#x5206;&#x5272;&#xFF08;partition&#xFF09;&#x64CD;&#x4F5C;&#x3002;</li>
+<li>&#x905E;&#x8FF4;&#x5730;&#xFF08;recursively&#xFF09;&#x628A;&#x5C0F;&#x65BC;&#x57FA;&#x6E96;&#x503C;&#x5143;&#x7D20;&#x7684;&#x5B50;&#x6578;&#x5217;&#x548C;&#x5927;&#x65BC;&#x57FA;&#x6E96;&#x503C;&#x5143;&#x7D20;&#x7684;&#x5B50;&#x6578;&#x5217;&#x6392;&#x5E8F;&#x3002;</li>
+</ol>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">quicksort(<span class="type">List</span>(<span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">9</span>, <span class="number">10</span>))</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">quicksort</span></span>(list: <span class="type">List</span>[<span class="type">Int</span>]): <span class="type">List</span>[<span class="type">Int</span>] = {</div><div class="line">  list <span class="keyword">match</span> {</div><div class="line">    <span class="keyword">case</span> <span class="type">Nil</span> =&gt; <span class="type">Nil</span></div><div class="line">    <span class="keyword">case</span> h :: <span class="type">Nil</span> =&gt; <span class="type">List</span>(h)</div><div class="line">    <span class="keyword">case</span> h :: t =&gt; quicksort(t.filter(_ &lt;= h)) ::: h :: t.filter(_ &gt; h)</div><div class="line">  }</div><div class="line">}</div></pre></td></tr></table></figure>
+<h2 id="&#x5BEB;&#x51FA;&#x8CBB;&#x6C0F;&#x6578;&#x5217;"><a href="#&#x5BEB;&#x51FA;&#x8CBB;&#x6C0F;&#x6578;&#x5217;" class="headerlink" title="&#x5BEB;&#x51FA;&#x8CBB;&#x6C0F;&#x6578;&#x5217;"></a>&#x5BEB;&#x51FA;&#x8CBB;&#x6C0F;&#x6578;&#x5217;</h2><p>&#x4F55;&#x8B02;&#x8CBB;&#x6C0F;&#x6578;&#x5217;&#xFF1A;<a href="https://zh.wikipedia.org/wiki/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97" target="_blank" rel="external">&#x8CBB;&#x6C0F;&#x6578;&#x5217;</a></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">fib(<span class="number">6</span>)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">fib</span></span>(n: <span class="type">Int</span>): <span class="type">Int</span> = {</div><div class="line">  n <span class="keyword">match</span> {</div><div class="line">    <span class="keyword">case</span> <span class="number">0</span> =&gt; <span class="number">0</span></div><div class="line">    <span class="keyword">case</span> <span class="number">1</span> =&gt; <span class="number">1</span></div><div class="line">    <span class="keyword">case</span> _ =&gt; fib(n - <span class="number">1</span>) + fib(n - <span class="number">2</span>)</div><div class="line">  }</div><div class="line">}</div></pre></td></tr></table></figure>
+<p>&#x7D93;&#x904E;&#x5E7E;&#x6B21;&#x7684;&#x7DF4;&#x7FD2;&#xFF0C;&#x6211;&#x5011;&#x61C9;&#x8A72;&#x5927;&#x6982;&#x53EF;&#x4EE5;&#x6162;&#x6162;&#x638C;&#x63E1;&#x5230;&#x600E;&#x9EBC;&#x904B;&#x7528;&#x905E;&#x8FF4;&#x4F86;&#x9054;&#x5230;&#x8FF4;&#x5708;&#x76EE;&#x7684;&#x3002;</p>
+<ol>
+<li>&#x5148;&#x628A;&#x4E3B;&#x8981;&#x908F;&#x8F2F;&#x5BEB;&#x51FA;&#x4F86;</li>
+<li>&#x518D;&#x628A;&#x908A;&#x754C;&#x689D;&#x4EF6;&#x8A2D;&#x597D;&#xFF0C;&#x6C92;&#x6709;&#x908A;&#x754C;&#x689D;&#x4EF6;&#x5C31;&#x6703;&#x7121;&#x7AAE;&#x7684;&#x8DD1;&#x4E0B;&#x53BB;&#x2026;<br>&#x905E;&#x8FF4;&#x4E3B;&#x8981;&#x662F;&#x900F;&#x904E;&#x81EA;&#x6211;&#x547C;&#x53EB;&#xFF0C;&#x628A;&#x6BCF;&#x4E00;&#x6B65;&#x7684;&#x72C0;&#x614B;&#x653E;&#x5728; <code>stack</code>&#xFF0C;&#x7B49;&#x8D70;&#x5230;&#x908A;&#x754C;&#x56DE;&#x50B3;&#x908A;&#x754C;&#x503C;&#x6216;&#x5B8C;&#x6210;&#x908A;&#x754C;&#x689D;&#x4EF6;&#x5F8C;&#xFF0C;&#x518D;&#x56DE;&#x6EAF;&#x56DE;&#x53BB;&#x3002;</li>
+</ol>
+<p>&#x628A;&#x554F;&#x984C;&#x900F;&#x904E;<a href="https://zh.wikipedia.org/wiki/%E5%88%86%E6%B2%BB%E6%B3%95" target="_blank" rel="external">Divide and conquer</a>&#x65B9;&#x5F0F;&#xFF0C;<br>&#x5927;&#x554F;&#x984C;&#x5206;&#x89E3;&#x6210;&#x6578;&#x500B;&#x5C0F;&#x554F;&#x984C;&#xFF0C;&#x82E5;&#x5C0F;&#x554F;&#x984C;&#x898F;&#x6A21;&#x8F03;&#x5C0F;&#x4E14;&#x6613;&#x65BC;&#x89E3;&#x6C7A;&#x6642;&#xFF0C;&#x5247;&#x76F4;&#x63A5;&#x89E3;&#x3002;&#x5426;&#x5247;&#xFF0C;&#x905E;&#x6B78;&#x5730;&#x89E3;&#x6C7A;&#x5404;&#x5C0F;&#x554F;&#x984C;&#x3002;<br>&#x6700;&#x5F8C;&#x518D;&#x5C07;&#x6BCF;&#x500B;&#x5C0F;&#x554F;&#x984C;&#x7684;&#x7D50;&#x679C;&#x9010;&#x4E00;&#x5408;&#x4F75;&#x8D77;&#x4F86;&#x3002;</p>
+<p>&#x905E;&#x8FF4;&#x7684;&#x5BEB;&#x6CD5;&#x5F88;&#x7C21;&#x6F54;&#xFF0C;&#x4F46;&#x662F;&#x6700;&#x5927;&#x7684;&#x554F;&#x984C;&#x662F;&#x6548;&#x80FD;&#x4E0D;&#x597D;&#x548C;&#x5BB9;&#x6613; <code>Stack Overflow</code>&#x3002;<br>&#x4E3B;&#x8981;&#x539F;&#x56E0;&#x662F;&#x6703;&#x53BB;&#x5617;&#x8A66;&#x8D70;&#x6240;&#x6709;&#x53EF;&#x80FD;&#x7684;&#x8DEF;&#x5F91;&#x800C;&#x4E14;&#x628A;&#x6BCF;&#x4E00;&#x500B;&#x72C0;&#x614B;&#x653E;&#x5728;stack&#xFF0C;&#x7576;&#x72C0;&#x614B;&#x4E00;&#x591A;&#x5C31;&#x7206;&#x4E86;&#x3002;<br>&#x53BB;&#x5617;&#x8A66;&#x8D70;&#x6240;&#x6709;&#x53EF;&#x80FD;&#x7684;&#x8DEF;&#x5F91;&#x4E5F;&#x662F;&#x9020;&#x6210;&#x6548;&#x80FD;&#x4E0D;&#x597D;&#x7684;&#x539F;&#x56E0;&#x3002;</p>
+<p>&#x5047;&#x5982;&#xFF1A;</p>
+<ol>
+<li>&#x53BB;&#x5617;&#x8A66;&#x8D70;&#x6240;&#x6709;&#x53EF;&#x80FD;&#x7684;&#x8DEF;&#x5F91;&#x4E0D;&#x591A;&#xFF0C;&#x4F46;&#x662F;&#x6BCF;&#x4E00;&#x500B;&#x6B65;&#x8A08;&#x7B97;&#x5F88;&#x82B1;&#x6642;&#x9593;&#xFF0C;&#x905E;&#x8FF4;&#x5BB9;&#x6613;&#x8F49;&#x63DB;&#x6210;&#x975E;&#x540C;&#x6B65;&#x7A0B;&#x5F0F;&#x3002;</li>
+</ol>
+<p>&#x5047;&#x5982;&#x6709;&#x4E00;&#x500B;&#x905E;&#x8FF4;&#x7A0B;&#x5F0F;&#x5982;&#x4E0B;&#xFF1A;<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">sync</span></span>(n : <span class="type">Int</span>): <span class="type">Int</span> = {</div><div class="line">  n <span class="keyword">match</span>{</div><div class="line">    <span class="comment">// &#x9700;&#x8981;&#x5927;&#x91CF;&#x6642;&#x9593;&#x8A08;&#x7B97;&#x624D;&#x53EF;&#x4EE5;&#x5F97;&#x51FA;&#x7D50;&#x679C;</span></div><div class="line">    <span class="keyword">case</span> <span class="number">0</span> =&gt; <span class="number">9999</span> </div><div class="line">    </div><div class="line">    <span class="keyword">case</span> _ =&gt; sync(n - <span class="number">10</span>)</div><div class="line">  }</div><div class="line">}</div></pre></td></tr></table></figure></p>
+<p>&#x6211;&#x5011;&#x53EF;&#x4EE5;&#x8F15;&#x6613;&#x5C07;&#x5B83;&#x8F49;&#x63DB;&#x6210;&#x975E;&#x540C;&#x6B65;&#x7A0B;&#x5F0F;&#x3002;<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">async</span></span>(n : <span class="type">Int</span>): <span class="type">Future</span>[<span class="type">Int</span>] = {</div><div class="line">  n <span class="keyword">match</span>{</div><div class="line">    <span class="comment">// &#x9700;&#x8981;&#x5927;&#x91CF;&#x6642;&#x9593;&#x8A08;&#x7B97;&#x624D;&#x53EF;&#x4EE5;&#x5F97;&#x51FA;&#x7D50;&#x679C;</span></div><div class="line">    <span class="keyword">case</span> <span class="number">0</span> =&gt; <span class="type">Future</span>(<span class="number">9999</span>) </div><div class="line">    </div><div class="line">    <span class="keyword">case</span> _ =&gt; async(n - <span class="number">1</span>)</div><div class="line">  }</div><div class="line">}</div></pre></td></tr></table></figure></p>
+<p>&#x975E;&#x905E;&#x8FF4;&#x7684;&#x7248;&#x672C;&#x5C31;&#x5F88;&#x96E3;&#x6539;&#x4E86;&#xFF0C;&#x56E0;&#x70BA;&#x4E3B;&#x8981;&#x5B58;&#x5728;&#x5171;&#x4EAB;&#x7684;mutable&#x8B8A;&#x6578;&#xFF0C;&#x591A;&#x500B;thread&#x6703;&#x5171;&#x4EAB;&#x540C;&#x4E00;&#x500B;&#x8B8A;&#x6578;&#xFF0C;&#x5C31;&#x9700;&#x8981;&#x505A;&#x540C;&#x6B65;&#x8655;&#x7406;&#x3002;<br>&#x540C;&#x6B65;&#x554F;&#x984C;&#x6C92;&#x6709;&#x5C0F;&#x5FC3;&#x8655;&#x7406;&#xFF0C;&#x7D50;&#x679C;&#x5F88;&#x5BB9;&#x6613;&#x51FA;&#x932F;&#x3002;</p>
+<ol>
+<li>&#x5617;&#x8A66;&#x8D70;&#x6240;&#x6709;&#x53EF;&#x80FD;&#x7684;&#x8DEF;&#x5F91;&#x5F88;&#x591A;</li>
+</ol>
+<p>&#x4F8B;&#x5982;&#xFF1A;&#x8A08;&#x7B97;&#x7B2C;&#x4E94;&#x5341;&#x500B;&#x8CBB;&#x6C0F;&#x6578;&#x5217;<br>&#x6839;&#x64DA;&#x8A08;&#x7B97;&#x8CBB;&#x6C0F;&#x6578;&#x5217;&#x7684;&#x905E;&#x8FF4;&#x516C;&#x5F0F;&#xFF0C; <code>n = 50</code> &#x7684;&#x6A39;&#x72C0;&#x7D50;&#x69CB;&#x6703;&#x76F8;&#x7576;&#x5927;&#x3002;&#x6211;&#x5011;&#x53EF;&#x4EE5;&#x900F;&#x904E; <a href="http://localhost:4000/2016/12/09/Scala-Tail-recursion/" target="_blank" rel="external">Tail recursion</a> &#x4F86;&#x89E3;&#x6C7A;&#x3002;<br>&#x628A;&#x4E0A;&#x4E00;&#x500B;&#x72C0;&#x614B;&#x7684;&#x7D50;&#x679C;&#x76F4;&#x63A5;&#x7576;&#x6210;&#x5E36;&#x5165;&#x53C3;&#x6578;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x4F9D;&#x8CF4;&#x4E0A;&#x4E00;&#x500B;&#x72C0;&#x614B;&#x7684;&#x7D50;&#x679C;&#x3002;</p>
+<p>&#x56E0;&#x70BA; <code>fib(n) = fib(n - 1) + fib(n - 2)</code>&#xFF0C;&#x5047;&#x5982;&#x53EF;&#x4EE5;&#x628A; <code>fib(n - 1)</code> &#x548C; <code>fib(n - 2)</code> &#x7576;&#x53C3;&#x6578;&#x5E36;&#x5165;&#xFF0C;<br>&#x9019;&#x6A23;&#x5C31;&#x53EF;&#x4EE5;&#x99AC;&#x4E0A;&#x5F97;&#x51FA; <code>fib(n)</code>&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x7B49;&#x7B97;&#x5B8C; <code>fib(n - 1)</code> &#x548C; <code>fib(n - 2)</code> &#x5F8C;&#x624D;&#x53EF;&#x4EE5;&#x5F97;&#x51FA; <code>fib(n)</code>&#x3002;</p>
+<pre><code class="scala"><span class="keyword">import</span> scala.annotation.tailrec
+
+fib(<span class="number">0</span>, <span class="number">1</span>, <span class="number">5</span>)
+
+<span class="meta">@tailrec</span>
+<span class="function"><span class="keyword">def</span> <span class="title">fib</span></span>(previous: <span class="type">Int</span>, current: <span class="type">Int</span>, n: <span class="type">Int</span>): <span class="type">Int</span> = {
+  n <span class="keyword">match</span> {
+    <span class="keyword">case</span> <span class="number">0</span> =&gt; previous
+    <span class="keyword">case</span> <span class="number">1</span> =&gt; current
+    <span class="keyword">case</span> _ =&gt; fib(current, previous + current, n - <span class="number">1</span>)
+  }
+}
+</code></pre>
+<p>&#x6709;&#x8208;&#x8DA3;&#x7684;&#x8B80;&#x8005;&#x53EF;&#x4EE5;&#x5230; <a href="https://scalataiwan.github.io/ScalaKitchen/recursive.html" target="_blank" rel="external">ScalaKitchen</a> &#x8A66;&#x73A9;&#x770B;&#x770B;&#xFF0C;&#x4E5F;&#x6709;&#x63D0;&#x4F9B;<a href="https://scalataiwan.github.io/ScalaKitchen/" target="_blank" rel="external">&#x4E2D;&#x6587;&#x7248;&#x672C;&#x7684;Scala&#x5165;&#x9580;&#x6559;&#x5B78;</a>&#x3002;</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Scala/" rel="tag"># Scala</a>
+          
+            <a href="/tags/Recursion/" rel="tag"># Recursion</a>
+          
+            <a href="/tags/Tail-recursion/" rel="tag"># Tail recursion</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/15/Scala-Use-Either-Try-to-hand-error/" rel="prev" title="[Scala] Use Either to hand error cases">
+                [Scala] Use Either to hand error cases <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="pandaforme" />
+          <p class="site-author-name" itemprop="name">pandaforme</p>
+          <p class="site-description motion-element" itemprop="description">This is a programming blog</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-name">文章</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分類</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">標籤</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/pandaforme" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://tw.linkedin.com/in/chien-ku-chen-78334745" target="_blank" title="Linkedin">
+                  
+                    <i class="fa fa-fw fa-linkedin"></i>
+                  
+                  Linkedin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#遞迴"><span class="nav-number">1.</span> <span class="nav-text">遞迴</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#從一個串列中找出最大值"><span class="nav-number">1.1.</span> <span class="nav-text">從一個串列中找出最大值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#從一個串列中找出最小值"><span class="nav-number">1.2.</span> <span class="nav-text">從一個串列中找出最小值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#檢查一個串列中是否存在某個特定值"><span class="nav-number">1.3.</span> <span class="nav-text">檢查一個串列中是否存在某個特定值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反轉一個字串"><span class="nav-number">1.4.</span> <span class="nav-text">反轉一個字串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判斷一個字串是否為另外一個字串的子字串"><span class="nav-number">1.5.</span> <span class="nav-text">判斷一個字串是否為另外一個字串的子字串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#將一個串列由小排到大"><span class="nav-number">1.6.</span> <span class="nav-text">將一個串列由小排到大</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#寫出費氏數列"><span class="nav-number">1.7.</span> <span class="nav-text">寫出費氏數列</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">pandaforme</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 強力驅動
+</div>
+
+<div class="theme-info">
+  主題 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'pandaforme';
+      var disqus_identifier = '2017/04/26/Scala-The-importance-of-recursion/';
+
+      var disqus_title = "[Scala] The importance of recursion";
+
+
+      function run_disqus_script(disqus_script) {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+
+    </script>
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
