@@ -93,6 +93,7 @@
 <meta property="og:url" content="https://pandaforme.github.io/2016/12/09/Java-The-SerialVersionUID/index.html">
 <meta property="og:site_name" content="Programming blog">
 <meta property="og:description" content="&amp;#x7576;&amp;#x5BE6;&amp;#x4F5C;&amp;#x4E86;Serializable interface&amp;#x6642;&amp;#xFF0C;Eclipse&amp;#x7E3D;&amp;#x662F;&amp;#x6703;&amp;#x63D0;&amp;#x9192;&amp;#x4F60;1The serializable class xxx does not declare a static final serialVersionUI">
+<meta property="og:locale" content="zh-tw">
 <meta property="og:updated_time" content="2016-12-09T11:20:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Java] The SerialVersionUID">
@@ -401,18 +402,18 @@
       
 
       
-        <p>&#x7576;&#x5BE6;&#x4F5C;&#x4E86;Serializable interface&#x6642;&#xFF0C;Eclipse&#x7E3D;&#x662F;&#x6703;&#x63D0;&#x9192;&#x4F60;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">The serializable <span class="class"><span class="keyword">class</span> <span class="title">xxx</span> <span class="title">does</span> <span class="title">not</span> <span class="title">declare</span> <span class="title">a</span> <span class="title">static</span> <span class="title">final</span> <span class="title">serialVersionUID</span> <span class="title">field</span> <span class="title">of</span> <span class="title">type</span> <span class="title">long</span></span></div></pre></td></tr></table></figure></p>
+        <p>&#x7576;&#x5BE6;&#x4F5C;&#x4E86;Serializable interface&#x6642;&#xFF0C;Eclipse&#x7E3D;&#x662F;&#x6703;&#x63D0;&#x9192;&#x4F60;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The serializable <span class="class"><span class="keyword">class</span> <span class="title">xxx</span> <span class="title">does</span> <span class="title">not</span> <span class="title">declare</span> <span class="title">a</span> <span class="title">static</span> <span class="title">final</span> <span class="title">serialVersionUID</span> <span class="title">field</span> <span class="title">of</span> <span class="title">type</span> <span class="title">long</span></span></span><br></pre></td></tr></table></figure></p>
 <p>serialVersionUID&#x76F8;&#x7576;&#x65BC;&#x9019;&#x500B;Object&#x7684;&#x7248;&#x672C;&#x63A7;&#x7BA1;&#xFF0C;&#x82E5;&#x4E0D;&#x5BA3;&#x544A;serialVersionUID&#xFF0C;JVM&#x6703;&#x5354;&#x52A9;&#x7522;&#x751F;&#x3002;&#x4F46;&#x662F;&#x56E0;&#x70BA;&#x6F14;&#x7B97;&#x6CD5;&#x5C0D;Object&#x5167;&#x5BB9;&#x6709;&#x76F8;&#x7576;&#x9AD8;&#x7684;&#x654F;&#x611F;&#x5EA6;&#x548C;&#x4E0D;&#x540C;&#x7684;JVM&#x6709;&#x4E0D;&#x540C;&#x7684;&#x5BE6;&#x4F5C;&#x65B9;&#x5F0F;&#xFF0C;&#x6240;&#x4EE5;&#x6709;&#x53EF;&#x80FD;Object&#x90FD;&#x4E00;&#x6A23;&#xFF0C;&#x4F46;&#x662F;&#x5728;&#x4E0D;&#x540C;JVM&#x4E0A;&#x7B97;&#x51FA;&#x7684;serialVersionUID&#x537B;&#x662F;&#x4E0D;&#x540C;&#xFF0C;&#x4E1F;&#x51FA;InvalidClassException&#x3002;</p>
-<h3 id="&#x7BC4;&#x4F8B;&#xFF1A;"><a href="#&#x7BC4;&#x4F8B;&#xFF1A;" class="headerlink" title="&#x7BC4;&#x4F8B;&#xFF1A;"></a>&#x7BC4;&#x4F8B;&#xFF1A;</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">implements</span> <span class="title">Serializable</span></span>{</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span>	serialVersionUID	= <span class="number">1L</span>;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> <span class="keyword">int</span> age;</div><div class="line">	</div><div class="line">	<span class="keyword">private</span> String addres;</div><div class="line">}</div></pre></td></tr></table></figure>
+<h3 id="&#x7BC4;&#x4F8B;&#xFF1A;"><a href="#&#x7BC4;&#x4F8B;&#xFF1A;" class="headerlink" title="&#x7BC4;&#x4F8B;&#xFF1A;"></a>&#x7BC4;&#x4F8B;&#xFF1A;</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">implements</span> <span class="title">Serializable</span></span>{</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span>	serialVersionUID	= <span class="number">1L</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> String addres;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 <p>&#x63A5;&#x6536;&#x65B9;&#x5C07;Person Object&#x5E8F;&#x5217;&#x5316;&#x5B58;&#x5230;&#x786C;&#x789F;&#x4E0A;&#x3002;</p>
-<p>&#x4E4B;&#x5F8C;Person Object&#x505A;&#x4E86;&#x4FEE;&#x6539;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">implements</span> <span class="title">Serializable</span></span>{</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span>	serialVersionUID	= <span class="number">2L</span>;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> String name;</div><div class="line">}</div></pre></td></tr></table></figure></p>
+<p>&#x4E4B;&#x5F8C;Person Object&#x505A;&#x4E86;&#x4FEE;&#x6539;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">implements</span> <span class="title">Serializable</span></span>{</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span>	serialVersionUID	= <span class="number">2L</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">}</span><br></pre></td></tr></table></figure></p>
 <p>&#x6B64;&#x6642;&#xFF0C;&#x63A5;&#x6536;&#x65B9;&#x5617;&#x8A66;Person Object&#x53CD;&#x5E8F;&#x5217;&#x5316;&#xFF0C;&#x5C31;&#x6703;&#x4E1F;&#x51FA;InvalidClassException&#x3002;</p>
-<p>&#x90A3;&#x4E9B;&#x60C5;&#x6CC1;&#x5C6C;&#x65BC;&#x4E0D;&#x53EF;&#x76F8;&#x5BB9;&#x7684;&#x6539;&#x8B8A;&#xFF0C;&#x8ACB;&#x53C3;&#x8003;&#xFF1A;<a href="http://docs.oracle.com/javase/7/docs/platform/serialization/spec/version.html#5172" target="_blank" rel="external">Incompatible Changes</a></p>
-<p>&#x90A3;&#x4E9B;&#x60C5;&#x6CC1;&#x5C6C;&#x65BC;&#x53EF;&#x76F8;&#x5BB9;&#x7684;&#x6539;&#x8B8A;&#xFF0C;&#x8ACB;&#x53C3;&#x8003;&#xFF1A;<br><a href="http://docs.oracle.com/javase/7/docs/platform/serialization/spec/version.html#6754" target="_blank" rel="external">Compatible Changes</a></p>
+<p>&#x90A3;&#x4E9B;&#x60C5;&#x6CC1;&#x5C6C;&#x65BC;&#x4E0D;&#x53EF;&#x76F8;&#x5BB9;&#x7684;&#x6539;&#x8B8A;&#xFF0C;&#x8ACB;&#x53C3;&#x8003;&#xFF1A;<a href="http://docs.oracle.com/javase/7/docs/platform/serialization/spec/version.html#5172" target="_blank" rel="noopener">Incompatible Changes</a></p>
+<p>&#x90A3;&#x4E9B;&#x60C5;&#x6CC1;&#x5C6C;&#x65BC;&#x53EF;&#x76F8;&#x5BB9;&#x7684;&#x6539;&#x8B8A;&#xFF0C;&#x8ACB;&#x53C3;&#x8003;&#xFF1A;<br><a href="http://docs.oracle.com/javase/7/docs/platform/serialization/spec/version.html#6754" target="_blank" rel="noopener">Compatible Changes</a></p>
 <p>&#x7576;Object&#x5167;&#x5BB9;&#x6539;&#x8B8A;&#xFF0C;&#x53EF;&#x4EE5;&#x6839;&#x64DA;&#x4E0A;&#x8FF0;&#x9023;&#x7D50;&#x4F86;&#x5224;&#x5B9A;&#x5C6C;&#x65BC;&#x53EF;&#x76F8;&#x5BB9;&#x7684;&#x6539;&#x8B8A;&#x6216;&#x662F;&#x4E0D;&#x53EF;&#x76F8;&#x5BB9;&#x7684;&#x6539;&#x8B8A;&#x3002;&#x82E5;&#x662F;&#x4E0D;&#x53EF;&#x76F8;&#x5BB9;&#x7684;&#x6539;&#x8B8A;&#x5C31;&#x8981;&#x4FEE;&#x6B63;serialVersionUID&#x7684;&#x503C;&#x3002;</p>
 <h3 id="&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;"><a href="#&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;" class="headerlink" title="&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;"></a>&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;</h3><ul>
-<li><a href="http://www.mkyong.com/java-best-practices/understand-the-serialversionuid/" target="_blank" rel="external">Understand The SerialVersionUID</a></li>
-<li><a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html" target="_blank" rel="external">Serializable (Java Platform SE 7)</a></li>
+<li><a href="http://www.mkyong.com/java-best-practices/understand-the-serialversionuid/" target="_blank" rel="noopener">Understand The SerialVersionUID</a></li>
+<li><a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html" target="_blank" rel="noopener">Serializable (Java Platform SE 7)</a></li>
 </ul>
 
       
@@ -446,8 +447,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/09/Java-4-types-of-Java-inner-classes/" rel="next" title="[Java] 4 types of Java inner classes">
-                <i class="fa fa-chevron-left"></i> [Java] 4 types of Java inner classes
+              <a href="/2016/12/09/Java-Enum-in-Java/" rel="next" title="[Java] Enum in Java">
+                <i class="fa fa-chevron-left"></i> [Java] Enum in Java
               </a>
             
           </div>
@@ -456,8 +457,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/12/09/Java-Enum-in-Java/" rel="prev" title="[Java] Enum in Java">
-                [Java] Enum in Java <i class="fa fa-chevron-right"></i>
+              <a href="/2016/12/09/Java-4-types-of-Java-inner-classes/" rel="prev" title="[Java] 4 types of Java inner classes">
+                [Java] 4 types of Java inner classes <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -533,7 +534,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-count">39</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -633,7 +634,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

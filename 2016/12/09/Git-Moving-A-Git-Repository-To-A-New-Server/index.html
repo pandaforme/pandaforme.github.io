@@ -93,6 +93,7 @@
 <meta property="og:url" content="https://pandaforme.github.io/2016/12/09/Git-Moving-A-Git-Repository-To-A-New-Server/index.html">
 <meta property="og:site_name" content="Programming blog">
 <meta property="og:description" content="[&amp;#x66F4;&amp;#x65B0;]&amp;#x6709;&amp;#x66F4;&amp;#x7C21;&amp;#x6F54;&amp;#x7684;&amp;#x505A;&amp;#x6CD5;&amp;#xFF0C;&amp;#x8ACB;&amp;#x53C3;&amp;#x8003; Duplicating a repository &amp;#x5728;&amp;#x5DE5;&amp;#x4F5C;&amp;#x4E0A;&amp;#x9047;&amp;#x5230;&amp;#x8981;&amp;#x5C07;git">
+<meta property="og:locale" content="zh-tw">
 <meta property="og:updated_time" content="2016-12-13T07:26:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Git] Moving A Git Repository To A New Server">
@@ -401,18 +402,18 @@
       
 
       
-        <p><strong><em>[&#x66F4;&#x65B0;]&#x6709;&#x66F4;&#x7C21;&#x6F54;&#x7684;&#x505A;&#x6CD5;&#xFF0C;&#x8ACB;&#x53C3;&#x8003;</em></strong> <a href="https://help.github.com/articles/duplicating-a-repository/" target="_blank" rel="external">Duplicating a repository</a></p>
-<p>&#x5728;&#x5DE5;&#x4F5C;&#x4E0A;&#x9047;&#x5230;&#x8981;&#x5C07;git repository&#x5F9E;&#x820A;&#x7684;server&#x8F49;&#x79FB;&#x5230;&#x65B0;&#x7684;sever&#xFF0C;&#x53C3;&#x8003;&#x9019;&#x7BC7;&#x6587;&#x7AE0;<a href="http://www.smashingmagazine.com/2014/05/moving-git-repository-new-server/" target="_blank" rel="external">Moving A Git Repository To A New Server</a>&#x9032;&#x884C;&#x8F49;&#x79FB;&#xFF0E;</p>
-<p>Step 1: fetch&#x6240;&#x6709;&#x7684;remote branch<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git fetch origin</div></pre></td></tr></table></figure></p>
-<p>Step 2: &#x5C07;&#x6240;&#x6709;remote branch clone&#x5230;&#x672C;&#x5730;&#x7AEF;<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> branch <span class="keyword">in</span> `git branch <span class="_">-a</span> | grep remotes | grep -v HEAD`; <span class="keyword">do</span></div><div class="line">        git branch --track <span class="variable">${branch##*/}</span> <span class="variable">$branch</span></div><div class="line"><span class="keyword">done</span></div><div class="line">git fetch --all</div><div class="line">git pull --all</div></pre></td></tr></table></figure></p>
-<p>Step 3: &#x65B0;&#x589E;&#x65B0;&#x7684;repository&#xFF0C;&#x540D;&#x7A31;&#x70BA;new-origin<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git remote add new-origin git@[new server url]:[group]/[project].git</div></pre></td></tr></table></figure></p>
-<p>Step 4: push&#x6240;&#x6709;&#x7684;branch&#x548C;tag&#x5230;&#x65B0;&#x7684;repository<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git push --all new-origin</div><div class="line">git push --tags new-origin</div></pre></td></tr></table></figure></p>
-<p>Step 5: &#x780D;&#x6389;&#x820A;&#x7684;repository&#xFF0C;&#x4E26;&#x4E14;&#x65B0;&#x7684;repository&#x6539;&#x540D;&#x70BA;origin<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git remote rm origin</div><div class="line">git remote rename new-origin origin</div></pre></td></tr></table></figure></p>
-<p>&#x5C07;&#x4EE5;&#x4E0A;&#x7684;&#x64CD;&#x4F5C;&#x6B65;&#x9A5F;&#x5BEB;&#x6210;script:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line">rm -rf <span class="variable">$1</span></div><div class="line">git <span class="built_in">clone</span> git@old-repo:old-group/<span class="variable">$1</span>.git</div><div class="line"><span class="built_in">cd</span> <span class="variable">$1</span></div><div class="line">git fetch origin</div><div class="line"><span class="keyword">for</span> branch <span class="keyword">in</span> `git branch <span class="_">-a</span> | grep remotes | grep -v HEAD`; <span class="keyword">do</span></div><div class="line">        git branch --track <span class="variable">${branch##*/}</span> <span class="variable">$branch</span></div><div class="line"><span class="keyword">done</span></div><div class="line">git fetch --all</div><div class="line">git pull --all</div><div class="line">git remote add new-origin git@new-repo:new-group/<span class="variable">$1</span>.git</div><div class="line">git push --all new-origin</div><div class="line">git push --tags new-origin</div><div class="line">git remote rm origin</div><div class="line">git remote rename new-origin origin</div></pre></td></tr></table></figure></p>
+        <p><strong><em>[&#x66F4;&#x65B0;]&#x6709;&#x66F4;&#x7C21;&#x6F54;&#x7684;&#x505A;&#x6CD5;&#xFF0C;&#x8ACB;&#x53C3;&#x8003;</em></strong> <a href="https://help.github.com/articles/duplicating-a-repository/" target="_blank" rel="noopener">Duplicating a repository</a></p>
+<p>&#x5728;&#x5DE5;&#x4F5C;&#x4E0A;&#x9047;&#x5230;&#x8981;&#x5C07;git repository&#x5F9E;&#x820A;&#x7684;server&#x8F49;&#x79FB;&#x5230;&#x65B0;&#x7684;sever&#xFF0C;&#x53C3;&#x8003;&#x9019;&#x7BC7;&#x6587;&#x7AE0;<a href="http://www.smashingmagazine.com/2014/05/moving-git-repository-new-server/" target="_blank" rel="noopener">Moving A Git Repository To A New Server</a>&#x9032;&#x884C;&#x8F49;&#x79FB;&#xFF0E;</p>
+<p>Step 1: fetch&#x6240;&#x6709;&#x7684;remote branch<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git fetch origin</span><br></pre></td></tr></table></figure></p>
+<p>Step 2: &#x5C07;&#x6240;&#x6709;remote branch clone&#x5230;&#x672C;&#x5730;&#x7AEF;<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> branch <span class="keyword">in</span> `git branch -a | grep remotes | grep -v HEAD`; <span class="keyword">do</span></span><br><span class="line">        git branch --track <span class="variable">${branch##*/}</span> <span class="variable">$branch</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line">git fetch --all</span><br><span class="line">git pull --all</span><br></pre></td></tr></table></figure></p>
+<p>Step 3: &#x65B0;&#x589E;&#x65B0;&#x7684;repository&#xFF0C;&#x540D;&#x7A31;&#x70BA;new-origin<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add new-origin git@[new server url]:[group]/[project].git</span><br></pre></td></tr></table></figure></p>
+<p>Step 4: push&#x6240;&#x6709;&#x7684;branch&#x548C;tag&#x5230;&#x65B0;&#x7684;repository<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git push --all new-origin</span><br><span class="line">git push --tags new-origin</span><br></pre></td></tr></table></figure></p>
+<p>Step 5: &#x780D;&#x6389;&#x820A;&#x7684;repository&#xFF0C;&#x4E26;&#x4E14;&#x65B0;&#x7684;repository&#x6539;&#x540D;&#x70BA;origin<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote rm origin</span><br><span class="line">git remote rename new-origin origin</span><br></pre></td></tr></table></figure></p>
+<p>&#x5C07;&#x4EE5;&#x4E0A;&#x7684;&#x64CD;&#x4F5C;&#x6B65;&#x9A5F;&#x5BEB;&#x6210;script:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">rm -rf <span class="variable">$1</span></span><br><span class="line">git <span class="built_in">clone</span> git@old-repo:old-group/<span class="variable">$1</span>.git</span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$1</span></span><br><span class="line">git fetch origin</span><br><span class="line"><span class="keyword">for</span> branch <span class="keyword">in</span> `git branch -a | grep remotes | grep -v HEAD`; <span class="keyword">do</span></span><br><span class="line">        git branch --track <span class="variable">${branch##*/}</span> <span class="variable">$branch</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line">git fetch --all</span><br><span class="line">git pull --all</span><br><span class="line">git remote add new-origin git@new-repo:new-group/<span class="variable">$1</span>.git</span><br><span class="line">git push --all new-origin</span><br><span class="line">git push --tags new-origin</span><br><span class="line">git remote rm origin</span><br><span class="line">git remote rename new-origin origin</span><br></pre></td></tr></table></figure></p>
 <h4 id="&#x53C3;&#x8003;&#xFF1A;"><a href="#&#x53C3;&#x8003;&#xFF1A;" class="headerlink" title="&#x53C3;&#x8003;&#xFF1A;"></a>&#x53C3;&#x8003;&#xFF1A;</h4><ul>
-<li><a href="http://www.smashingmagazine.com/2014/05/moving-git-repository-new-server/" target="_blank" rel="external">Moving A Git Repository To A New Server</a></li>
-<li><a href="http://stackoverflow.com/a/4754797/1834805" target="_blank" rel="external">Clone all remote branches with Git?</a></li>
-<li><a href="https://help.github.com/articles/duplicating-a-repository/" target="_blank" rel="external">Duplicating a repository</a></li>
+<li><a href="http://www.smashingmagazine.com/2014/05/moving-git-repository-new-server/" target="_blank" rel="noopener">Moving A Git Repository To A New Server</a></li>
+<li><a href="http://stackoverflow.com/a/4754797/1834805" target="_blank" rel="noopener">Clone all remote branches with Git?</a></li>
+<li><a href="https://help.github.com/articles/duplicating-a-repository/" target="_blank" rel="noopener">Duplicating a repository</a></li>
 </ul>
 
       
@@ -446,8 +447,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/09/Scala-Tail-recursion/" rel="next" title="[Scala] Tail recursion">
-                <i class="fa fa-chevron-left"></i> [Scala] Tail recursion
+              <a href="/2016/12/09/AOP-Monitor-Legacy-System/" rel="next" title="[AOP] Monitor Legacy System">
+                <i class="fa fa-chevron-left"></i> [AOP] Monitor Legacy System
               </a>
             
           </div>
@@ -456,8 +457,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/12/09/AOP-Monitor-Legacy-System/" rel="prev" title="[AOP] Monitor Legacy System">
-                [AOP] Monitor Legacy System <i class="fa fa-chevron-right"></i>
+              <a href="/2016/12/09/Scala-Tail-recursion/" rel="prev" title="[Scala] Tail recursion">
+                [Scala] Tail recursion <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -533,7 +534,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-count">39</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -633,7 +634,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

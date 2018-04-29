@@ -93,6 +93,7 @@
 <meta property="og:url" content="https://pandaforme.github.io/2016/12/09/OS-X-How-do-I-switch-between-Java-7-and-Java-6/index.html">
 <meta property="og:site_name" content="Programming blog">
 <meta property="og:description" content="&amp;#x89E3;&amp;#x6C7A;&amp;#x65B9;&amp;#x6CD5;&amp;#xFF1A;&amp;#x5C07;&amp;#x4EE5;&amp;#x4E0B;&amp;#x7A0B;&amp;#x5F0F;&amp;#x78BC;&amp;#x52A0;&amp;#x5165;&amp;#x5230;.bash_profile123456789101112131415function setjdk() {    if [ $# -ne 0 ]; then     remov">
+<meta property="og:locale" content="zh-tw">
 <meta property="og:updated_time" content="2016-12-13T07:17:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Java] How do I switch between Java8, Java 7 and Java 6 on OS X">
@@ -401,9 +402,9 @@
       
 
       
-        <h4 id="&#x89E3;&#x6C7A;&#x65B9;&#x6CD5;&#xFF1A;"><a href="#&#x89E3;&#x6C7A;&#x65B9;&#x6CD5;&#xFF1A;" class="headerlink" title="&#x89E3;&#x6C7A;&#x65B9;&#x6CD5;&#xFF1A;"></a>&#x89E3;&#x6C7A;&#x65B9;&#x6CD5;&#xFF1A;</h4><p>&#x5C07;&#x4EE5;&#x4E0B;&#x7A0B;&#x5F0F;&#x78BC;&#x52A0;&#x5165;&#x5230;.bash_profile<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">setjdk</span></span>() {  </div><div class="line">  <span class="keyword">if</span> [ <span class="variable">$#</span> <span class="_">-ne</span> 0 ]; <span class="keyword">then</span>  </div><div class="line">   removeFromPath <span class="string">&apos;/System/Library/Frameworks/JavaVM.framework/Home/bin&apos;</span>  </div><div class="line">   <span class="keyword">if</span> [ -n <span class="string">&quot;<span class="variable">${JAVA_HOME+x}</span>&quot;</span> ]; <span class="keyword">then</span>  </div><div class="line">    removeFromPath <span class="variable">$JAVA_HOME</span>  </div><div class="line">   <span class="keyword">fi</span>  </div><div class="line">   <span class="built_in">export</span> JAVA_HOME=`/usr/libexec/java_home -v <span class="variable">$@</span>`  </div><div class="line">   <span class="built_in">export</span> PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$PATH</span>  </div><div class="line">  <span class="keyword">fi</span>  </div><div class="line">  <span class="built_in">echo</span> JAVA_HOME <span class="built_in">set</span> to <span class="variable">$JAVA_HOME</span>  </div><div class="line">  java -version  </div><div class="line"> }  </div><div class="line"> <span class="keyword">function</span> <span class="function"><span class="title">removeFromPath</span></span>() {  </div><div class="line">  <span class="built_in">export</span> PATH=$(<span class="built_in">echo</span> <span class="variable">$PATH</span> | sed -E <span class="_">-e</span> <span class="string">&quot;s;:<span class="variable">$1</span>;;&quot;</span> <span class="_">-e</span> <span class="string">&quot;s;<span class="variable">$1</span>:?;;&quot;</span>)  </div><div class="line"> }</div></pre></td></tr></table></figure></p>
-<p>&#x4F7F;&#x7528;&#x65B9;&#x5F0F;&#xFF1A;<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">setjdk 1.8</div></pre></td></tr></table></figure></p>
-<h4 id="&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;"><a href="#&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;" class="headerlink" title="&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;"></a>&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;</h4><p><a href="http://superuser.com/questions/490425/how-do-i-switch-between-java-7-and-java-6-on-os-x-10-8-2" target="_blank" rel="external">How do I switch between Java 7 and<br>Java 6 on OS X 10.8.2?</a></p>
+        <h4 id="&#x89E3;&#x6C7A;&#x65B9;&#x6CD5;&#xFF1A;"><a href="#&#x89E3;&#x6C7A;&#x65B9;&#x6CD5;&#xFF1A;" class="headerlink" title="&#x89E3;&#x6C7A;&#x65B9;&#x6CD5;&#xFF1A;"></a>&#x89E3;&#x6C7A;&#x65B9;&#x6CD5;&#xFF1A;</h4><p>&#x5C07;&#x4EE5;&#x4E0B;&#x7A0B;&#x5F0F;&#x78BC;&#x52A0;&#x5165;&#x5230;.bash_profile<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">setjdk</span></span>() {  </span><br><span class="line">  <span class="keyword">if</span> [ <span class="variable">$#</span> -ne 0 ]; <span class="keyword">then</span>  </span><br><span class="line">   removeFromPath <span class="string">&apos;/System/Library/Frameworks/JavaVM.framework/Home/bin&apos;</span>  </span><br><span class="line">   <span class="keyword">if</span> [ -n <span class="string">&quot;<span class="variable">${JAVA_HOME+x}</span>&quot;</span> ]; <span class="keyword">then</span>  </span><br><span class="line">    removeFromPath <span class="variable">$JAVA_HOME</span>  </span><br><span class="line">   <span class="keyword">fi</span>  </span><br><span class="line">   <span class="built_in">export</span> JAVA_HOME=`/usr/libexec/java_home -v <span class="variable">$@</span>`  </span><br><span class="line">   <span class="built_in">export</span> PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$PATH</span>  </span><br><span class="line">  <span class="keyword">fi</span>  </span><br><span class="line">  <span class="built_in">echo</span> JAVA_HOME <span class="built_in">set</span> to <span class="variable">$JAVA_HOME</span>  </span><br><span class="line">  java -version  </span><br><span class="line"> }  </span><br><span class="line"> <span class="keyword">function</span> <span class="function"><span class="title">removeFromPath</span></span>() {  </span><br><span class="line">  <span class="built_in">export</span> PATH=$(<span class="built_in">echo</span> <span class="variable">$PATH</span> | sed -E -e <span class="string">&quot;s;:<span class="variable">$1</span>;;&quot;</span> -e <span class="string">&quot;s;<span class="variable">$1</span>:?;;&quot;</span>)  </span><br><span class="line"> }</span><br></pre></td></tr></table></figure></p>
+<p>&#x4F7F;&#x7528;&#x65B9;&#x5F0F;&#xFF1A;<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setjdk 1.8</span><br></pre></td></tr></table></figure></p>
+<h4 id="&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;"><a href="#&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;" class="headerlink" title="&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;"></a>&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;</h4><p><a href="http://superuser.com/questions/490425/how-do-i-switch-between-java-7-and-java-6-on-os-x-10-8-2" target="_blank" rel="noopener">How do I switch between Java 7 and<br>Java 6 on OS X 10.8.2?</a></p>
 
       
     </div>
@@ -436,8 +437,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/09/LeetCode-Longest-Common-Prefix/" rel="next" title="[LeetCode] Longest Common Prefix">
-                <i class="fa fa-chevron-left"></i> [LeetCode] Longest Common Prefix
+              <a href="/2016/12/09/Java-Test-Java-mail-by-GreenMail/" rel="next" title="[Java] Test Java mail by GreenMail">
+                <i class="fa fa-chevron-left"></i> [Java] Test Java mail by GreenMail
               </a>
             
           </div>
@@ -446,8 +447,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/12/09/Java-Test-Java-mail-by-GreenMail/" rel="prev" title="[Java] Test Java mail by GreenMail">
-                [Java] Test Java mail by GreenMail <i class="fa fa-chevron-right"></i>
+              <a href="/2016/12/09/LeetCode-Longest-Common-Prefix/" rel="prev" title="[LeetCode] Longest Common Prefix">
+                [LeetCode] Longest Common Prefix <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -523,7 +524,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-count">39</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -623,7 +624,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

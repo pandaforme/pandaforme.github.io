@@ -93,6 +93,7 @@
 <meta property="og:url" content="https://pandaforme.github.io/2016/12/09/SQL-5-types-of-SQL-JOIN/index.html">
 <meta property="og:site_name" content="Programming blog">
 <meta property="og:description" content="ANSI-standard SQL&amp;#x6709;&amp;#x4E94;&amp;#x7A2E;JOIN&amp;#xFF1A;  INNER JOIN LEFT OUTER JOIN RIGHT OUTER JOIN FULL OUTER JOIN CROSS JOIN  A Visual Explanation of SQL Joins&amp;#x7528;Venn diagrams&amp;#x65B9;&amp;#x5F0F;&amp;#x">
+<meta property="og:locale" content="zh-tw">
 <meta property="og:image" content="http://blog.codinghorror.com/content/images/uploads/2007/10/6a0120a85dcdae970b012877702708970c-pi.png">
 <meta property="og:image" content="http://blog.codinghorror.com/content/images/uploads/2007/10/6a0120a85dcdae970b01287770273e970c-pi.png">
 <meta property="og:image" content="http://blog.codinghorror.com/content/images/uploads/2007/10/6a0120a85dcdae970b012877702725970c-pi.png">
@@ -414,21 +415,21 @@
 <li>FULL OUTER JOIN</li>
 <li>CROSS JOIN</li>
 </ol>
-<p><a href="http://blog.codinghorror.com/a-visual-explanation-of-sql-joins/" target="_blank" rel="external">A Visual Explanation of SQL Joins</a>&#x7528;<a href="http://en.wikipedia.org/wiki/Venn_diagram" target="_blank" rel="external">Venn diagrams</a>&#x65B9;&#x5F0F;&#x5716;&#x89E3;JOIN&#x3002;</p>
-<h3 id="&#x7BC4;&#x4F8B;&#xFF1A;"><a href="#&#x7BC4;&#x4F8B;&#xFF1A;" class="headerlink" title="&#x7BC4;&#x4F8B;&#xFF1A;"></a>&#x7BC4;&#x4F8B;&#xFF1A;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">TableA        TableB</div><div class="line">id name       id  name</div><div class="line">-- ----       --  ----</div><div class="line">1  Pirate     1   Rutabaga</div><div class="line">2  Monkey     2   Pirate</div><div class="line">3  Ninja      3   Darth Vader</div><div class="line">4  Spaghetti  4   Ninja</div></pre></td></tr></table></figure>
+<p><a href="http://blog.codinghorror.com/a-visual-explanation-of-sql-joins/" target="_blank" rel="noopener">A Visual Explanation of SQL Joins</a>&#x7528;<a href="http://en.wikipedia.org/wiki/Venn_diagram" target="_blank" rel="noopener">Venn diagrams</a>&#x65B9;&#x5F0F;&#x5716;&#x89E3;JOIN&#x3002;</p>
+<h3 id="&#x7BC4;&#x4F8B;&#xFF1A;"><a href="#&#x7BC4;&#x4F8B;&#xFF1A;" class="headerlink" title="&#x7BC4;&#x4F8B;&#xFF1A;"></a>&#x7BC4;&#x4F8B;&#xFF1A;</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">TableA        TableB</span><br><span class="line">id name       id  name</span><br><span class="line">-- ----       --  ----</span><br><span class="line">1  Pirate     1   Rutabaga</span><br><span class="line">2  Monkey     2   Pirate</span><br><span class="line">3  Ninja      3   Darth Vader</span><br><span class="line">4  Spaghetti  4   Ninja</span><br></pre></td></tr></table></figure>
 <ul>
 <li>INNER JOIN&#xFF1A;</li>
 </ul>
-<p>SQL&#xFF1A;<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> TableA</div><div class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> TableB</div><div class="line"><span class="keyword">ON</span> TableA.name = TableB.name</div></pre></td></tr></table></figure></p>
-<p>&#x7D50;&#x679C;&#xFF1A;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">TableA         TableB</div><div class="line">id  name       id   name</div><div class="line">--  ----       --   ----</div><div class="line">1   Pirate     2    Pirate</div><div class="line">3   Ninja      4    Ninja</div></pre></td></tr></table></figure></p>
+<p>SQL&#xFF1A;<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> TableA</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> TableB</span><br><span class="line"><span class="keyword">ON</span> TableA.name = TableB.name</span><br></pre></td></tr></table></figure></p>
+<p>&#x7D50;&#x679C;&#xFF1A;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">TableA         TableB</span><br><span class="line">id  name       id   name</span><br><span class="line">--  ----       --   ----</span><br><span class="line">1   Pirate     2    Pirate</span><br><span class="line">3   Ninja      4    Ninja</span><br></pre></td></tr></table></figure></p>
 <p>Venn diagram&#xFF1A;<br><img src="http://blog.codinghorror.com/content/images/uploads/2007/10/6a0120a85dcdae970b012877702708970c-pi.png" alt=""></p>
 <p><em>&#x5217;&#x51FA;&#x5169;&#x500B;Table&#x5171;&#x6709;&#x7684;&#x8CC7;&#x6599;&#xFF0C;&#x5373;&#x5169;&#x500B;Table&#x7684;&#x4EA4;&#x96C6;&#x3002;</em></p>
 <hr>
 <ul>
 <li>LEFT OUTER JOIN&#xFF1A;</li>
 </ul>
-<p>SQL&#xFF1A;<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> TableA</div><div class="line"><span class="keyword">LEFT</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span> TableB</div><div class="line"><span class="keyword">ON</span> TableA.name = TableB.name</div></pre></td></tr></table></figure></p>
-<p>&#x7D50;&#x679C;&#xFF1A;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">TableA         TableB</div><div class="line">id  name       id    name</div><div class="line">--  ----       --    ----</div><div class="line">1   Pirate     2     Pirate</div><div class="line">2   Monkey     null  null</div><div class="line">3   Ninja      4     Ninja</div><div class="line">4   Spaghetti  null  null</div></pre></td></tr></table></figure></p>
+<p>SQL&#xFF1A;<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> TableA</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span> TableB</span><br><span class="line"><span class="keyword">ON</span> TableA.name = TableB.name</span><br></pre></td></tr></table></figure></p>
+<p>&#x7D50;&#x679C;&#xFF1A;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">TableA         TableB</span><br><span class="line">id  name       id    name</span><br><span class="line">--  ----       --    ----</span><br><span class="line">1   Pirate     2     Pirate</span><br><span class="line">2   Monkey     null  null</span><br><span class="line">3   Ninja      4     Ninja</span><br><span class="line">4   Spaghetti  null  null</span><br></pre></td></tr></table></figure></p>
 <p>Venn diagram&#xFF1A;<br><img src="http://blog.codinghorror.com/content/images/uploads/2007/10/6a0120a85dcdae970b01287770273e970c-pi.png" alt=""><br><em>&#x4EE5;&#x5DE6;&#x908A;Table&#x70BA;&#x4E3B;&#xFF0C;&#x82E5;&#x6C92;&#x6709;&#x914D;&#x5C0D;&#x5230;&#x8CC7;&#x6599;&#xFF0C;&#x986F;&#x793A;null&#x3002;</em></p>
 <hr>
 <ul>
@@ -439,22 +440,22 @@
 <ul>
 <li>FULL OUTER JOIN&#xFF1A;</li>
 </ul>
-<p>SQL&#xFF1A;<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> TableA</div><div class="line"><span class="keyword">FULL</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span> TableB</div><div class="line"><span class="keyword">ON</span> TableA.name = TableB.name</div></pre></td></tr></table></figure></p>
-<p>&#x7D50;&#x679C;&#xFF1A;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">TableA           TableB</div><div class="line">id    name       id    name</div><div class="line">--    ----       --    ----</div><div class="line">1     Pirate     2     Pirate</div><div class="line">2     Monkey     null  null</div><div class="line">3     Ninja      4     Ninja</div><div class="line">4     Spaghetti  null  null</div><div class="line">null  null       1     Rutabaga</div><div class="line">null  null       3     Darth Vader</div></pre></td></tr></table></figure></p>
+<p>SQL&#xFF1A;<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> TableA</span><br><span class="line"><span class="keyword">FULL</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span> TableB</span><br><span class="line"><span class="keyword">ON</span> TableA.name = TableB.name</span><br></pre></td></tr></table></figure></p>
+<p>&#x7D50;&#x679C;&#xFF1A;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">TableA           TableB</span><br><span class="line">id    name       id    name</span><br><span class="line">--    ----       --    ----</span><br><span class="line">1     Pirate     2     Pirate</span><br><span class="line">2     Monkey     null  null</span><br><span class="line">3     Ninja      4     Ninja</span><br><span class="line">4     Spaghetti  null  null</span><br><span class="line">null  null       1     Rutabaga</span><br><span class="line">null  null       3     Darth Vader</span><br></pre></td></tr></table></figure></p>
 <p>Venn diagram&#xFF1A;<br><img src="http://blog.codinghorror.com/content/images/uploads/2007/10/6a0120a85dcdae970b012877702725970c-pi.png" alt=""><br><em>&#x70BA;&#x5169;&#x500B;Table&#x7684;&#x806F;&#x96C6;&#xFF0C;&#x82E5;&#x6C92;&#x6709;&#x914D;&#x5C0D;&#x5230;&#x8CC7;&#x6599;&#x4EE5;null&#x986F;&#x793A;&#x3002;</em></p>
 <hr>
 <ul>
-<li>CROSS JOIN&#xFF1A;<br>&#x5373;&#x662F;<a href="http://en.wikipedia.org/wiki/Cartesian_product" target="_blank" rel="external">Cartesian product</a>&#xFF0C;&#x6703;&#x7522;&#x751F;&#x5169;&#x500B;Table&#x6240;&#x6709;&#x7684;&#x7D44;&#x5408;&#x3002;<br>SQL&#xFF1A;<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> TableA</div><div class="line"><span class="keyword">CROSS</span> <span class="keyword">JOIN</span> TableB</div></pre></td></tr></table></figure>
+<li>CROSS JOIN&#xFF1A;<br>&#x5373;&#x662F;<a href="http://en.wikipedia.org/wiki/Cartesian_product" target="_blank" rel="noopener">Cartesian product</a>&#xFF0C;&#x6703;&#x7522;&#x751F;&#x5169;&#x500B;Table&#x6240;&#x6709;&#x7684;&#x7D44;&#x5408;&#x3002;<br>SQL&#xFF1A;<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> TableA</span><br><span class="line"><span class="keyword">CROSS</span> <span class="keyword">JOIN</span> TableB</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>&#x7D50;&#x679C;&#xFF1A;<br>4*4 = 16&#x7A2E;&#x7D44;&#x5408;</p>
 <p><em>&#x56E0;&#x70BA;CROSS JOIN&#x6703;&#x5C07;&#x6240;&#x6709;&#x7D44;&#x5408;&#x5217;&#x51FA;&#x4F86;&#xFF0C;&#x6240;&#x4EE5;&#x7576;&#x8CC7;&#x6599;&#x91CF;&#x9F90;&#x5927;&#x6642;&#x5019;&#xFF0C;&#x6548;&#x80FD;&#x6703;&#x8B8A;&#x5F97;&#x5F88;&#x5DEE;&#x3002;</em></p>
 <h3 id="&#x7E3D;&#x7D50;&#xFF1A;"><a href="#&#x7E3D;&#x7D50;&#xFF1A;" class="headerlink" title="&#x7E3D;&#x7D50;&#xFF1A;"></a>&#x7E3D;&#x7D50;&#xFF1A;</h3><p>&#x53EF;&#x4EE5;&#x5229;&#x7528;&#x4EE5;&#x4E0A;&#x7684;&#x4E94;&#x7A2E;JOIN&#x548C;&#x904E;&#x6FFE;&#x65B9;&#x5F0F;&#xFF0C;&#x5C0D;&#x5169;&#x500B;&#x96C6;&#x5408;&#x9032;&#x884C;&#x4EA4;&#x96C6;&#x3001;&#x806F;&#x96C6;&#x3001;&#x5DEE;&#x96C6;&#x7B49;&#x64CD;&#x4F5C;&#x3002;<br><img src="http://edwarcardona.files.wordpress.com/2013/03/sql_server_joins.jpg" alt="SQL JOINS"></p>
 <h3 id="&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;"><a href="#&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;" class="headerlink" title="&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;"></a>&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;</h3><ul>
-<li><a href="http://blog.codinghorror.com/a-visual-explanation-of-sql-joins/" target="_blank" rel="external">A Visual Explanation of SQL Joins</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Join_(SQL" target="_blank" rel="external">Join (SQL)</a>)</li>
-<li><a href="http://coolshell.cn/articles/3463.html" target="_blank" rel="external">&#x5716;&#x89E3;SQL&#x7684;Join</a>&#x3000;</li>
-<li><a href="http://www.codeproject.com/Articles/33052/Visual-Representation-of-SQL-Joins" target="_blank" rel="external">Visual Representation of SQL Joins</a></li>
+<li><a href="http://blog.codinghorror.com/a-visual-explanation-of-sql-joins/" target="_blank" rel="noopener">A Visual Explanation of SQL Joins</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Join_(SQL" target="_blank" rel="noopener">Join (SQL)</a>)</li>
+<li><a href="http://coolshell.cn/articles/3463.html" target="_blank" rel="noopener">&#x5716;&#x89E3;SQL&#x7684;Join</a>&#x3000;</li>
+<li><a href="http://www.codeproject.com/Articles/33052/Visual-Representation-of-SQL-Joins" target="_blank" rel="noopener">Visual Representation of SQL Joins</a></li>
 </ul>
 
       
@@ -488,8 +489,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/09/Java-Synchronize-in-Java/" rel="next" title="[Java] Synchronize in Java">
-                <i class="fa fa-chevron-left"></i> [Java] Synchronize in Java
+              <a href="/2016/12/09/The-Law-of-Demeter/" rel="next" title="The Law of Demeter">
+                <i class="fa fa-chevron-left"></i> The Law of Demeter
               </a>
             
           </div>
@@ -498,8 +499,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/12/09/使用Tor隱藏身份/" rel="prev" title="使用Tor隱藏身份">
-                使用Tor隱藏身份 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/12/09/Java-Synchronize-in-Java/" rel="prev" title="[Java] Synchronize in Java">
+                [Java] Synchronize in Java <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -575,7 +576,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-count">39</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -675,7 +676,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

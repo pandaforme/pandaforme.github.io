@@ -87,12 +87,12 @@
 
 
 <meta name="description" content="&amp;#x66F4;&amp;#x8A73;&amp;#x7D30;&amp;#x7684;&amp;#x8AAA;&amp;#x6CD5;&amp;#x662F;&amp;#x201C;Law of Demeter for Functions/Methods&amp;#x201D; (LoD-F)&amp;#xFF0C;&amp;#x7C21;&amp;#x55AE;&amp;#x5316;Object&amp;#x4E4B;&amp;#x9593;&amp;#x7684;&amp;#x4E92;&amp;#x52D5;&amp;#xFF0">
-<meta name="keywords">
 <meta property="og:type" content="article">
 <meta property="og:title" content="The Law of Demeter">
 <meta property="og:url" content="https://pandaforme.github.io/2016/12/09/The-Law-of-Demeter/index.html">
 <meta property="og:site_name" content="Programming blog">
 <meta property="og:description" content="&amp;#x66F4;&amp;#x8A73;&amp;#x7D30;&amp;#x7684;&amp;#x8AAA;&amp;#x6CD5;&amp;#x662F;&amp;#x201C;Law of Demeter for Functions/Methods&amp;#x201D; (LoD-F)&amp;#xFF0C;&amp;#x7C21;&amp;#x55AE;&amp;#x5316;Object&amp;#x4E4B;&amp;#x9593;&amp;#x7684;&amp;#x4E92;&amp;#x52D5;&amp;#xFF0">
+<meta property="og:locale" content="zh-tw">
 <meta property="og:updated_time" content="2016-12-09T09:27:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="The Law of Demeter">
@@ -392,10 +392,10 @@
 <li>O&#x2019;s direct component objects</li>
 <li>A global variable, accessible by O, in the scope of M</li>
 </ol>
-<h2 id="&#x7BC4;&#x4F8B;&#xFF1A;"><a href="#&#x7BC4;&#x4F8B;&#xFF1A;" class="headerlink" title="&#x7BC4;&#x4F8B;&#xFF1A;"></a>&#x7BC4;&#x4F8B;&#xFF1A;</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * A Law of Demeter example in Java.</div><div class="line"> * Created by Alvin Alexander, &lt;a href=&quot;http://devdaily.com&quot; title=&quot;http://devdaily.com&quot;&gt;http://devdaily.com&lt;/a&gt;.</div><div class="line"> * This is an adaptation of the source code example from the book</div><div class="line"> * The Pragmatic Programmer.</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LawOfDemeterInJava</span></span></div><div class="line">{</div><div class="line">  <span class="keyword">private</span> Topping cheeseTopping;</div><div class="line">   </div><div class="line">  <span class="comment">/**</span></div><div class="line">   * Good examples of following the Law of Demeter.</div><div class="line">   */</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">goodExamples</span><span class="params">(Pizza pizza)</span></span></div><div class="line">  {</div><div class="line">    Foo foo = <span class="keyword">new</span> Foo();</div><div class="line">     </div><div class="line">    <span class="comment">// (1) it&apos;s okay to call our own methods</span></div><div class="line">    doSomething();</div><div class="line">     </div><div class="line">    <span class="comment">// (2) it&apos;s okay to call methods on objects passed in to our method</span></div><div class="line">    <span class="keyword">int</span> price = pizza.getPrice();</div><div class="line">     </div><div class="line">    <span class="comment">// (3) it&apos;s okay to call methods on any objects we create</span></div><div class="line">    cheeseTopping = <span class="keyword">new</span> CheeseTopping();</div><div class="line">    <span class="keyword">float</span> weight = cheeseTopping.getWeightUsed();</div><div class="line">     </div><div class="line">    <span class="comment">// (4) any directly held component objects</span></div><div class="line">    foo.doBar();</div><div class="line">  }</div><div class="line">   </div><div class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span></span></div><div class="line">  {</div><div class="line">    <span class="comment">// do something here ...</span></div><div class="line">  }</div><div class="line">}</div></pre></td></tr></table></figure>
+<h2 id="&#x7BC4;&#x4F8B;&#xFF1A;"><a href="#&#x7BC4;&#x4F8B;&#xFF1A;" class="headerlink" title="&#x7BC4;&#x4F8B;&#xFF1A;"></a>&#x7BC4;&#x4F8B;&#xFF1A;</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * A Law of Demeter example in Java.</span></span><br><span class="line"><span class="comment"> * Created by Alvin Alexander, &lt;a href=&quot;http://devdaily.com&quot; title=&quot;http://devdaily.com&quot;&gt;http://devdaily.com&lt;/a&gt;.</span></span><br><span class="line"><span class="comment"> * This is an adaptation of the source code example from the book</span></span><br><span class="line"><span class="comment"> * The Pragmatic Programmer.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LawOfDemeterInJava</span></span></span><br><span class="line"><span class="class"></span>{</span><br><span class="line">  <span class="keyword">private</span> Topping cheeseTopping;</span><br><span class="line">   </span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Good examples of following the Law of Demeter.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">goodExamples</span><span class="params">(Pizza pizza)</span></span></span><br><span class="line"><span class="function">  </span>{</span><br><span class="line">    Foo foo = <span class="keyword">new</span> Foo();</span><br><span class="line">     </span><br><span class="line">    <span class="comment">// (1) it&apos;s okay to call our own methods</span></span><br><span class="line">    doSomething();</span><br><span class="line">     </span><br><span class="line">    <span class="comment">// (2) it&apos;s okay to call methods on objects passed in to our method</span></span><br><span class="line">    <span class="keyword">int</span> price = pizza.getPrice();</span><br><span class="line">     </span><br><span class="line">    <span class="comment">// (3) it&apos;s okay to call methods on any objects we create</span></span><br><span class="line">    cheeseTopping = <span class="keyword">new</span> CheeseTopping();</span><br><span class="line">    <span class="keyword">float</span> weight = cheeseTopping.getWeightUsed();</span><br><span class="line">     </span><br><span class="line">    <span class="comment">// (4) any directly held component objects</span></span><br><span class="line">    foo.doBar();</span><br><span class="line">  }</span><br><span class="line">   </span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span></span></span><br><span class="line"><span class="function">  </span>{</span><br><span class="line">    <span class="comment">// do something here ...</span></span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 <h2 id="&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;"><a href="#&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;" class="headerlink" title="&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;"></a>&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;</h2><ul>
-<li><a href="http://en.wikipedia.org/wiki/Law_of_Demeter" target="_blank" rel="external">Law_of_Demeter</a></li>
-<li><a href="http://alvinalexander.com/java/java-law-of-demeter-java-examples" target="_blank" rel="external">Law of Demeter - Java examples</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Law_of_Demeter" target="_blank" rel="noopener">Law_of_Demeter</a></li>
+<li><a href="http://alvinalexander.com/java/java-law-of-demeter-java-examples" target="_blank" rel="noopener">Law of Demeter - Java examples</a></li>
 </ul>
 
       
@@ -423,8 +423,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/09/Producer-and-Consumer-Problem/" rel="next" title="Producer and Consumer Problem">
-                <i class="fa fa-chevron-left"></i> Producer and Consumer Problem
+              <a href="/2016/12/09/Java-Object-equality-in-Java/" rel="next" title="[Java] Object equality in Java">
+                <i class="fa fa-chevron-left"></i> [Java] Object equality in Java
               </a>
             
           </div>
@@ -433,8 +433,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/12/09/Java-Object-equality-in-Java/" rel="prev" title="[Java] Object equality in Java">
-                [Java] Object equality in Java <i class="fa fa-chevron-right"></i>
+              <a href="/2016/12/09/SQL-5-types-of-SQL-JOIN/" rel="prev" title="[SQL] 5 types of SQL JOIN">
+                [SQL] 5 types of SQL JOIN <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -510,7 +510,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-count">39</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -610,7 +610,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

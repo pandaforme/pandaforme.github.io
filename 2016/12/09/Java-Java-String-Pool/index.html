@@ -93,6 +93,7 @@
 <meta property="og:url" content="https://pandaforme.github.io/2016/12/09/Java-Java-String-Pool/index.html">
 <meta property="og:site_name" content="Programming blog">
 <meta property="og:description" content="&amp;#x5047;&amp;#x5982;&amp;#x6C92;&amp;#x6709;string pool&amp;#x9019;&amp;#x6A23;&amp;#x7684;&amp;#x6A5F;&amp;#x5236;&amp;#xFF0C;&amp;#x9047;&amp;#x5230;string&amp;#x5C31;&amp;#x5EFA;&amp;#x7ACB;&amp;#x4E00;&amp;#x500B;&amp;#x7269;&amp;#x4EF6;&amp;#xFF0C;&amp;#x9019;&amp;#x6A23;&amp;#x8A18">
+<meta property="og:locale" content="zh-tw">
 <meta property="og:image" content="http://www.journaldev.com/wp-content/uploads/2012/11/String-Pool-Java1.png">
 <meta property="og:updated_time" content="2016-12-13T07:25:39.000Z">
 <meta name="twitter:card" content="summary">
@@ -404,7 +405,7 @@
 
       
         <p>&#x5047;&#x5982;&#x6C92;&#x6709;string pool&#x9019;&#x6A23;&#x7684;&#x6A5F;&#x5236;&#xFF0C;&#x9047;&#x5230;string&#x5C31;&#x5EFA;&#x7ACB;&#x4E00;&#x500B;&#x7269;&#x4EF6;&#xFF0C;&#x9019;&#x6A23;&#x8A18;&#x61B6;&#x9AD4;&#x5C31;&#x5F88;&#x5FEB;&#x5C31;&#x6703;&#x7206;&#x6389;&#x4E86;&#x3002;</p>
-<p>&#x5728;java&#x4E2D;&#x63A1;&#x53D6;<a href="http://en.wikipedia.org/wiki/Flyweight_pattern" target="_blank" rel="external">Flyweight pattern</a>&#x4F5C;&#x6CD5;&#xFF0C;&#x53EF;&#x4EE5;&#x5171;&#x4EAB;&#x540C;&#x6A23;&#x7684;string object&#x3002;</p>
+<p>&#x5728;java&#x4E2D;&#x63A1;&#x53D6;<a href="http://en.wikipedia.org/wiki/Flyweight_pattern" target="_blank" rel="noopener">Flyweight pattern</a>&#x4F5C;&#x6CD5;&#xFF0C;&#x53EF;&#x4EE5;&#x5171;&#x4EAB;&#x540C;&#x6A23;&#x7684;string object&#x3002;</p>
 <p><img src="http://www.journaldev.com/wp-content/uploads/2012/11/String-Pool-Java1.png" alt=""></p>
 <p>&#x5EFA;&#x7ACB;string object&#x6709;&#x5169;&#x7A2E;&#x65B9;&#x5F0F;&#xFF1A;</p>
 <ol>
@@ -412,11 +413,11 @@
 <li>String string = new String(&#x201C;Cat&#x201D;);</li>
 </ol>
 <p>&#x63A1;&#x7528;&#x7B2C;&#x4E00;&#x7A2E;&#x65B9;&#x6CD5;&#xFF0C;&#x6703;&#x5148;&#x6AA2;&#x67E5;string pool&#x662F;&#x5426;&#x6709;&#x76F8;&#x540C;&#x7684;string&#x3002;&#x82E5;&#x6709;&#x5C31;&#x5171;&#x7528;&#xFF0C;&#x6C92;&#x6709;&#x5247;&#x5EFA;&#x7ACB;&#x4E4B;&#x3002;</p>
-<p>&#x63A1;&#x7528;&#x7B2C;&#x4E8C;&#x7A2E;&#x65B9;&#x6CD5;&#xFE50;&#x4E0D;&#x6703;&#x4F7F;&#x7528;&#x5230;string pool&#x6A5F;&#x5236;&#xFF0C;&#x800C;&#x662F;&#x5728;heap&#x5EFA;&#x7ACB;&#x4E00;&#x500B;&#x65B0;&#x7684;string object&#x3002;&#x82E5;&#x4E4B;&#x5F8C;&#x60F3;&#x8981;&#x4F7F;&#x7528;string pool&#x6A5F;&#x5236;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html#intern%28%29" target="_blank" rel="external">intern</a>&#x3002;</p>
-<h3 id="&#x7BC4;&#x4F8B;&#xFF1A;"><a href="#&#x7BC4;&#x4F8B;&#xFF1A;" class="headerlink" title="&#x7BC4;&#x4F8B;&#xFF1A;"></a>&#x7BC4;&#x4F8B;&#xFF1A;</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringExample</span> </span>{</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>{</div><div class="line">		String s1 = <span class="string">&quot;Cat&quot;</span>;</div><div class="line">		String s2 = <span class="string">&quot;Cat&quot;</span>;</div><div class="line">		String s3 = <span class="keyword">new</span> String(<span class="string">&quot;Cat&quot;</span>);</div><div class="line"></div><div class="line">		System.out.println(<span class="string">&quot;s1 == s2 ?&quot;</span> + (s1 == s2));</div><div class="line">		System.out.println(<span class="string">&quot;s1 == s3 ?&quot;</span> + (s1 == s3));</div><div class="line">		System.out.println(<span class="string">&quot;s1 == s3.intern() ?&quot;</span> + (s1 == s3.intern()));</div><div class="line">		System.out.println(<span class="string">&quot;s1 equals s3 ?&quot;</span> + s1.equals(s3));</div><div class="line">	}</div><div class="line">}</div></pre></td></tr></table></figure>
-<p>&#x7D50;&#x679C;&#xFF1A;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">s1 == s2 ?true</div><div class="line">s1 == s3 ?false</div><div class="line">s1 == s3.intern() ?true</div><div class="line">s1 equals s3 ?true</div></pre></td></tr></table></figure></p>
+<p>&#x63A1;&#x7528;&#x7B2C;&#x4E8C;&#x7A2E;&#x65B9;&#x6CD5;&#xFE50;&#x4E0D;&#x6703;&#x4F7F;&#x7528;&#x5230;string pool&#x6A5F;&#x5236;&#xFF0C;&#x800C;&#x662F;&#x5728;heap&#x5EFA;&#x7ACB;&#x4E00;&#x500B;&#x65B0;&#x7684;string object&#x3002;&#x82E5;&#x4E4B;&#x5F8C;&#x60F3;&#x8981;&#x4F7F;&#x7528;string pool&#x6A5F;&#x5236;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html#intern%28%29" target="_blank" rel="noopener">intern</a>&#x3002;</p>
+<h3 id="&#x7BC4;&#x4F8B;&#xFF1A;"><a href="#&#x7BC4;&#x4F8B;&#xFF1A;" class="headerlink" title="&#x7BC4;&#x4F8B;&#xFF1A;"></a>&#x7BC4;&#x4F8B;&#xFF1A;</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringExample</span> </span>{</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>{</span><br><span class="line">		String s1 = <span class="string">&quot;Cat&quot;</span>;</span><br><span class="line">		String s2 = <span class="string">&quot;Cat&quot;</span>;</span><br><span class="line">		String s3 = <span class="keyword">new</span> String(<span class="string">&quot;Cat&quot;</span>);</span><br><span class="line"></span><br><span class="line">		System.out.println(<span class="string">&quot;s1 == s2 ?&quot;</span> + (s1 == s2));</span><br><span class="line">		System.out.println(<span class="string">&quot;s1 == s3 ?&quot;</span> + (s1 == s3));</span><br><span class="line">		System.out.println(<span class="string">&quot;s1 == s3.intern() ?&quot;</span> + (s1 == s3.intern()));</span><br><span class="line">		System.out.println(<span class="string">&quot;s1 equals s3 ?&quot;</span> + s1.equals(s3));</span><br><span class="line">	}</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>&#x7D50;&#x679C;&#xFF1A;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">s1 == s2 ?true</span><br><span class="line">s1 == s3 ?false</span><br><span class="line">s1 == s3.intern() ?true</span><br><span class="line">s1 equals s3 ?true</span><br></pre></td></tr></table></figure></p>
 <h3 id="&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;"><a href="#&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;" class="headerlink" title="&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;"></a>&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;</h3><ul>
-<li><a href="http://www.journaldev.com/797/what-is-java-string-pool" target="_blank" rel="external">What is Java String Pool?</a></li>
+<li><a href="http://www.journaldev.com/797/what-is-java-string-pool" target="_blank" rel="noopener">What is Java String Pool?</a></li>
 </ul>
 
       
@@ -450,8 +451,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/09/Java-Java-is-Pass-by-Value-and-Not-Pass-by-Reference/" rel="next" title="[Java] Java is Pass by Value and Not Pass by Reference">
-                <i class="fa fa-chevron-left"></i> [Java] Java is Pass by Value and Not Pass by Reference
+              <a href="/2016/12/09/SQL-How-to-get-rank-using-ANSI-SQL/" rel="next" title="[SQL] How to get rank using ANSI SQL">
+                <i class="fa fa-chevron-left"></i> [SQL] How to get rank using ANSI SQL
               </a>
             
           </div>
@@ -460,8 +461,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/12/09/SQL-How-to-get-rank-using-ANSI-SQL/" rel="prev" title="[SQL] How to get rank using ANSI SQL">
-                [SQL] How to get rank using ANSI SQL <i class="fa fa-chevron-right"></i>
+              <a href="/2016/12/09/Java-Java-is-Pass-by-Value-and-Not-Pass-by-Reference/" rel="prev" title="[Java] Java is Pass by Value and Not Pass by Reference">
+                [Java] Java is Pass by Value and Not Pass by Reference <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -537,7 +538,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-count">39</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -637,7 +638,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -93,6 +93,7 @@
 <meta property="og:url" content="https://pandaforme.github.io/2016/12/09/Java-Heap-space-vs-Stack/index.html">
 <meta property="og:site_name" content="Programming blog">
 <meta property="og:description" content="&amp;#x5728;&amp;#x7406;&amp;#x89E3;Java&amp;#x662F;&amp;#x5426;&amp;#x70BA;Pass by Value(&amp;#x53C3;&amp;#x8003;&amp;#x9019;&amp;#x7BC7;&amp;#x6587;&amp;#x7AE0;)&amp;#x4E4B;&amp;#x524D;&amp;#xFF0C;&amp;#x5EFA;&amp;#x8B70;&amp;#x5148;&amp;#x4E86;&amp;#x89E3;heap&amp;#x548C;stack&amp;#x7">
+<meta property="og:locale" content="zh-tw">
 <meta property="og:image" content="http://www.journaldev.com/wp-content/uploads/2014/08/Java-Heap-Stack-Memory.png">
 <meta property="og:updated_time" content="2016-12-13T07:25:43.000Z">
 <meta name="twitter:card" content="summary">
@@ -403,7 +404,7 @@
       
 
       
-        <p>&#x5728;&#x7406;&#x89E3;Java&#x662F;&#x5426;&#x70BA;Pass by Value(&#x53C3;&#x8003;<a href="http://pandaforme.ghost.io/java-is-call-by-value-and-not-call-by-reference/" target="_blank" rel="external">&#x9019;&#x7BC7;&#x6587;&#x7AE0;</a>)&#x4E4B;&#x524D;&#xFF0C;&#x5EFA;&#x8B70;&#x5148;&#x4E86;&#x89E3;heap&#x548C;stack&#x7684;&#x529F;&#x7528;&#x3002;</p>
+        <p>&#x5728;&#x7406;&#x89E3;Java&#x662F;&#x5426;&#x70BA;Pass by Value(&#x53C3;&#x8003;<a href="http://pandaforme.ghost.io/java-is-call-by-value-and-not-call-by-reference/" target="_blank" rel="noopener">&#x9019;&#x7BC7;&#x6587;&#x7AE0;</a>)&#x4E4B;&#x524D;&#xFF0C;&#x5EFA;&#x8B70;&#x5148;&#x4E86;&#x89E3;heap&#x548C;stack&#x7684;&#x529F;&#x7528;&#x3002;</p>
 <ul>
 <li>Heap space&#xFF1A;<ol>
 <li>&#x7576;&#x5EFA;&#x7ACB;&#x7269;&#x4EF6;&#x6642;&#xFF0C;&#x6703;&#x5728;heap space&#x5206;&#x914D;&#x4E00;&#x500B;&#x7A7A;&#x9593;&#x7D66;&#x7269;&#x4EF6;&#x4F7F;&#x7528;&#x3002;</li>
@@ -411,11 +412,11 @@
 <li>Garbage Collection&#x6703;&#x6E05;&#x9664;heap space&#x5167;&#x6C92;&#x6709;&#x88AB;&#x4F7F;&#x7528;&#x5230;&#x7684;&#x7269;&#x4EF6;&#x3002; </li>
 <li>&#x53EF;&#x900F;&#x904E;-Xms&#x53C3;&#x6578;&#x8ABF;&#x6574;heap space&#x7684;&#x958B;&#x59CB;&#x5927;&#x5C0F;&#x3002;</li>
 <li>&#x53EF;&#x900F;&#x904E;-Xmx&#x53C3;&#x6578;&#x8A2D;&#x5B9A;heap space&#x7684;&#x6700;&#x5927;&#x503C;&#x3002;</li>
-<li>&#x5047;&#x5982;heap space&#x6EFF;&#x4E86;&#xFF0C;Java&#x6703;&#x4E1F;&#x51FA;<figure class="highlight plain"><figcaption><span>Java Heap Space```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">  </div><div class="line">* Stack&#xFF1A;</div><div class="line"> 1. &#x82E5;&#x8B8A;&#x6578;&#x662F;&#x57FA;&#x672C;&#x578B;&#x614B;&#xFF0C;&#x5C31;&#x5B58;&#x653E;&#x5B83;&#x7684;&#x503C;&#x3002;</div><div class="line"> 2. &#x82E5;&#x8B8A;&#x6578;&#x662F;&#x7269;&#x4EF6;&#xFF0C;&#x5C31;&#x5B58;&#x653E;&#x5B83;&#x5728;heap space&#x7684;&#x4F4D;&#x7F6E;&#x3002;</div><div class="line"> 3. stack&#x4E0D;&#x80FD;&#x88AB;&#x5176;&#x4ED6;thead&#x5B58;&#x53D6;&#x3002;</div><div class="line"> 4. &#x53EF;&#x900F;&#x904E;-Xss&#x53C3;&#x6578;&#x8ABF;&#x6574;stack&#x5927;&#x5C0F;&#x3002;</div><div class="line"> 5. &#x5047;&#x5982;stack&#x6EFF;&#x4E86;&#xFF0C;Java&#x6703;&#x4E1F;&#x51FA;```java java.lang.StackOverFlowError</div></pre></td></tr></table></figure></li>
+<li>&#x5047;&#x5982;heap space&#x6EFF;&#x4E86;&#xFF0C;Java&#x6703;&#x4E1F;&#x51FA;<figure class="highlight plain"><figcaption><span>Java Heap Space```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line">* Stack&#xFF1A;</span><br><span class="line"> 1. &#x82E5;&#x8B8A;&#x6578;&#x662F;&#x57FA;&#x672C;&#x578B;&#x614B;&#xFF0C;&#x5C31;&#x5B58;&#x653E;&#x5B83;&#x7684;&#x503C;&#x3002;</span><br><span class="line"> 2. &#x82E5;&#x8B8A;&#x6578;&#x662F;&#x7269;&#x4EF6;&#xFF0C;&#x5C31;&#x5B58;&#x653E;&#x5B83;&#x5728;heap space&#x7684;&#x4F4D;&#x7F6E;&#x3002;</span><br><span class="line"> 3. stack&#x4E0D;&#x80FD;&#x88AB;&#x5176;&#x4ED6;thead&#x5B58;&#x53D6;&#x3002;</span><br><span class="line"> 4. &#x53EF;&#x900F;&#x904E;-Xss&#x53C3;&#x6578;&#x8ABF;&#x6574;stack&#x5927;&#x5C0F;&#x3002;</span><br><span class="line"> 5. &#x5047;&#x5982;stack&#x6EFF;&#x4E86;&#xFF0C;Java&#x6703;&#x4E1F;&#x51FA;```java java.lang.StackOverFlowError</span><br></pre></td></tr></table></figure></li>
 </ol>
 </li>
 </ul>
-<h3 id="&#x7BC4;&#x4F8B;&#xFF1A;"><a href="#&#x7BC4;&#x4F8B;&#xFF1A;" class="headerlink" title="&#x7BC4;&#x4F8B;&#xFF1A;"></a>&#x7BC4;&#x4F8B;&#xFF1A;</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Memory</span> </span>{</div><div class="line"> </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{ <span class="comment">// Line 1</span></div><div class="line">        <span class="keyword">int</span> i=<span class="number">1</span>; <span class="comment">// Line 2</span></div><div class="line">        Object obj = <span class="keyword">new</span> Object(); <span class="comment">// Line 3</span></div><div class="line">        Memory mem = <span class="keyword">new</span> Memory(); <span class="comment">// Line 4</span></div><div class="line">        mem.foo(obj); <span class="comment">// Line 5</span></div><div class="line">    } <span class="comment">// Line 9</span></div><div class="line"> </div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">foo</span><span class="params">(Object param)</span> </span>{ <span class="comment">// Line 6</span></div><div class="line">        String str = param.toString(); <span class="comment">//// Line 7</span></div><div class="line">        System.out.println(str);</div><div class="line">    } <span class="comment">// Line 8</span></div><div class="line"> </div><div class="line">}</div></pre></td></tr></table></figure>
+<h3 id="&#x7BC4;&#x4F8B;&#xFF1A;"><a href="#&#x7BC4;&#x4F8B;&#xFF1A;" class="headerlink" title="&#x7BC4;&#x4F8B;&#xFF1A;"></a>&#x7BC4;&#x4F8B;&#xFF1A;</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Memory</span> </span>{</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{ <span class="comment">// Line 1</span></span><br><span class="line">        <span class="keyword">int</span> i=<span class="number">1</span>; <span class="comment">// Line 2</span></span><br><span class="line">        Object obj = <span class="keyword">new</span> Object(); <span class="comment">// Line 3</span></span><br><span class="line">        Memory mem = <span class="keyword">new</span> Memory(); <span class="comment">// Line 4</span></span><br><span class="line">        mem.foo(obj); <span class="comment">// Line 5</span></span><br><span class="line">    } <span class="comment">// Line 9</span></span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">foo</span><span class="params">(Object param)</span> </span>{ <span class="comment">// Line 6</span></span><br><span class="line">        String str = param.toString(); <span class="comment">//// Line 7</span></span><br><span class="line">        System.out.println(str);</span><br><span class="line">    } <span class="comment">// Line 8</span></span><br><span class="line"> </span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 <p><img src="http://www.journaldev.com/wp-content/uploads/2014/08/Java-Heap-Stack-Memory.png" alt=""></p>
 <ol>
 <li>&#x7576;&#x958B;&#x59CB;&#x57F7;&#x884C;&#x7A0B;&#x5F0F;&#x6642;&#x5019;&#xFF0C;JVM&#x6703;&#x8F09;&#x5165;&#x76F8;&#x95DC;&#x7684;class&#x5230;heap space&#x3002;</li>
@@ -437,8 +438,8 @@
 <li>&#x57F7;&#x884C;Line9&#xFF0C;&#x4E00;&#x76F4;pop&#xFF0C;&#x76F4;&#x5230;&#x9047;&#x5230;&#x201D;{&#x201C;&#x505C;&#x6B62;&#x3002;</li>
 </ol>
 <h3 id="&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;"><a href="#&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;" class="headerlink" title="&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;"></a>&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;</h3><ul>
-<li><a href="http://www.journaldev.com/4098/java-heap-memory-vs-stack-memory-difference" target="_blank" rel="external">Java Heap Memory vs Stack Memory Difference</a></li>
-<li><a href="http://java-success.blogspot.tw/2012/04/how-will-you-go-about-explaining.html" target="_blank" rel="external">How will you go about explaining the following Java concepts to a beginner?</a></li>
+<li><a href="http://www.journaldev.com/4098/java-heap-memory-vs-stack-memory-difference" target="_blank" rel="noopener">Java Heap Memory vs Stack Memory Difference</a></li>
+<li><a href="http://java-success.blogspot.tw/2012/04/how-will-you-go-about-explaining.html" target="_blank" rel="noopener">How will you go about explaining the following Java concepts to a beginner?</a></li>
 </ul>
 
       
@@ -472,8 +473,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/09/Java-Enum-in-Java/" rel="next" title="[Java] Enum in Java">
-                <i class="fa fa-chevron-left"></i> [Java] Enum in Java
+              <a href="/2016/12/09/Celebrity-Problem/" rel="next" title="Celebrity Problem">
+                <i class="fa fa-chevron-left"></i> Celebrity Problem
               </a>
             
           </div>
@@ -482,8 +483,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/12/09/Celebrity-Problem/" rel="prev" title="Celebrity Problem">
-                Celebrity Problem <i class="fa fa-chevron-right"></i>
+              <a href="/2016/12/09/Java-Enum-in-Java/" rel="prev" title="[Java] Enum in Java">
+                [Java] Enum in Java <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -559,7 +560,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-count">39</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -659,7 +660,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -93,6 +93,7 @@
 <meta property="og:url" content="https://pandaforme.github.io/2016/12/09/Jersey-RESTful-serveice-starter-kit-1/index.html">
 <meta property="og:site_name" content="Programming blog">
 <meta property="og:description" content="JAX-RS&amp;#x6709;&amp;#x63D0;&amp;#x4F9B;&amp;#x985E;&amp;#x4F3C;AOP&amp;#x529F;&amp;#x80FD;&amp;#xFF0C;&amp;#x6211;&amp;#x5011;&amp;#x53EF;&amp;#x4EE5;&amp;#x96C6;&amp;#x4E2D;&amp;#x8655;&amp;#x7406;&amp;#x6240;&amp;#x6709;&amp;#x7684;Exception&amp;#x3002; &amp;#x5728;Clean Code&amp;#x">
+<meta property="og:locale" content="zh-tw">
 <meta property="og:updated_time" content="2016-12-13T07:20:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Jersey] RESTful service starter-kit (1)">
@@ -401,21 +402,21 @@
       
 
       
-        <p><a href="https://jax-rs-spec.java.net/" target="_blank" rel="external">JAX-RS</a>&#x6709;&#x63D0;&#x4F9B;&#x985E;&#x4F3C;AOP&#x529F;&#x80FD;&#xFF0C;&#x6211;&#x5011;&#x53EF;&#x4EE5;&#x96C6;&#x4E2D;&#x8655;&#x7406;&#x6240;&#x6709;&#x7684;Exception&#x3002;</p>
-<p>&#x5728;<a href="http://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882" target="_blank" rel="external">Clean Code</a>&#x8AAA;&#x5230;&#xFF1A;</p>
+        <p><a href="https://jax-rs-spec.java.net/" target="_blank" rel="noopener">JAX-RS</a>&#x6709;&#x63D0;&#x4F9B;&#x985E;&#x4F3C;AOP&#x529F;&#x80FD;&#xFF0C;&#x6211;&#x5011;&#x53EF;&#x4EE5;&#x96C6;&#x4E2D;&#x8655;&#x7406;&#x6240;&#x6709;&#x7684;Exception&#x3002;</p>
+<p>&#x5728;<a href="http://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882" target="_blank" rel="noopener">Clean Code</a>&#x8AAA;&#x5230;&#xFF1A;</p>
 <p><pre><br>The short chapter seven of &#xAB;Clean Code&#xBB; is dedicated to error handling. The one point it stresses with vigor is:<br>Do not use checked exceptions!<br>The price of checked exceptions is an Open/Closed Principle violation. If you throw a checked exception from a method in your code and the catch is three levels above, you must declare that exception in the signature of each method between you and the catch. This means that a change at a low level of the software can force signature changes on many higher levels.<br>&#x2014;Robert C. Martin, &#xAB;Clean Code&#xBB;, page 107<br></pre><br>&#x6211;&#x6703;&#x7FD2;&#x6163;&#x5C07;checked exception&#x8F49;&#x6210;runtime exception&#xFF0C;&#x7D71;&#x4E00;&#x96C6;&#x4E2D;&#x8655;&#x7406;&#x3002;</p>
 <p>&#x4F8B;&#x5982;&#xFF1A;&#x53EA;&#x8981;&#x6C92;&#x6709;&#x8655;&#x7406;&#x5230;&#x7684;exception&#xFF0C;&#x4E00;&#x5F8B;&#x56DE;Internal Server Error</p>
-<p>&#x53EA;&#x8981;&#x5BE6;&#x4F5C;<code>ExceptionMapper</code>&#xFF0C;&#x9078;&#x64C7;&#x8981;&#x6355;&#x6349;exception&#x653E;&#x5230;generic&#xFF0C;&#x6700;&#x5F8C;&#x518D;&#x52A0;&#x5165;<code>@Provider</code>&#x5C31;&#x53EF;&#x4EE5;&#x7D71;&#x4E00;&#x8655;&#x7406;&#x60F3;&#x8981;&#x8655;&#x7406;&#x7684;Exception&#x3002;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Provider</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GenericExceptionMapper</span> <span class="keyword">implements</span> <span class="title">ExceptionMapper</span>&lt;<span class="title">Throwable</span>&gt; </span>{</div><div class="line"></div><div class="line">  <span class="meta">@Override</span></div><div class="line">  <span class="function"><span class="keyword">public</span> Response <span class="title">toResponse</span><span class="params">(Throwable exception)</span> </span>{</div><div class="line">    <span class="keyword">return</span> Response.status(Response.Status.INTERNAL_SERVER_ERROR)</div><div class="line">                   .entity(exception.getMessage())</div><div class="line">                   .type(MediaType.APPLICATION_JSON)</div><div class="line">                   .build();</div><div class="line">  }</div><div class="line">}</div></pre></td></tr></table></figure></p>
+<p>&#x53EA;&#x8981;&#x5BE6;&#x4F5C;<code>ExceptionMapper</code>&#xFF0C;&#x9078;&#x64C7;&#x8981;&#x6355;&#x6349;exception&#x653E;&#x5230;generic&#xFF0C;&#x6700;&#x5F8C;&#x518D;&#x52A0;&#x5165;<code>@Provider</code>&#x5C31;&#x53EF;&#x4EE5;&#x7D71;&#x4E00;&#x8655;&#x7406;&#x60F3;&#x8981;&#x8655;&#x7406;&#x7684;Exception&#x3002;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Provider</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GenericExceptionMapper</span> <span class="keyword">implements</span> <span class="title">ExceptionMapper</span>&lt;<span class="title">Throwable</span>&gt; </span>{</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> Response <span class="title">toResponse</span><span class="params">(Throwable exception)</span> </span>{</span><br><span class="line">    <span class="keyword">return</span> Response.status(Response.Status.INTERNAL_SERVER_ERROR)</span><br><span class="line">                   .entity(exception.getMessage())</span><br><span class="line">                   .type(MediaType.APPLICATION_JSON)</span><br><span class="line">                   .build();</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure></p>
 <hr>
-<p>Glassfish&#x6709;&#x63D0;&#x4F9B;<code>LoggingFilter</code>&#xFF0C;&#x53EF;&#x4EE5;&#x81EA;&#x52D5;log&#x6BCF;&#x500B;request&#x548C;response&#x3002;<br>&#x5047;&#x5982;&#x5C0D;&#x65BC;&#x8F38;&#x51FA;&#x683C;&#x5F0F;&#x6BD4;&#x8F03;&#x8981;&#x6C42;&#xFF0C;&#x53EF;&#x4EE5;&#x5BE6;&#x4F5C;&#x5C6C;&#x65BC;&#x81EA;&#x5DF1;&#x7684;LoggingFilter&#xFF0C;&#x5BE6;&#x4F5C;&#x65B9;&#x5F0F;&#x53EF;&#x4EE5;&#x53C3;&#x8003;<a href="https://github.com/jersey/jersey/blob/master/core-common/src/main/java/org/glassfish/jersey/filter/LoggingFilter.java" target="_blank" rel="external">LoggingFilter.java</a>&#x3002;</p>
-<p>&#x4F7F;&#x7528;<code>LoggingFilter</code>&#x53EF;&#x4EE5;&#x5728;<code>web.xml</code>&#x6216;&#x7A0B;&#x5F0F;&#x78BC;&#x4E2D;&#x958B;&#x555F;&#x3002;&#x53EF;&#x4EE5;&#x53C3;&#x8003;<a href="http://blog.dejavu.sk/2013/11/19/registering-resources-and-providers-in-jersey-2/" target="_blank" rel="external">Registering Resources and Providers in Jersey 2</a>&#x3002;</p>
+<p>Glassfish&#x6709;&#x63D0;&#x4F9B;<code>LoggingFilter</code>&#xFF0C;&#x53EF;&#x4EE5;&#x81EA;&#x52D5;log&#x6BCF;&#x500B;request&#x548C;response&#x3002;<br>&#x5047;&#x5982;&#x5C0D;&#x65BC;&#x8F38;&#x51FA;&#x683C;&#x5F0F;&#x6BD4;&#x8F03;&#x8981;&#x6C42;&#xFF0C;&#x53EF;&#x4EE5;&#x5BE6;&#x4F5C;&#x5C6C;&#x65BC;&#x81EA;&#x5DF1;&#x7684;LoggingFilter&#xFF0C;&#x5BE6;&#x4F5C;&#x65B9;&#x5F0F;&#x53EF;&#x4EE5;&#x53C3;&#x8003;<a href="https://github.com/jersey/jersey/blob/master/core-common/src/main/java/org/glassfish/jersey/filter/LoggingFilter.java" target="_blank" rel="noopener">LoggingFilter.java</a>&#x3002;</p>
+<p>&#x4F7F;&#x7528;<code>LoggingFilter</code>&#x53EF;&#x4EE5;&#x5728;<code>web.xml</code>&#x6216;&#x7A0B;&#x5F0F;&#x78BC;&#x4E2D;&#x958B;&#x555F;&#x3002;&#x53EF;&#x4EE5;&#x53C3;&#x8003;<a href="http://blog.dejavu.sk/2013/11/19/registering-resources-and-providers-in-jersey-2/" target="_blank" rel="noopener">Registering Resources and Providers in Jersey 2</a>&#x3002;</p>
 <p>&#x4F8B;&#x5982;&#xFF1A;</p>
-<p>client&#x7AEF;&#x767C;&#x51FA;&#xFF1A;<figure class="highlight plain"><figcaption><span>http://localhost:8080/jersey-starterkit/hello```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">server&#x7AEF;&#x6703;&#x7D00;&#x9304;&#x76F8;&#x95DC;&#x8CC7;&#x8A0A;&#xFF1A;</div><div class="line">```bash</div><div class="line">15:34:40.087 [qtp1671915608-80] INFO  application.MyApplication - 3 * Server has received a request on thread qtp1671915608-80</div><div class="line">1 &gt; GET http://localhost:8080/jersey-starterkit/hello</div><div class="line">1 &gt; Accept: */*</div><div class="line">1 &gt; Host: localhost:8080</div><div class="line">1 &gt; User-Agent: curl/7.37.1</div><div class="line"></div><div class="line">15:34:40.091 [qtp1671915608-80] INFO  application.MyApplication - 4 * Server responded with a response on thread qtp1671915608-80</div><div class="line">2 &lt; 200</div><div class="line">2 &lt; Content-Type: application/json</div><div class="line">hello</div></pre></td></tr></table></figure></p>
-<h4 id="&#x7A0B;&#x5F0F;&#x78BC;&#xFF1A;"><a href="#&#x7A0B;&#x5F0F;&#x78BC;&#xFF1A;" class="headerlink" title="&#x7A0B;&#x5F0F;&#x78BC;&#xFF1A;"></a>&#x7A0B;&#x5F0F;&#x78BC;&#xFF1A;</h4><p><a href="https://github.com/pandaforme/jersey-starterkit" target="_blank" rel="external">https://github.com/pandaforme/jersey-starterkit</a></p>
+<p>client&#x7AEF;&#x767C;&#x51FA;&#xFF1A;<figure class="highlight plain"><figcaption><span>http://localhost:8080/jersey-starterkit/hello```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">server&#x7AEF;&#x6703;&#x7D00;&#x9304;&#x76F8;&#x95DC;&#x8CC7;&#x8A0A;&#xFF1A;</span><br><span class="line">```bash</span><br><span class="line">15:34:40.087 [qtp1671915608-80] INFO  application.MyApplication - 3 * Server has received a request on thread qtp1671915608-80</span><br><span class="line">1 &gt; GET http://localhost:8080/jersey-starterkit/hello</span><br><span class="line">1 &gt; Accept: */*</span><br><span class="line">1 &gt; Host: localhost:8080</span><br><span class="line">1 &gt; User-Agent: curl/7.37.1</span><br><span class="line"></span><br><span class="line">15:34:40.091 [qtp1671915608-80] INFO  application.MyApplication - 4 * Server responded with a response on thread qtp1671915608-80</span><br><span class="line">2 &lt; 200</span><br><span class="line">2 &lt; Content-Type: application/json</span><br><span class="line">hello</span><br></pre></td></tr></table></figure></p>
+<h4 id="&#x7A0B;&#x5F0F;&#x78BC;&#xFF1A;"><a href="#&#x7A0B;&#x5F0F;&#x78BC;&#xFF1A;" class="headerlink" title="&#x7A0B;&#x5F0F;&#x78BC;&#xFF1A;"></a>&#x7A0B;&#x5F0F;&#x78BC;&#xFF1A;</h4><p><a href="https://github.com/pandaforme/jersey-starterkit" target="_blank" rel="noopener">https://github.com/pandaforme/jersey-starterkit</a></p>
 <h4 id="&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;"><a href="#&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;" class="headerlink" title="&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;"></a>&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;</h4><ul>
-<li><a href="http://www.codingpedia.org/ama/error-handling-in-rest-api-with-jersey/#61_Source_Code" target="_blank" rel="external">Error handling in REST API with Jersey</a></li>
-<li><a href="https://deepintojee.wordpress.com/2011/12/04/testing-error-handling-in-restful-application-with-jersey-and-jbehave/" target="_blank" rel="external">Testing error handling in RESTful application with jersey and jbehave</a></li>
-<li><a href="http://blog.dejavu.sk/2013/11/19/registering-resources-and-providers-in-jersey-2/" target="_blank" rel="external">Registering Resources and Providers in Jersey 2</a></li>
+<li><a href="http://www.codingpedia.org/ama/error-handling-in-rest-api-with-jersey/#61_Source_Code" target="_blank" rel="noopener">Error handling in REST API with Jersey</a></li>
+<li><a href="https://deepintojee.wordpress.com/2011/12/04/testing-error-handling-in-restful-application-with-jersey-and-jbehave/" target="_blank" rel="noopener">Testing error handling in RESTful application with jersey and jbehave</a></li>
+<li><a href="http://blog.dejavu.sk/2013/11/19/registering-resources-and-providers-in-jersey-2/" target="_blank" rel="noopener">Registering Resources and Providers in Jersey 2</a></li>
 </ul>
 
       
@@ -451,8 +452,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/09/LOGBack-hidden-cost-of-parameter-construction/" rel="next" title="[LOGBack] "hidden" cost of parameter construction">
-                <i class="fa fa-chevron-left"></i> [LOGBack] "hidden" cost of parameter construction
+              <a href="/2016/12/09/Scala-Tail-recursion/" rel="next" title="[Scala] Tail recursion">
+                <i class="fa fa-chevron-left"></i> [Scala] Tail recursion
               </a>
             
           </div>
@@ -461,8 +462,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/12/09/Scala-Tail-recursion/" rel="prev" title="[Scala] Tail recursion">
-                [Scala] Tail recursion <i class="fa fa-chevron-right"></i>
+              <a href="/2016/12/09/LOGBack-hidden-cost-of-parameter-construction/" rel="prev" title="[LOGBack] "hidden" cost of parameter construction">
+                [LOGBack] "hidden" cost of parameter construction <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -538,7 +539,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-count">39</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -638,7 +639,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

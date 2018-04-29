@@ -86,17 +86,18 @@
 
 
 
-<meta name="description" content="&amp;#x984C;&amp;#x76EE;&amp;#xFF1A;Merge Intervals Given a collection of intervals, merge all overlapping intervals. For example,Given [1,3],[2,6],[8,10],[15,18],return [1,6],[8,10],[15,18]. &amp;#x89E3;&amp;#x6CD5;&amp;#xF">
+<meta name="description" content="QuestionGiven a collection of intervals, merge all overlapping intervals. Example 1: Input: [[1,3],[2,6],[8,10],[15,18]] Output: [[1,6],[8,10],[15,18]] Explanation: Since intervals [1,3] and [2,6] ove">
 <meta name="keywords" content="Algorithm,LeetCode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[LeetCode] Merge Intervals">
 <meta property="og:url" content="https://pandaforme.github.io/2016/12/09/LeetCode-Merge-Intervals/index.html">
 <meta property="og:site_name" content="Programming blog">
-<meta property="og:description" content="&amp;#x984C;&amp;#x76EE;&amp;#xFF1A;Merge Intervals Given a collection of intervals, merge all overlapping intervals. For example,Given [1,3],[2,6],[8,10],[15,18],return [1,6],[8,10],[15,18]. &amp;#x89E3;&amp;#x6CD5;&amp;#xF">
-<meta property="og:updated_time" content="2016-12-13T07:36:29.000Z">
+<meta property="og:description" content="QuestionGiven a collection of intervals, merge all overlapping intervals. Example 1: Input: [[1,3],[2,6],[8,10],[15,18]] Output: [[1,6],[8,10],[15,18]] Explanation: Since intervals [1,3] and [2,6] ove">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2018-04-29T09:11:20.646Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[LeetCode] Merge Intervals">
-<meta name="twitter:description" content="&amp;#x984C;&amp;#x76EE;&amp;#xFF1A;Merge Intervals Given a collection of intervals, merge all overlapping intervals. For example,Given [1,3],[2,6],[8,10],[15,18],return [1,6],[8,10],[15,18]. &amp;#x89E3;&amp;#x6CD5;&amp;#xF">
+<meta name="twitter:description" content="QuestionGiven a collection of intervals, merge all overlapping intervals. Example 1: Input: [[1,3],[2,6],[8,10],[15,18]] Output: [[1,6],[8,10],[15,18]] Explanation: Since intervals [1,3] and [2,6] ove">
 
 
 
@@ -340,7 +341,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-09T17:17:45+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-09T17:17:00+08:00">
                 2016-12-09
               </time>
             
@@ -401,22 +402,34 @@
       
 
       
-        <h4 id="&#x984C;&#x76EE;&#xFF1A;"><a href="#&#x984C;&#x76EE;&#xFF1A;" class="headerlink" title="&#x984C;&#x76EE;&#xFF1A;"></a>&#x984C;&#x76EE;&#xFF1A;</h4><p><a href="https://oj.leetcode.com/problems/merge-intervals/" target="_blank" rel="external">Merge Intervals</a></p>
-<p><pre><code><br>Given a collection of intervals, merge all overlapping intervals.</code></pre></p>
-<p>For example,<br>Given [1,3],[2,6],[8,10],[15,18],<br>return [1,6],[8,10],[15,18].<br></p>
-<h4 id="&#x89E3;&#x6CD5;&#xFF1A;"><a href="#&#x89E3;&#x6CD5;&#xFF1A;" class="headerlink" title="&#x89E3;&#x6CD5;&#xFF1A;"></a>&#x89E3;&#x6CD5;&#xFF1A;</h4><ul>
-<li>&#x600E;&#x9EBC;&#x5224;&#x65B7;&#x5169;&#x500B;interval&#x70BA;&#x91CD;&#x758A;&#xFF1A;<br><pre><code><br>1.<br>i &#xFF1A;     |&#x2014;&#x2014;&#x2013;|<br>i&#x2019;&#xFF1A;  |&#x2014;&#x2013;|</code></pre></li>
+        <h1 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h1><p>Given a collection of intervals, merge all overlapping intervals.</p>
+<p>Example 1:</p>
+<pre><code>Input: [[1,3],[2,6],[8,10],[15,18]]
+Output: [[1,6],[8,10],[15,18]]
+Explanation: Since intervals [1,3] and [2,6] overlaps, merge them into [1,6].
+</code></pre><p>Example 2:</p>
+<pre><code>Input: [[1,4],[4,5]]
+Output: [[1,5]]
+Explanation: Intervals [1,4] and [4,5] are considerred overlapping.
+</code></pre><h1 id="Soultion"><a href="#Soultion" class="headerlink" title="Soultion"></a>Soultion</h1><p>&#x9019;&#x984C;&#x7684;&#x4E3B;&#x8981;&#x5728;&#x8003;&#x5982;&#x4F55;&#x5224;&#x65B7;&#x5169;&#x500B;interval&#x70BA;&#x91CD;&#x758A;&#x7684;&#x6F14;&#x7B97;&#x6CD5;&#x3002;</p>
+<h2 id="&#x600E;&#x9EBC;&#x5224;&#x65B7;&#x5169;&#x500B;interval&#x70BA;&#x91CD;&#x758A;&#xFF1A;"><a href="#&#x600E;&#x9EBC;&#x5224;&#x65B7;&#x5169;&#x500B;interval&#x70BA;&#x91CD;&#x758A;&#xFF1A;" class="headerlink" title="&#x600E;&#x9EBC;&#x5224;&#x65B7;&#x5169;&#x500B;interval&#x70BA;&#x91CD;&#x758A;&#xFF1A;"></a>&#x600E;&#x9EBC;&#x5224;&#x65B7;&#x5169;&#x500B;interval&#x70BA;&#x91CD;&#x758A;&#xFF1A;</h2><p>1.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">i &#xFF1A;     |--------|</span><br><span class="line">i&apos;&#xFF1A;  |-----|</span><br></pre></td></tr></table></figure></p>
+<p>2.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">i &#xFF1A;     |--------|</span><br><span class="line">i&apos;&#xFF1A;      |-----|</span><br></pre></td></tr></table></figure></p>
+<p>3.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">i &#xFF1A;     |--------|</span><br><span class="line">i&apos;&#xFF1A;           |-----|</span><br></pre></td></tr></table></figure></p>
+<p>4.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">i &#xFF1A;     |--------|</span><br><span class="line">i&apos;&#xFF1A;  |--------------|</span><br></pre></td></tr></table></figure></p>
+<p>&#x4EE5;&#x4E0A;&#x70BA;&#x5169;&#x500B;interval&#x91CD;&#x758A;&#x7684;&#x60C5;&#x6CC1;&#xFF0C;&#x53EF;&#x4EE5;&#x6B78;&#x7D0D;&#x51FA;&#x4EE5;&#x4E0B;&#x60C5;&#x6CC1;&#xFF1A;</p>
+<ul>
+<li><code>i.start &lt;= i&apos;.end</code></li>
+<li><code>i&apos;.start &lt;= i.end</code></li>
 </ul>
-<p>2.<br>i &#xFF1A;     |&#x2014;&#x2014;&#x2013;|<br>i&#x2019;&#xFF1A;      |&#x2014;&#x2013;|</p>
-<p>3.<br>i &#xFF1A;     |&#x2014;&#x2014;&#x2013;|<br>i&#x2019;&#xFF1A;           |&#x2014;&#x2013;|</p>
-<p>4.<br>i &#xFF1A;     |&#x2014;&#x2014;&#x2013;|<br>i&#x2019;&#xFF1A;  |&#x2014;&#x2014;&#x2014;&#x2014;&#x2013;|<br><br>&#x4EE5;&#x4E0A;&#x70BA;&#x5169;&#x500B;interval&#x91CD;&#x758A;&#x7684;&#x60C5;&#x6CC1;&#xFF0C;&#x53EF;&#x4EE5;&#x6B78;&#x7D0D;&#x51FA;&#x4EE5;&#x4E0B;&#x60C5;&#x6CC1;&#xFF1A;</p>
+<p>&#x77E5;&#x9053;&#x4E0A;&#x8FF0;&#x898F;&#x5247;&#x5F8C;&#x5408;&#x4F75;&#x5C31;&#x8B8A;&#x5F97;&#x5F88;&#x7C21;&#x55AE;&#xFF0C;&#x56E0;&#x70BA;&#x7D66;&#x5B9A;&#x7684;&#x9663;&#x5217;&#x662F;&#x6C92;&#x6709;&#x6392;&#x5E8F;&#x904E;&#x7684;&#xFF0C;&#x5148;&#x4F9D;&#x7167; <code>interval.start</code> &#x6392;&#x5E8F;&#x3002;</p>
 <ol>
-<li>i.start &lt;= i&#x2019;.end </li>
-<li>i&#x2019;.start &lt;= i.end</li>
+<li>&#x521D;&#x59CB;&#x5316; merge = interval.get(0)</li>
+<li>&#x4F9D;&#x5E8F;&#x6AA2;&#x67E5; interval.get(i) &#x662F;&#x5426;&#x548C; merge &#x91CD;&#x758A;</li>
+<li>&#x82E5;&#x91CD;&#x758A;&#xFF0C;merge = &#x5408;&#x4F75; interval.get(i) &#x548C; merge</li>
+<li>&#x82E5;&#x4E0D;&#x91CD;&#x758A;&#xFF0C;&#x628A; merge &#x5BEB;&#x5165;&#x5230;&#x7D50;&#x679C;&#xFF0C;merge = interval.get(i)</li>
 </ol>
-<hr>
-<p>&#x4E00;&#x958B;&#x59CB;&#x770B;&#x5230;&#x984C;&#x76EE;&#xFF0C;&#x5FC3;&#x4E2D;&#x76E4;&#x7B97;&#x8457;&#x4F3C;&#x4E4E;&#x53EF;&#x4EE5;&#x7528;&#x5BE6;&#x4F5C;Merge sort&#x7684;&#x6982;&#x5FF5;&#x4F86;&#x8655;&#x7406;&#x9019;&#x984C;&#x3002;&#x5148;&#x5F9E;&#x4E2D;&#x9593;&#x5207;&#x958B;&#x6210;&#x5169;&#x6BB5;&#xFF0C;&#x5DE6;&#x53F3;&#x6BB5;&#x5206;&#x5225;&#x70BA;&#x662F;&#x5408;&#x4F75;&#x597D;&#x7684;list&#xFF0C;&#x6700;&#x5F8C;&#x518D;&#x5C07;&#x9019;&#x5169;&#x500B;list&#x5408;&#x4F75;&#x8D77;&#x4F86;&#x3002;<br>&#x5728;&#x5BEB;&#x5408;&#x4F75;&#x7684;&#x904E;&#x7A0B;&#x4E2D;&#x767C;&#x73FE;&#x5230;&#xFF0C;&#x53EA;&#x8981;&#x5C07;&#x6240;&#x6709;interval&#x4F9D;&#x7167;start&#x7531;&#x5C0F;&#x5230;&#x5927;&#x6392;&#x5E8F;&#x597D;&#xFF0C;&#x4F9D;&#x5E8F;&#x5408;&#x4F75;&#x5C31;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x7B54;&#x6848;&#xFF0C;&#x4E0D;&#x7528;&#x7528;&#x5230;divide and conquer&#x7684;&#x65B9;&#x5F0F;&#x53BB;&#x505A;&#x3002;</p>
-<h4 id="&#x7A0B;&#x5F0F;&#x78BC;&#xFF1A;Merge-Intervals"><a href="#&#x7A0B;&#x5F0F;&#x78BC;&#xFF1A;Merge-Intervals" class="headerlink" title="&#x7A0B;&#x5F0F;&#x78BC;&#xFF1A;Merge Intervals"></a>&#x7A0B;&#x5F0F;&#x78BC;&#xFF1A;<a href="https://github.com/pandaforme/LeetCode/blob/master/src/MergeIntervals.java" target="_blank" rel="external">Merge Intervals</a></h4>
+<p>&#x6709;&#x9EDE;&#x50CF;&#x8CAA;&#x98DF;&#x86C7;&#xFF0C;&#x5C31;&#x4E00;&#x76F4;&#x5403;&#x76F4;&#x5230;&#x4E0D;&#x80FD;&#x5403;&#x70BA;&#x6B62;&#x3002;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Interval&gt; <span class="title">merge</span><span class="params">(List&lt;Interval&gt; intervals)</span> </span>{</span><br><span class="line">    List&lt;Interval&gt; result = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (intervals.size() == <span class="number">0</span> || intervals.size() == <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> intervals;</span><br><span class="line"></span><br><span class="line">    intervals.sort(Comparator.comparingInt(o -&gt; o.start));</span><br><span class="line"></span><br><span class="line">    Interval merge = intervals.get(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; intervals.size(); i++) {</span><br><span class="line">        <span class="keyword">if</span> (isOverlap(merge, intervals.get(i))) {</span><br><span class="line">            merge = <span class="keyword">new</span> Interval(</span><br><span class="line">                    Math.min(merge.start, intervals.get(i).start),</span><br><span class="line">                    Math.max(merge.end, intervals.get(i).end));</span><br><span class="line">        } <span class="keyword">else</span> {</span><br><span class="line">            result.add(merge);</span><br><span class="line">            merge = intervals.get(i);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">    result.add(merge);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isOverlap</span><span class="params">(Interval interval1, Interval interval2)</span> </span>{</span><br><span class="line">    <span class="keyword">return</span> interval1.start &lt;= interval2.end &amp;&amp; interval2.start &lt;= interval1.end;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -450,8 +463,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/09/LeetCode-ZigZag-Conversion/" rel="next" title="[LeetCode] ZigZag Conversion">
-                <i class="fa fa-chevron-left"></i> [LeetCode] ZigZag Conversion
+              <a href="/2016/12/09/Java-lock、tryLock和lockInterruptibly的差別/" rel="next" title="[Java] lock、tryLock和lockInterruptibly的差別">
+                <i class="fa fa-chevron-left"></i> [Java] lock、tryLock和lockInterruptibly的差別
               </a>
             
           </div>
@@ -460,8 +473,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/12/09/Java-lock、tryLock和lockInterruptibly的差別/" rel="prev" title="[Java] lock、tryLock和lockInterruptibly的差別">
-                [Java] lock、tryLock和lockInterruptibly的差別 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/12/09/LeetCode-ZigZag-Conversion/" rel="prev" title="[LeetCode] ZigZag Conversion">
+                [LeetCode] ZigZag Conversion <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -537,7 +550,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-count">39</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -616,7 +629,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#題目："><span class="nav-number">1.</span> <span class="nav-text">題目：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解法："><span class="nav-number">2.</span> <span class="nav-text">解法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#程式碼：Merge-Intervals"><span class="nav-number">3.</span> <span class="nav-text">程式碼：Merge Intervals</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Question"><span class="nav-number">1.</span> <span class="nav-text">Question</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Soultion"><span class="nav-number">2.</span> <span class="nav-text">Soultion</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#怎麼判斷兩個interval為重疊："><span class="nav-number">2.1.</span> <span class="nav-text">怎麼判斷兩個interval為重疊：</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -637,7 +650,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

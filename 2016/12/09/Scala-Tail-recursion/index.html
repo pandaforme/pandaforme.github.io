@@ -93,6 +93,7 @@
 <meta property="og:url" content="https://pandaforme.github.io/2016/12/09/Scala-Tail-recursion/index.html">
 <meta property="og:site_name" content="Programming blog">
 <meta property="og:description" content="&amp;#x5728;&amp;#x5B78;&amp;#x7FD2;Functional programming&amp;#x904E;&amp;#x7A0B;&amp;#x4E2D;&amp;#xFF0C;&amp;#x5B78;&amp;#x5230;&amp;#x905E;&amp;#x8FF4;&amp;#x53EF;&amp;#x4EE5;&amp;#x5206;&amp;#x70BA;&amp;#x5169;&amp;#x985E;&amp;#xFF1A;  Tail recursion  1If a function c">
+<meta property="og:locale" content="zh-tw">
 <meta property="og:updated_time" content="2017-04-26T11:08:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Scala] Tail recursion">
@@ -405,23 +406,23 @@
 <ul>
 <li>Tail recursion</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">If a function calls itself as its last action, the function&#x2019;s stack frame can be reused. This is called tail recursion.</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">If a function calls itself as its last action, the function&#x2019;s stack frame can be reused. This is called tail recursion.</span><br></pre></td></tr></table></figure>
 <ul>
 <li>Tail call</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">If the last action of a function consists of calling a function (which may be the same), one stack frame would be sufficient for both functions. Such calls are called tail-calls.</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">If the last action of a function consists of calling a function (which may be the same), one stack frame would be sufficient for both functions. Such calls are called tail-calls.</span><br></pre></td></tr></table></figure>
 <p>&#x5206;&#x5225;&#x4EE5;&#x8A08;&#x7B97;&#x6700;&#x5927;&#x516C;&#x56E0;&#x6578;(gcd)&#x548C;&#x968E;&#x5C64;(factorial)&#x70BA;&#x4F8B;&#xFF1A;</p>
 <ul>
 <li><p>gcd</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">gcd</span></span>(a: <span class="type">Int</span>, b: <span class="type">Int</span>): <span class="type">Int</span> = {</div><div class="line">  <span class="keyword">if</span> (b == <span class="number">0</span>) </div><div class="line">    a </div><div class="line">  <span class="keyword">else</span> </div><div class="line">    gcd(b, a % b)</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gcd</span></span>(a: <span class="type">Int</span>, b: <span class="type">Int</span>): <span class="type">Int</span> = {</span><br><span class="line">  <span class="keyword">if</span> (b == <span class="number">0</span>) </span><br><span class="line">    a </span><br><span class="line">  <span class="keyword">else</span> </span><br><span class="line">    gcd(b, a % b)</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>factorial</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">factorial</span></span>(n: <span class="type">Int</span>): <span class="type">Int</span> = {</div><div class="line">  <span class="keyword">if</span> (n == <span class="number">0</span>)</div><div class="line">    <span class="number">1</span></div><div class="line">  <span class="keyword">else</span></div><div class="line">    n * factorial(n - <span class="number">1</span>)</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">factorial</span></span>(n: <span class="type">Int</span>): <span class="type">Int</span> = {</span><br><span class="line">  <span class="keyword">if</span> (n == <span class="number">0</span>)</span><br><span class="line">    <span class="number">1</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    n * factorial(n - <span class="number">1</span>)</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>&#x4F8B;&#x5982;&#xFF1A;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gcd(21, 14) -&gt; gcd(14, 7) -&gt; gcd(7, 0) -&gt; 7</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">factorial(5) -&gt; </div><div class="line">5 * factorial(4) -&gt; 5 * 4 * factorial(3) -&gt; </div><div class="line">5 * 4 * 3 * factorial(2) -&gt; </div><div class="line">5 * 4 * 3 * 2 * factorial(1) -&gt; </div><div class="line">5 * 4 * 3 * 2 * 1 * factorial(0) -&gt; </div><div class="line">5 * 4 * 3 * 2 * 1 * 1</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcd(21, 14) -&gt; gcd(14, 7) -&gt; gcd(7, 0) -&gt; 7</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">factorial(5) -&gt; </span><br><span class="line">5 * factorial(4) -&gt; 5 * 4 * factorial(3) -&gt; </span><br><span class="line">5 * 4 * 3 * factorial(2) -&gt; </span><br><span class="line">5 * 4 * 3 * 2 * factorial(1) -&gt; </span><br><span class="line">5 * 4 * 3 * 2 * 1 * factorial(0) -&gt; </span><br><span class="line">5 * 4 * 3 * 2 * 1 * 1</span><br></pre></td></tr></table></figure>
 <p>&#x53EF;&#x4EE5;&#x767C;&#x73FE;&#xFF1A;</p>
 <ol>
 <li>&#x5728;gcd&#x7BC4;&#x4F8B;&#x4E2D;&#xFF0C;&#x6BCF;&#x4E00;&#x6B65;&#x4E0D;&#x6703;&#x4F9D;&#x8CF4;&#x4E0A;&#x4E00;&#x6B65;&#x7684;&#x7D50;&#x679C;&#xFF0C;&#x4E0A;&#x4E00;&#x6B65;&#x7684;&#x7D50;&#x679C;&#x662F;&#x4EE5;&#x53C3;&#x6578;&#x65B9;&#x5F0F;&#x50B3;&#x5165;&#x5230;&#x51FD;&#x5F0F;&#x88E1;&#x9762;&#x3002;</li>
@@ -431,15 +432,15 @@
 <ul>
 <li>&#x6E2C;&#x8A66;&#x7BC4;&#x4F8B;&#xFF1A;</li>
 </ul>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.concurrent.<span class="type">TimeUnit</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> com.google.common.base.<span class="type">Stopwatch</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">factorial</span></span>(n: <span class="type">Int</span>): <span class="type">Int</span> = {</div><div class="line">  <span class="keyword">if</span> (n == <span class="number">0</span>)</div><div class="line">    <span class="number">1</span></div><div class="line">  <span class="keyword">else</span></div><div class="line">    n * factorial(n - <span class="number">1</span>)</div><div class="line">}</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">factorialTailrec</span></span>(n: <span class="type">Int</span>, result: <span class="type">Int</span>): <span class="type">Int</span> = {</div><div class="line">  <span class="keyword">if</span> (n == <span class="number">0</span>)</div><div class="line">    result</div><div class="line">  <span class="keyword">else</span></div><div class="line">    factorialTailrec(n - <span class="number">1</span>, n * result)</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">val</span> sw = <span class="type">Stopwatch</span>.createUnstarted()</div><div class="line">sw.elapsed(<span class="type">TimeUnit</span>.<span class="type">MILLISECONDS</span>)</div><div class="line">sw.start()</div><div class="line">factorial(<span class="number">15</span>)</div><div class="line">sw.stop()</div><div class="line">println(sw.toString)</div><div class="line">sw.reset()</div><div class="line"></div><div class="line">sw.start()</div><div class="line">factorialTailrec(<span class="number">15</span>, <span class="number">1</span>)</div><div class="line">sw.stop()</div><div class="line">println(sw.toString)</div></pre></td></tr></table></figure>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.concurrent.<span class="type">TimeUnit</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.google.common.base.<span class="type">Stopwatch</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">factorial</span></span>(n: <span class="type">Int</span>): <span class="type">Int</span> = {</span><br><span class="line">  <span class="keyword">if</span> (n == <span class="number">0</span>)</span><br><span class="line">    <span class="number">1</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    n * factorial(n - <span class="number">1</span>)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">factorialTailrec</span></span>(n: <span class="type">Int</span>, result: <span class="type">Int</span>): <span class="type">Int</span> = {</span><br><span class="line">  <span class="keyword">if</span> (n == <span class="number">0</span>)</span><br><span class="line">    result</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    factorialTailrec(n - <span class="number">1</span>, n * result)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> sw = <span class="type">Stopwatch</span>.createUnstarted()</span><br><span class="line">sw.elapsed(<span class="type">TimeUnit</span>.<span class="type">MILLISECONDS</span>)</span><br><span class="line">sw.start()</span><br><span class="line">factorial(<span class="number">15</span>)</span><br><span class="line">sw.stop()</span><br><span class="line">println(sw.toString)</span><br><span class="line">sw.reset()</span><br><span class="line"></span><br><span class="line">sw.start()</span><br><span class="line">factorialTailrec(<span class="number">15</span>, <span class="number">1</span>)</span><br><span class="line">sw.stop()</span><br><span class="line">println(sw.toString)</span><br></pre></td></tr></table></figure>
 <ul>
-<li>&#x6E2C;&#x8A66;&#x7D50;&#x679C;&#xFF1A;<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">1.611 ms</div><div class="line">677.4 &#x3BC;s</div></pre></td></tr></table></figure>
+<li>&#x6E2C;&#x8A66;&#x7D50;&#x679C;&#xFF1A;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.611 ms</span><br><span class="line">677.4 &#x3BC;s</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#x4F86;&#x6539;&#x6210;Tail recursion&#x7248;&#x672C;&#x6548;&#x7387;&#x6703;&#x5927;&#x5E45;&#x6539;&#x5584;&#x3002;</p>
 <h4 id="&#x53C3;&#x8003;"><a href="#&#x53C3;&#x8003;" class="headerlink" title="&#x53C3;&#x8003;:"></a>&#x53C3;&#x8003;:</h4><ol>
-<li><a href="https://stackoverflow.com/questions/33923/what-is-tail-recursion/33930#33930" target="_blank" rel="external">What is tail recursion?</a></li>
-<li><a href="https://d396qusza40orc.cloudfront.net/progfun/lecture_slides/week2-1.pdf" target="_blank" rel="external">Tail recursion</a></li>
+<li><a href="https://stackoverflow.com/questions/33923/what-is-tail-recursion/33930#33930" target="_blank" rel="noopener">What is tail recursion?</a></li>
+<li><a href="https://d396qusza40orc.cloudfront.net/progfun/lecture_slides/week2-1.pdf" target="_blank" rel="noopener">Tail recursion</a></li>
 </ol>
 
       
@@ -477,8 +478,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/09/Jersey-RESTful-serveice-starter-kit-1/" rel="next" title="[Jersey] RESTful service starter-kit (1)">
-                <i class="fa fa-chevron-left"></i> [Jersey] RESTful service starter-kit (1)
+              <a href="/2016/12/09/Git-Moving-A-Git-Repository-To-A-New-Server/" rel="next" title="[Git] Moving A Git Repository To A New Server">
+                <i class="fa fa-chevron-left"></i> [Git] Moving A Git Repository To A New Server
               </a>
             
           </div>
@@ -487,8 +488,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/12/09/Git-Moving-A-Git-Repository-To-A-New-Server/" rel="prev" title="[Git] Moving A Git Repository To A New Server">
-                [Git] Moving A Git Repository To A New Server <i class="fa fa-chevron-right"></i>
+              <a href="/2016/12/09/Jersey-RESTful-serveice-starter-kit-1/" rel="prev" title="[Jersey] RESTful service starter-kit (1)">
+                [Jersey] RESTful service starter-kit (1) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -564,7 +565,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-count">39</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -664,7 +665,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

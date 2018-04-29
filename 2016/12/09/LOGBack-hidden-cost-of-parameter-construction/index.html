@@ -89,13 +89,14 @@
 <meta name="description" content="&amp;#x4EE5;&amp;#x5F80;&amp;#x5BEB;&amp;#x7A0B;&amp;#x5F0F;&amp;#x7684;&amp;#x6642;&amp;#x5019;&amp;#xFF0C;&amp;#x5C0D;&amp;#x65BC;log&amp;#x7684;&amp;#x4F7F;&amp;#x7528;&amp;#x901A;&amp;#x5E38;&amp;#x50CF;&amp;#x9019;&amp;#x6A23;&amp;#xFF1A;1logger.debug(&amp;quot;The new entry is">
 <meta name="keywords" content="LOGBack">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[LOGBack] "hidden" cost of parameter construction">
+<meta property="og:title" content="[LOGBack] &quot;hidden&quot; cost of parameter construction">
 <meta property="og:url" content="https://pandaforme.github.io/2016/12/09/LOGBack-hidden-cost-of-parameter-construction/index.html">
 <meta property="og:site_name" content="Programming blog">
 <meta property="og:description" content="&amp;#x4EE5;&amp;#x5F80;&amp;#x5BEB;&amp;#x7A0B;&amp;#x5F0F;&amp;#x7684;&amp;#x6642;&amp;#x5019;&amp;#xFF0C;&amp;#x5C0D;&amp;#x65BC;log&amp;#x7684;&amp;#x4F7F;&amp;#x7528;&amp;#x901A;&amp;#x5E38;&amp;#x50CF;&amp;#x9019;&amp;#x6A23;&amp;#xFF1A;1logger.debug(&amp;quot;The new entry is">
+<meta property="og:locale" content="zh-tw">
 <meta property="og:updated_time" content="2016-12-13T07:28:19.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[LOGBack] "hidden" cost of parameter construction">
+<meta name="twitter:title" content="[LOGBack] &quot;hidden&quot; cost of parameter construction">
 <meta name="twitter:description" content="&amp;#x4EE5;&amp;#x5F80;&amp;#x5BEB;&amp;#x7A0B;&amp;#x5F0F;&amp;#x7684;&amp;#x6642;&amp;#x5019;&amp;#xFF0C;&amp;#x5C0D;&amp;#x65BC;log&amp;#x7684;&amp;#x4F7F;&amp;#x7528;&amp;#x901A;&amp;#x5E38;&amp;#x50CF;&amp;#x9019;&amp;#x6A23;&amp;#xFF1A;1logger.debug(&amp;quot;The new entry is">
 
 
@@ -401,12 +402,12 @@
       
 
       
-        <p>&#x4EE5;&#x5F80;&#x5BEB;&#x7A0B;&#x5F0F;&#x7684;&#x6642;&#x5019;&#xFF0C;&#x5C0D;&#x65BC;log&#x7684;&#x4F7F;&#x7528;&#x901A;&#x5E38;&#x50CF;&#x9019;&#x6A23;&#xFF1A;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">logger.debug(<span class="string">&quot;The new entry is &quot;</span>+entry+<span class="string">&quot;.&quot;</span>);</div></pre></td></tr></table></figure></p>
+        <p>&#x4EE5;&#x5F80;&#x5BEB;&#x7A0B;&#x5F0F;&#x7684;&#x6642;&#x5019;&#xFF0C;&#x5C0D;&#x65BC;log&#x7684;&#x4F7F;&#x7528;&#x901A;&#x5E38;&#x50CF;&#x9019;&#x6A23;&#xFF1A;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logger.debug(<span class="string">&quot;The new entry is &quot;</span>+entry+<span class="string">&quot;.&quot;</span>);</span><br></pre></td></tr></table></figure></p>
 <p>&#x4F46;&#x662F;&#x9019;&#x6A23;&#x7684;&#x505A;&#x6CD5;&#x6703;&#x6709;&#x6548;&#x80FD;&#x5F71;&#x97FF;&#x3002;<br>&#x4E0D;&#x7BA1;log debug&#x6A21;&#x5F0F;&#x662F;&#x5426;&#x6709;&#x6253;&#x958B;&#xFF0C;&#x90FD;&#x6703;&#x5C07;<code>&quot;The new entry is &quot;+entry+&quot;.&quot;</code>&#x8F49;&#x6210;&#x5B57;&#x4E32;&#x3002;</p>
 <p>&#x7576;<code>entry</code>&#x662F;&#x4E00;&#x500B;&#x5F88;&#x5927;&#x7684;&#x7269;&#x4EF6;&#xFF0C;&#x4E14;&#x5728;production&#x74B0;&#x5883;&#xFF08;log debug&#x6A21;&#x5F0F;&#x662F;&#x95DC;&#x9589;&#xFF09;&#xFF0C;&#x5F88;&#x6709;&#x53EF;&#x80FD;&#x9020;&#x6210;&#x6548;&#x80FD;&#x4F4E;&#x843D;&#x3002;</p>
-<p>&#x8F03;&#x597D;&#x7684;&#x4F5C;&#x6CD5;&#x5982;&#x4E0B;&#xFF08;&#x53EA;&#x6709;&#x5728;log debug&#x6A21;&#x5F0F;&#x662F;&#x6253;&#x958B;&#x7684;&#x6642;&#x5019;&#xFF0C;&#x624D;&#x6703;&#x5C07;<code>&quot;The new entry is &quot;+entry+&quot;.&quot;</code>&#x8F49;&#x6210;&#x5B57;&#x4E32;&#xFF09;&#xFF1A;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">logger.debug(<span class="string">&quot;The new entry is {}.&quot;</span>, entry);</div></pre></td></tr></table></figure></p>
-<p>&#x6709;&#x591A;&#x500B;&#x53C3;&#x6578;&#x7684;&#x6642;&#x5019;&#xFF1A;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Object[] paramArray = {newVal, below, above};</div><div class="line">logger.debug(<span class="string">&quot;Value {} was inserted between {} and {}.&quot;</span>, paramArray);</div></pre></td></tr></table></figure></p>
-<h4 id="&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;"><a href="#&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;" class="headerlink" title="&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;"></a>&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;</h4><p><a href="http://logback.qos.ch/manual/architecture.html" target="_blank" rel="external">http://logback.qos.ch/manual/architecture.html</a></p>
+<p>&#x8F03;&#x597D;&#x7684;&#x4F5C;&#x6CD5;&#x5982;&#x4E0B;&#xFF08;&#x53EA;&#x6709;&#x5728;log debug&#x6A21;&#x5F0F;&#x662F;&#x6253;&#x958B;&#x7684;&#x6642;&#x5019;&#xFF0C;&#x624D;&#x6703;&#x5C07;<code>&quot;The new entry is &quot;+entry+&quot;.&quot;</code>&#x8F49;&#x6210;&#x5B57;&#x4E32;&#xFF09;&#xFF1A;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logger.debug(<span class="string">&quot;The new entry is {}.&quot;</span>, entry);</span><br></pre></td></tr></table></figure></p>
+<p>&#x6709;&#x591A;&#x500B;&#x53C3;&#x6578;&#x7684;&#x6642;&#x5019;&#xFF1A;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Object[] paramArray = {newVal, below, above};</span><br><span class="line">logger.debug(<span class="string">&quot;Value {} was inserted between {} and {}.&quot;</span>, paramArray);</span><br></pre></td></tr></table></figure></p>
+<h4 id="&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;"><a href="#&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;" class="headerlink" title="&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;"></a>&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;</h4><p><a href="http://logback.qos.ch/manual/architecture.html" target="_blank" rel="noopener">http://logback.qos.ch/manual/architecture.html</a></p>
 
       
     </div>
@@ -439,8 +440,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/09/Java-Test-Java-mail-by-GreenMail/" rel="next" title="[Java] Test Java mail by GreenMail">
-                <i class="fa fa-chevron-left"></i> [Java] Test Java mail by GreenMail
+              <a href="/2016/12/09/Jersey-RESTful-serveice-starter-kit-1/" rel="next" title="[Jersey] RESTful service starter-kit (1)">
+                <i class="fa fa-chevron-left"></i> [Jersey] RESTful service starter-kit (1)
               </a>
             
           </div>
@@ -449,8 +450,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/12/09/Jersey-RESTful-serveice-starter-kit-1/" rel="prev" title="[Jersey] RESTful service starter-kit (1)">
-                [Jersey] RESTful service starter-kit (1) <i class="fa fa-chevron-right"></i>
+              <a href="/2016/12/09/Java-Test-Java-mail-by-GreenMail/" rel="prev" title="[Java] Test Java mail by GreenMail">
+                [Java] Test Java mail by GreenMail <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -526,7 +527,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-count">39</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -626,7 +627,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

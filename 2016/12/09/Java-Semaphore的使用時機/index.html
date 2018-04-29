@@ -93,6 +93,7 @@
 <meta property="og:url" content="https://pandaforme.github.io/2016/12/09/Java-Semaphore的使用時機/index.html">
 <meta property="og:site_name" content="Programming blog">
 <meta property="og:description" content="Java&amp;#x6240;&amp;#x63D0;&amp;#x4F9B;&amp;#x7684;Semaphore&amp;#x8DDF;Operating System Concepts&amp;#x4E0A;&amp;#x6240;&amp;#x8B1B;&amp;#x7684;Semaphore&amp;#x4E00;&amp;#x6A23;&amp;#x3002; &amp;#x53EF;&amp;#x4EE5;&amp;#x7528;&amp;#x5B83;&amp;#x4F86;&amp;#x89E3;&amp;#x6C7A;">
+<meta property="og:locale" content="zh-tw">
 <meta property="og:updated_time" content="2016-12-13T07:25:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Java] Semaphore的使用時機">
@@ -401,18 +402,18 @@
       
 
       
-        <p>Java&#x6240;&#x63D0;&#x4F9B;&#x7684;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/Semaphore.html" target="_blank" rel="external">Semaphore</a>&#x8DDF;<a href="http://os-book.com/" target="_blank" rel="external">Operating System Concepts</a>&#x4E0A;&#x6240;&#x8B1B;&#x7684;Semaphore&#x4E00;&#x6A23;&#x3002;</p>
+        <p>Java&#x6240;&#x63D0;&#x4F9B;&#x7684;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/Semaphore.html" target="_blank" rel="noopener">Semaphore</a>&#x8DDF;<a href="http://os-book.com/" target="_blank" rel="noopener">Operating System Concepts</a>&#x4E0A;&#x6240;&#x8B1B;&#x7684;Semaphore&#x4E00;&#x6A23;&#x3002;</p>
 <p>&#x53EF;&#x4EE5;&#x7528;&#x5B83;&#x4F86;&#x89E3;&#x6C7A;&#xFF1A;</p>
 <ul>
-<li><a href="https://pandaforme.ghost.io/producer-and-consumer-problem/" target="_blank" rel="external">Producer and Consumer Problem</a></li>
-<li><a href="http://en.wikipedia.org/wiki/Readers%E2%80%93writers_problem" target="_blank" rel="external">The Readers-Writers Problem</a></li>
-<li><a href="http://en.wikipedia.org/wiki/Dining_philosophers_problem" target="_blank" rel="external">The Dining-Philosophers Problem</a></li>
+<li><a href="https://pandaforme.ghost.io/producer-and-consumer-problem/" target="_blank" rel="noopener">Producer and Consumer Problem</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Readers%E2%80%93writers_problem" target="_blank" rel="noopener">The Readers-Writers Problem</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Dining_philosophers_problem" target="_blank" rel="noopener">The Dining-Philosophers Problem</a></li>
 <li>Pool&#x7684;&#x5BE6;&#x4F5C;</li>
 <li>&#x63A7;&#x5236;critical region</li>
 </ul>
-<p>####&#x7BC4;&#x4F8B;&#xFF1A;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.concurrent.Semaphore;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SemaphoreDemo</span> </span>{</div><div class="line"></div><div class="line">	Semaphore	pool	= <span class="keyword">new</span> Semaphore(<span class="number">10</span>);</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>{</div><div class="line">		<span class="keyword">final</span> SemaphoreDemo demo = <span class="keyword">new</span> SemaphoreDemo();</div><div class="line"></div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">30</span>; i++) {</div><div class="line">			<span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() {</div><div class="line"></div><div class="line">				<span class="meta">@Override</span></div><div class="line">				<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>{</div><div class="line">					demo.mutualExclusion();</div><div class="line">				}</div><div class="line"></div><div class="line">			}, <span class="string">&quot;Thread&quot;</span> + i).start();</div><div class="line"></div><div class="line">		}</div><div class="line">	}</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">mutualExclusion</span><span class="params">()</span> </span>{</div><div class="line">		<span class="keyword">try</span> {</div><div class="line">			pool.acquire();</div><div class="line"></div><div class="line">			System.out.println(Thread.currentThread().getName() + <span class="string">&quot; inside mutual exclusive region&quot;</span>);</div><div class="line">			Thread.sleep(<span class="number">1000</span>);</div><div class="line"></div><div class="line">		}</div><div class="line">		<span class="keyword">catch</span> (InterruptedException e) {</div><div class="line">			e.printStackTrace();</div><div class="line">		}</div><div class="line">		<span class="keyword">finally</span> {</div><div class="line">			pool.release();</div><div class="line">			System.out.println(Thread.currentThread().getName() + <span class="string">&quot; outside of mutual exclusive region&quot;</span>);</div><div class="line">		}</div><div class="line">	}</div><div class="line"></div><div class="line">}</div></pre></td></tr></table></figure></p>
+<p>####&#x7BC4;&#x4F8B;&#xFF1A;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.concurrent.Semaphore;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SemaphoreDemo</span> </span>{</span><br><span class="line"></span><br><span class="line">	Semaphore	pool	= <span class="keyword">new</span> Semaphore(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>{</span><br><span class="line">		<span class="keyword">final</span> SemaphoreDemo demo = <span class="keyword">new</span> SemaphoreDemo();</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">30</span>; i++) {</span><br><span class="line">			<span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() {</span><br><span class="line"></span><br><span class="line">				<span class="meta">@Override</span></span><br><span class="line">				<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>{</span><br><span class="line">					demo.mutualExclusion();</span><br><span class="line">				}</span><br><span class="line"></span><br><span class="line">			}, <span class="string">&quot;Thread&quot;</span> + i).start();</span><br><span class="line"></span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">mutualExclusion</span><span class="params">()</span> </span>{</span><br><span class="line">		<span class="keyword">try</span> {</span><br><span class="line">			pool.acquire();</span><br><span class="line"></span><br><span class="line">			System.out.println(Thread.currentThread().getName() + <span class="string">&quot; inside mutual exclusive region&quot;</span>);</span><br><span class="line">			Thread.sleep(<span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line">		}</span><br><span class="line">		<span class="keyword">catch</span> (InterruptedException e) {</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		}</span><br><span class="line">		<span class="keyword">finally</span> {</span><br><span class="line">			pool.release();</span><br><span class="line">			System.out.println(Thread.currentThread().getName() + <span class="string">&quot; outside of mutual exclusive region&quot;</span>);</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></table></figure></p>
 <p>&#x7576;pool&#x70BA;&#x7A7A;&#x7684;&#x6642;&#x5019;&#xFF0C;&#x60F3;&#x8981;&#x4F7F;&#x7528;pool&#x8CC7;&#x6E90;&#x7684;thread&#x6703;&#x9032;&#x5165;blocking&#x72C0;&#x614B;&#xFF0C;&#x76F4;&#x5230;&#x6709;&#x5176;&#x4ED6;thread&#x57F7;&#x884C;release()&#x91CB;&#x653E;pool&#x8CC7;&#x6E90;&#xFF0C;&#x559A;&#x9192;&#x5176;&#x4E2D;&#x5728;blocking&#x72C0;&#x614B;&#x7684;thread&#x3002;</p>
-<h4 id="&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;"><a href="#&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;" class="headerlink" title="&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;"></a>&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;</h4><p><a href="http://javarevisited.blogspot.com/2012/05/counting-semaphore-example-in-java-5.html#ixzz3HL0w0Wav" target="_blank" rel="external">Counting Semaphore Example in Java 5 &#x2013; Concurrency Tutorial</a></p>
+<h4 id="&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;"><a href="#&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;" class="headerlink" title="&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;"></a>&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;</h4><p><a href="http://javarevisited.blogspot.com/2012/05/counting-semaphore-example-in-java-5.html#ixzz3HL0w0Wav" target="_blank" rel="noopener">Counting Semaphore Example in Java 5 &#x2013; Concurrency Tutorial</a></p>
 
       
     </div>
@@ -445,8 +446,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/09/Java-lock、tryLock和lockInterruptibly的差別/" rel="next" title="[Java] lock、tryLock和lockInterruptibly的差別">
-                <i class="fa fa-chevron-left"></i> [Java] lock、tryLock和lockInterruptibly的差別
+              <a href="/2016/12/09/Java-Difference-between-synchronized-vs-ReentrantLock/" rel="next" title="[Java] Difference between synchronized vs ReentrantLock">
+                <i class="fa fa-chevron-left"></i> [Java] Difference between synchronized vs ReentrantLock
               </a>
             
           </div>
@@ -455,8 +456,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/12/09/Java-Difference-between-synchronized-vs-ReentrantLock/" rel="prev" title="[Java] Difference between synchronized vs ReentrantLock">
-                [Java] Difference between synchronized vs ReentrantLock <i class="fa fa-chevron-right"></i>
+              <a href="/2016/12/09/Java-lock、tryLock和lockInterruptibly的差別/" rel="prev" title="[Java] lock、tryLock和lockInterruptibly的差別">
+                [Java] lock、tryLock和lockInterruptibly的差別 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -532,7 +533,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-count">39</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -632,7 +633,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
