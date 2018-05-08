@@ -1422,7 +1422,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 <a class="post-title-link" href="/2016/12/09/Celebrity-Problem/" itemprop="url">
-                  Celebrity Problem
+                  [LeetCode] 277. Find the Celebrity
                 </a>
               
             
@@ -1448,7 +1448,7 @@
                 
               
 
-              <time title="Created: 2016-12-09 17:22:05" itemprop="dateCreated datePublished" datetime="2016-12-09T17:22:05+08:00">2016-12-09</time>
+              <time title="Created: 2016-12-09 17:22:00" itemprop="dateCreated datePublished" datetime="2016-12-09T17:22:00+08:00">2016-12-09</time>
             
 
             
@@ -1465,29 +1465,11 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2016-12-13 15:26:23" itemprop="dateModified" datetime="2016-12-13T15:26:23+08:00">2016-12-13</time>
+                <time title="Modified: 2018-05-07 18:56:48" itemprop="dateModified" datetime="2018-05-07T18:56:48+08:00">2018-05-07</time>
               
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -1529,223 +1511,27 @@
       
         
           
-            <p>&#x5728;&#x9762;&#x8A66;&#x6642;&#x5019;&#x88AB;&#x554F;&#x5230;&#x9019;&#x500B;&#x554F;&#x984C;&#xFF0C;&#x90A3;&#x6642;&#x5019;&#x53EA;&#x6709;&#x60F3;&#x5230;&#x66B4;&#x529B;&#x89E3;&#x6CD5;&#x2026;</p>
-<p>&#x4F86;&#x60F3;&#x770B;&#x770B;&#x9019;&#x500B;&#x554F;&#x984C;&#x7684;&#x6700;&#x4F73;&#x89E3;&#x61C9;&#x8A72;&#x8981;&#x600E;&#x9EBC;&#x505A;&#xFF1F;</p>
-<p>Celebrity problem&#x540D;&#x4EBA;&#x554F;&#x984C;&#x7684;&#x63CF;&#x8FF0;&#x5982;&#x4E0B;&#xFF1A;</p>
-<pre><code>&#x5728;&#x4E00;&#x500B;&#x623F;&#x9593;&#x88E1;&#x6709; N &#x500B;&#x4EBA;&#xFF0C;&#x5176;&#x4E2D;&#x4E00;&#x500B;&#x662F;&#x540D;&#x4EBA;&#xFF0C;&#x6240;&#x8B02;&#x540D;&#x4EBA;&#x5C31;&#x662F;&#x5927;&#x5BB6;&#x90FD;&#x8A8D;&#x8B58;&#x4ED6;&#xFF0C;&#x4F46;&#x662F;&#x4ED6;&#x4E0D;&#x8A8D;&#x8B58;&#x4EFB;&#x4F55;&#x4EBA;&#x3002;&#x5176;&#x5B83;&#x4EBA;&#x53EF;&#x80FD;&#x8A8D;&#x8B58;&#x623F;&#x9593;&#x88E1;&#x9762;&#x53E6;&#x5916;&#x7684;&#x4E00;&#x90E8;&#x5206;&#x4EBA;&#x3002;&#x4F60;&#x53EF;&#x4EE5;&#x554F;&#x4EFB;&#x4F55;&#x4EBA;&#x554F;&#x984C;&#xFF0C;&#x4F46;&#x662F;&#x554F;&#x984C;&#x53EA;&#x80FD;&#x662F;&#xFF1A;&#x4F60;&#x8A8D;&#x8B58; X &#x55CE;&#xFF0C;&#x5C0D;&#x65B9;&#x56DE;&#x7B54; Yes or  No. &#x8ACB;&#x554F;&#x6700;&#x5C11;&#x8981;&#x554F;&#x591A;&#x5C11;&#x500B;&#x554F;&#x984C;&#x624D;&#x80FD;&#x628A;&#x540D;&#x4EBA;&#x627E;&#x51FA;&#x4F86;&#xFF1F;</code></pre>
-
-<p>&#x66B4;&#x529B;&#x89E3;&#x7684;&#x505A;&#x6CD5;&#x5C31;&#x4E0D;&#x63D0;&#x4E86;&#xFF0C;&#x6642;&#x9593;&#x8907;&#x96DC;&#x5EA6;&#x662F;O(N^2)&#x3002;</p>
-<p>&#x6700;&#x4F73;&#x89E3;&#x4F5C;&#x6CD5;&#x5982;&#x4E0B;&#xFF1A;</p>
-<p>&#x5148;&#x5C0D;N&#x500B;&#x4EBA;&#x4F5C;&#x7DE8;&#x865F;&#xFF0C;&#x5F9E;1&#x5230;N&#x3002;&#x5148;&#x5F9E;&#x7DE8;&#x865F;1&#x7684;&#x4EBA;&#x958B;&#x59CB;&#xFF0C;&#x554F;&#x4ED6;&#x8A8D;&#x4E0D;&#x8A8D;&#x8B58;&#x7DE8;&#x865F;2&#x7684;&#x4EBA;&#x3002;<br>&#x60C5;&#x6CC1;&#x6709;&#x5169;&#x7A2E;&#xFF1A;    </p>
-<ol>
-<li>&#x7DE8;&#x865F;1&#x8A8D;&#x8B58;&#x7DE8;&#x865F;2&#xFF1A;&#x90A3;&#x9EBC;&#x7DE8;&#x865F;1&#x4E00;&#x5B9A;&#x4E0D;&#x662F;&#x540D;&#x4EBA;&#xFF0C;&#x7DE8;&#x865F;2&#x6709;&#x53EF;&#x80FD;&#x662F;&#x540D;&#x4EBA;&#x3002;</li>
-<li>&#x7DE8;&#x865F;1&#x4E0D;&#x8A8D;&#x8B58;&#x7DE8;&#x865F;2&#xFF1A;</li>
-</ol>
+            <h1 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h1><p>Suppose you are at a party with n people (labeled from 0 to n - 1) and among them, there may exist one celebrity. The definition of a celebrity is that all the other n - 1 people know him/her but he/she does not know any of them.</p>
+<p>Now you want to find out who the celebrity is or verify that there is not one. The only thing you are allowed to do is to ask questions like: &#x201C;Hi, A. Do you know B?&#x201D; to get information of whether A knows B. You need to find out the celebrity (or verify there is not one) by asking as few questions as possible (in the asymptotic sense).</p>
+<p>You are given a helper function bool knows(a, b) which tells you whether A knows B. Implement a function int findCelebrity(n), your function should minimize the number of calls to knows.</p>
+<p>Note: There will be exactly one celebrity if he/she is in the party. Return the celebrity&#x2019;s label if there is a celebrity in the party. If there is no celebrity, return -1.</p>
+<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><p>&#x5148;&#x5C0D;N&#x500B;&#x4EBA;&#x4F5C;&#x7DE8;&#x865F;&#xFF0C;&#x5F9E;1&#x5230;N&#x3002;&#x5148;&#x5F9E;&#x7DE8;&#x865F;1&#x7684;&#x4EBA;&#x958B;&#x59CB;&#xFF0C;&#x554F;&#x4ED6;&#x8A8D;&#x4E0D;&#x8A8D;&#x8B58;&#x7DE8;&#x865F;2&#x7684;&#x4EBA;&#x3002;<br>&#x60C5;&#x6CC1;&#x6709;&#x5169;&#x7A2E;&#xFF1A;    </p>
 <ul>
-<li>&#x82E5;&#x7DE8;&#x865F;2&#x8A8D;&#x8B58;&#x7DE8;&#x865F;1&#xFF1A;&#x7DE8;&#x865F;2&#x4E00;&#x5B9A;&#x4E0D;&#x662F;&#x540D;&#x4EBA;&#xFF0C;&#x7DE8;&#x865F;1&#x6709;&#x53EF;&#x80FD;&#x662F;&#x540D;&#x4EBA;&#x3002;</li>
-<li>&#x82E5;&#x7DE8;&#x865F;2&#x4E0D;&#x8A8D;&#x8B58;&#x7DE8;&#x865F;1&#xFF1A;&#x7DE8;&#x865F;1&#x548C;2&#x4E00;&#x5B9A;&#x4E0D;&#x662F;&#x540D;&#x4EBA;&#xFF0C;&#x56E0;&#x70BA;&#x540D;&#x4EBA;&#x8981;&#x6709;N-1&#x4EBA;&#x8A8D;&#x8B58;&#x4ED6;&#x3002;</li>
+<li>&#x7DE8;&#x865F;1&#x8A8D;&#x8B58;&#x7DE8;&#x865F;2&#xFF1A;&#x90A3;&#x9EBC;&#x7DE8;&#x865F;1&#x4E00;&#x5B9A;&#x4E0D;&#x662F;&#x540D;&#x4EBA;&#xFF0C;&#x7DE8;&#x865F;2&#x6709;&#x53EF;&#x80FD;&#x662F;&#x540D;&#x4EBA;&#x3002;</li>
+<li>&#x7DE8;&#x865F;1&#x4E0D;&#x8A8D;&#x8B58;&#x7DE8;&#x865F;2&#xFF1A;&#x7DE8;&#x865F;2&#x4E00;&#x5B9A;&#x4E0D;&#x662F;&#x540D;&#x4EBA;&#xFF0C;&#x56E0;&#x70BA;&#x540D;&#x4EBA;&#x8981;&#x6709;N-1&#x4EBA;&#x8A8D;&#x8B58;&#x4ED6;&#x3002;</li>
 </ul>
 <p>&#x6839;&#x64DA;&#x4EE5;&#x4E0A;&#x7D50;&#x679C;&#xFF0C;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x7D50;&#x8AD6;&#xFF1A;    </p>
 <ol>
 <li>&#x7DE8;&#x865F;1&#x8A8D;&#x8B58;&#x7DE8;&#x865F;2&#xFF1A;&#x90A3;&#x9EBC;&#x7DE8;&#x865F;1&#x4E00;&#x5B9A;&#x4E0D;&#x662F;&#x540D;&#x4EBA;&#xFF0C;&#x7DE8;&#x865F;2&#x6709;&#x53EF;&#x80FD;&#x662F;&#x540D;&#x4EBA;&#x3002;</li>
-<li>&#x7DE8;&#x865F;1&#x4E0D;&#x8A8D;&#x8B58;&#x7DE8;&#x865F;2&#xFF1A;&#x7DE8;&#x865F;2&#x4E00;&#x5B9A;&#x4E0D;&#x662F;&#x540D;&#x4EBA;&#xFF0C;&#x7DE8;&#x865F;1&#x6709;&#x201D;&#x53EF;&#x80FD;&#x201D;&#x662F;&#x540D;&#x4EBA;&#x3002;</li>
+<li>&#x7DE8;&#x865F;1&#x4E0D;&#x8A8D;&#x8B58;&#x7DE8;&#x865F;2&#xFF1A;&#x7DE8;&#x865F;2&#x4E00;&#x5B9A;&#x4E0D;&#x662F;&#x540D;&#x4EBA;&#xFF0C;&#x7DE8;&#x865F;1&#x6709;&#x53EF;&#x80FD;&#x662F;&#x540D;&#x4EBA;&#x3002;</li>
 </ol>
-<p>&#x6BCF;&#x554F;&#x4E00;&#x4EBA;&#x5C31;&#x6703;&#x6DD8;&#x6C70;&#x6389;&#x4E00;&#x4EBA;&#xFF0C;&#x63A5;&#x8457;&#x7E7C;&#x7E8C;&#x554F;&#x53EF;&#x80FD;&#x662F;&#x540D;&#x4EBA;&#x7684;&#x4EBA;&#x9078;&#x548C;&#x4E0B;&#x4E00;&#x500B;&#x7DE8;&#x865F;&#x7684;&#x95DC;&#x4FC2;&#xFF0C;&#x76F4;&#x5230;&#x554F;&#x5B8C;N&#x500B;&#x4EBA;&#x5C31;&#x53EF;&#x4EE5;&#x627E;&#x51FA;&#x540D;&#x4EBA;&#x3002;&#x6642;&#x9593;&#x8907;&#x96DC;&#x5EA6;&#x662F;O(N)&#x3002;</p>
-<p>####&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;</p>
-<ol>
+<p>&#x6BCF;&#x554F;&#x4E00;&#x4EBA;&#x5C31;&#x6703;&#x6DD8;&#x6C70;&#x6389;&#x4E00;&#x4EBA;&#xFF0C;&#x63A5;&#x8457;&#x7E7C;&#x7E8C;&#x554F;&#x53EF;&#x80FD;&#x662F;&#x540D;&#x4EBA;&#x7684;&#x4EBA;&#x9078;&#x548C;&#x4E0B;&#x4E00;&#x500B;&#x7DE8;&#x865F;&#x7684;&#x95DC;&#x4FC2;&#xFF0C;&#x76F4;&#x5230;&#x554F;&#x5B8C;N&#x500B;&#x4EBA;&#x5C31;&#x53EF;&#x4EE5;&#x627E;&#x51FA;&#x540D;&#x4EBA;&#x3002;&#x6642;&#x9593;&#x8907;&#x96DC;&#x5EA6;&#x662F; O(N)&#x3002;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findCelebrity</span><span class="params">(<span class="keyword">int</span> n)</span> </span>{</span><br><span class="line">    <span class="keyword">int</span> celebrity = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) {</span><br><span class="line">        <span class="keyword">if</span> (knows(celebrity, i))</span><br><span class="line">            celebrity = i;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">        <span class="keyword">if</span> (i != celebrity) {</span><br><span class="line">            <span class="keyword">if</span> (knows(celebrity, i) || !knows(i, celebrity))</span><br><span class="line">                <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> celebrity;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ol>
 <li><a href="http://www.careercup.com/question?id=13167666" target="_blank" rel="noopener">Celebrity Problem</a></li>
 <li><a href="http://blog.csdn.net/beiyeqingteng/article/details/7707485" target="_blank" rel="noopener">&#x540D;&#x4EBA;&#x554F;&#x984C; (Celebrity problem)</a></li>
 </ol>
 
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://pandaforme.github.io/2016/12/09/LeetCode-Remove-Duplicates-from-Sorted-List/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="pandaforme">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Programming blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/12/09/LeetCode-Remove-Duplicates-from-Sorted-List/" itemprop="url">
-                  [LeetCode] Remove Duplicates from Sorted List
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-12-09 17:21:23" itemprop="dateCreated datePublished" datetime="2016-12-09T17:21:23+08:00">2016-12-09</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2016-12-13 15:36:11" itemprop="dateModified" datetime="2016-12-13T15:36:11+08:00">2016-12-13</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/12/09/LeetCode-Remove-Duplicates-from-Sorted-List/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/12/09/LeetCode-Remove-Duplicates-from-Sorted-List/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="&#x984C;&#x76EE;&#xFF1A;"><a href="#&#x984C;&#x76EE;&#xFF1A;" class="headerlink" title="&#x984C;&#x76EE;&#xFF1A;"></a>&#x984C;&#x76EE;&#xFF1A;</h4><p><a href="https://oj.leetcode.com/problems/remove-duplicates-from-sorted-list/" target="_blank" rel="noopener">Remove Duplicates from Sorted List</a></p>
-<p><pre><code><br>Given a sorted linked list, delete all duplicates such that each element appear only once.</code></pre></p>
-<p>For example,<br>Given 1-&gt;1-&gt;2, return 1-&gt;2.<br>Given 1-&gt;1-&gt;2-&gt;3-&gt;3, return 1-&gt;2-&gt;3.<br></p>
-<h4 id="&#x89E3;&#x6CD5;&#xFF1A;"><a href="#&#x89E3;&#x6CD5;&#xFF1A;" class="headerlink" title="&#x89E3;&#x6CD5;&#xFF1A;"></a>&#x89E3;&#x6CD5;&#xFF1A;</h4><p>&#x6709;&#x4E00;&#x500B;&#x6307;&#x6A19;&#x6307;&#x5411;head&#xFF0C;&#x7A31;&#x4E4B;unique&#xFF1B;&#x53E6;&#x5916;&#x6709;&#x4E00;&#x500B;&#x6307;&#x6A19;&#x6307;&#x5411;&#x4E0B;&#x4E00;&#x500B;node&#xFF0C;&#x7A31;&#x4E4B;current&#x3002;<br>&#x82E5;unique&#x548C;current&#x7684;&#x503C;&#x4E00;&#x6A23;&#xFF0C;&#x5247;current&#x7E7C;&#x7E8C;&#x7E7C;&#x7E8C;&#x6307;&#x5411;&#x4E0B;&#x4E00;&#x500B;node&#xFF0C;&#x76F4;&#x5230;current&#x548C;unique&#x7684;&#x503C;&#x4E0D;&#x4E00;&#x6A23;&#x3002;<br>uniqe&#x6307;&#x5411;&#x4E0B;&#x4E00;&#x500B;node&#xFF0C;uniqe&#x518D;&#x548C;current&#x7684;&#x503C;&#x4E92;&#x63DB;&#x3002;&#x76F4;&#x5230;current&#x70BA;null&#x3002;<br>&#x6700;&#x5F8C;&#x5C07;uniqe&#x6307;&#x5411;null&#xFF0C;&#x5C31;&#x6703;&#x5F97;&#x5230;&#x6BCF;&#x500B;&#x5143;&#x7D20;&#x90FD;&#x70BA;&#x552F;&#x4E00;&#x7684;List&#x3002;</p>
-<p>&#x4F8B;&#x5982;&#xFF1A;<br>&#x6709;&#x4E00;&#x500B;&#x6392;&#x5E8F;&#x597D;&#x7684;list&#xFF1A;1 -&gt; 1 -&gt; 2 -&gt; 3 -&gt; 3 -&gt; null</p>
-<p><pre><code><br>Step 1&#xFF1A;<br>1 -&gt; 1 -&gt; 2 -&gt; 3 -&gt; 3 -&gt; null<br>u         c</code></pre></p>
-<p>Step 2&#xFF1A;<br>1 -&gt; 2 -&gt; 1 -&gt; 3 -&gt; 3 -&gt; null<br>     u         c</p>
-<p>Step 3&#xFF1A;<br>1 -&gt; 2 -&gt; 3 -&gt; 1 -&gt; 3 -&gt; null<br>          u         c</p>
-<p>Step 4&#xFF1A;<br>1 -&gt; 2 -&gt; 3 -&gt; null<br>          u<br></p>
-<h4 id="&#x7A0B;&#x5F0F;&#x78BC;&#xFF1A;Remove-Duplicates-from-Sorted-List"><a href="#&#x7A0B;&#x5F0F;&#x78BC;&#xFF1A;Remove-Duplicates-from-Sorted-List" class="headerlink" title="&#x7A0B;&#x5F0F;&#x78BC;&#xFF1A;Remove Duplicates from Sorted List"></a>&#x7A0B;&#x5F0F;&#x78BC;&#xFF1A;<a href="https://github.com/pandaforme/LeetCode/blob/master/src/RemoveDuplicatesFromSortedList.java" target="_blank" rel="noopener">Remove Duplicates from Sorted List</a></h4>
           
         
       
@@ -2001,7 +1787,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://pandaforme.github.io/2016/12/09/LeetCode-Plus-One/">
+    <link itemprop="mainEntityOfPage" href="https://pandaforme.github.io/2016/12/09/LeetCode-Merge-Intervals/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="pandaforme">
@@ -2020,8 +1806,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/12/09/LeetCode-Plus-One/" itemprop="url">
-                  [LeetCode] Plus One
+                <a class="post-title-link" href="/2016/12/09/LeetCode-Merge-Intervals/" itemprop="url">
+                  [LeetCode] 56. Merge Intervals
                 </a>
               
             
@@ -2047,7 +1833,7 @@
                 
               
 
-              <time title="Created: 2016-12-09 17:19:53" itemprop="dateCreated datePublished" datetime="2016-12-09T17:19:53+08:00">2016-12-09</time>
+              <time title="Created: 2016-12-09 17:17:00" itemprop="dateCreated datePublished" datetime="2016-12-09T17:17:00+08:00">2016-12-09</time>
             
 
             
@@ -2064,7 +1850,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2016-12-13 15:36:18" itemprop="dateModified" datetime="2016-12-13T15:36:18+08:00">2016-12-13</time>
+                <time title="Modified: 2018-05-07 18:21:21" itemprop="dateModified" datetime="2018-05-07T18:21:21+08:00">2018-05-07</time>
               
             
           </span>
@@ -2096,9 +1882,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2016/12/09/LeetCode-Plus-One/#comments" itemprop="discussionUrl">
+                <a href="/2016/12/09/LeetCode-Merge-Intervals/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/12/09/LeetCode-Plus-One/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2016/12/09/LeetCode-Merge-Intervals/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -2128,14 +1914,34 @@
       
         
           
-            <h4 id="&#x984C;&#x76EE;&#xFF1A;"><a href="#&#x984C;&#x76EE;&#xFF1A;" class="headerlink" title="&#x984C;&#x76EE;&#xFF1A;"></a>&#x984C;&#x76EE;&#xFF1A;</h4><p><a href="https://oj.leetcode.com/problems/plus-one/" target="_blank" rel="noopener">Plus One</a></p>
-<p><pre><code><br>Given a non-negative number represented as an array of digits, plus one to the number.</code></pre></p>
-<p>The digits are stored such that the most significant digit is at the head of the list.<br></p>
-<h4 id="&#x89E3;&#x6CD5;&#xFF1A;"><a href="#&#x89E3;&#x6CD5;&#xFF1A;" class="headerlink" title="&#x89E3;&#x6CD5;&#xFF1A;"></a>&#x89E3;&#x6CD5;&#xFF1A;</h4><ol>
-<li>&#x4E00;&#x958B;&#x59CB;&#x7684;&#x60F3;&#x6CD5;&#x5F88;&#x7C21;&#x55AE;&#xFF0C;&#x5C31;&#x662F;&#x5148;&#x628A;&#x9663;&#x5217;&#x4E2D;&#x7684;&#x55AE;&#x4E00;&#x6578;&#x5B57;&#x8F49;&#x6210;&#x771F;&#x5BE6;&#x7684;&#x6578;&#x5B57;&#xFF0C;&#x518D;&#x52A0;&#x4E00;&#xFF0C;&#x6700;&#x5F8C;&#x628A;&#x7D50;&#x679C;&#x6253;&#x6563;&#x6210;&#x55AE;&#x4E00;&#x6578;&#x5B57;&#x653E;&#x56DE;&#x9663;&#x5217;&#x3002;&#x56E0;&#x70BA;LeetCode&#x7684;test case&#x6709;&#x6E2C;&#x8A66;&#x7576;&#x9663;&#x5217;&#x4E2D;&#x6578;&#x5B57;&#x500B;&#x6578;&#x8D85;&#x904E;int&#x7684;&#x7BC4;&#x570D;&#x662F;&#x5426;&#x53EF;&#x4EE5;&#x901A;&#x904E;&#xFF0C;&#x5C31;&#x6539;&#x7528;BigDecimal&#xFF0C;&#x4F46;&#x662F;LeetCode&#x4E0D;&#x652F;&#x63F4;BigDecimal&#xFF0C;&#x9019;&#x500B;&#x65B9;&#x6CD5;&#x884C;&#x4E0D;&#x901A;&#xFF01;</li>
-<li>&#x5F8C;&#x4F86;&#x53C3;&#x8003;<a href="https://oj.leetcode.com/discuss/10480/my-accepted-java-solution" target="_blank" rel="noopener">my-accepted-java-solution</a>&#xFF0C;&#x9813;&#x6642;&#x8C41;&#x7136;&#x958B;&#x6717;&#x3002;&#x552F;&#x4E00;&#x8981;&#x9032;&#x4F4D;&#x7684;&#x60C5;&#x6CC1;&#x5C31;&#x662F;&#x76F8;&#x52A0;&#x7D50;&#x679C;&#x70BA;10&#xFF0C;&#x5176;&#x9918;&#x60C5;&#x6CC1;&#x5C31;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x56DE;&#x50B3;&#x7D50;&#x679C;&#x3002;&#x82E5;&#x662F;&#x7B2C;n&#x500B;&#x6578;&#x5B57;&#x52A0;&#x4E00;&#x70BA;10&#xFF0C;&#x76F8;&#x7576;&#x65BC;&#x7B2C;n&#x500B;&#x6578;&#x5B57;&#x70BA;0&#xFF0C;&#x7B2C;0 ~ n-1&#x500B;&#x6578;&#x5B57;&#x52A0;&#x4E00;&#x3002;<br>&#x4F5C;&#x8005;&#x662F;&#x4F7F;&#x7528;iterative version&#xFF0C;&#x6211;&#x5617;&#x8A66;&#x6539;&#x6210;resursive version&#xFF0C;resursive version&#x6548;&#x80FD;&#x6703;&#x6BD4;&#x8F03;&#x6162;&#x548C;&#x4F7F;&#x7528;&#x591A;&#x9918;&#x7684;space&#x7A7A;&#x9593;&#x3002;</li>
+            <h1 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h1><p>Given a collection of intervals, merge all overlapping intervals.</p>
+<p>Example 1:</p>
+<pre><code>Input: [[1,3],[2,6],[8,10],[15,18]]
+Output: [[1,6],[8,10],[15,18]]
+Explanation: Since intervals [1,3] and [2,6] overlaps, merge them into [1,6].
+</code></pre><p>Example 2:</p>
+<pre><code>Input: [[1,4],[4,5]]
+Output: [[1,5]]
+Explanation: Intervals [1,4] and [4,5] are considerred overlapping.
+</code></pre><h1 id="Soultion"><a href="#Soultion" class="headerlink" title="Soultion"></a>Soultion</h1><p>&#x9019;&#x984C;&#x7684;&#x4E3B;&#x8981;&#x5728;&#x8003;&#x5982;&#x4F55;&#x5224;&#x65B7;&#x5169;&#x500B;interval&#x70BA;&#x91CD;&#x758A;&#x7684;&#x6F14;&#x7B97;&#x6CD5;&#x3002;</p>
+<h2 id="&#x600E;&#x9EBC;&#x5224;&#x65B7;&#x5169;&#x500B;interval&#x70BA;&#x91CD;&#x758A;&#xFF1A;"><a href="#&#x600E;&#x9EBC;&#x5224;&#x65B7;&#x5169;&#x500B;interval&#x70BA;&#x91CD;&#x758A;&#xFF1A;" class="headerlink" title="&#x600E;&#x9EBC;&#x5224;&#x65B7;&#x5169;&#x500B;interval&#x70BA;&#x91CD;&#x758A;&#xFF1A;"></a>&#x600E;&#x9EBC;&#x5224;&#x65B7;&#x5169;&#x500B;interval&#x70BA;&#x91CD;&#x758A;&#xFF1A;</h2><p>1.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">i &#xFF1A;     |--------|</span><br><span class="line">i&apos;&#xFF1A;  |-----|</span><br></pre></td></tr></table></figure></p>
+<p>2.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">i &#xFF1A;     |--------|</span><br><span class="line">i&apos;&#xFF1A;      |-----|</span><br></pre></td></tr></table></figure></p>
+<p>3.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">i &#xFF1A;     |--------|</span><br><span class="line">i&apos;&#xFF1A;           |-----|</span><br></pre></td></tr></table></figure></p>
+<p>4.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">i &#xFF1A;     |--------|</span><br><span class="line">i&apos;&#xFF1A;  |--------------|</span><br></pre></td></tr></table></figure></p>
+<p>&#x4EE5;&#x4E0A;&#x70BA;&#x5169;&#x500B;interval&#x91CD;&#x758A;&#x7684;&#x60C5;&#x6CC1;&#xFF0C;&#x53EF;&#x4EE5;&#x6B78;&#x7D0D;&#x51FA;&#x4EE5;&#x4E0B;&#x60C5;&#x6CC1;&#xFF1A;</p>
+<ul>
+<li><code>i.start &lt;= i&apos;.end</code></li>
+<li><code>i&apos;.start &lt;= i.end</code></li>
+</ul>
+<p>&#x77E5;&#x9053;&#x4E0A;&#x8FF0;&#x898F;&#x5247;&#x5F8C;&#x5408;&#x4F75;&#x5C31;&#x8B8A;&#x5F97;&#x5F88;&#x7C21;&#x55AE;&#xFF0C;&#x56E0;&#x70BA;&#x7D66;&#x5B9A;&#x7684;&#x9663;&#x5217;&#x662F;&#x6C92;&#x6709;&#x6392;&#x5E8F;&#x904E;&#x7684;&#xFF0C;&#x5148;&#x4F9D;&#x7167; <code>interval.start</code> &#x6392;&#x5E8F;&#x3002;</p>
+<ol>
+<li>&#x521D;&#x59CB;&#x5316; merge = interval.get(0)</li>
+<li>&#x4F9D;&#x5E8F;&#x6AA2;&#x67E5; interval.get(i) &#x662F;&#x5426;&#x548C; merge &#x91CD;&#x758A;</li>
+<li>&#x82E5;&#x91CD;&#x758A;&#xFF0C;merge = &#x5408;&#x4F75; interval.get(i) &#x548C; merge</li>
+<li>&#x82E5;&#x4E0D;&#x91CD;&#x758A;&#xFF0C;&#x628A; merge &#x5BEB;&#x5165;&#x5230;&#x7D50;&#x679C;&#xFF0C;merge = interval.get(i)</li>
 </ol>
-<h4 id="&#x7A0B;&#x5F0F;&#x78BC;&#xFF1A;Plus-One"><a href="#&#x7A0B;&#x5F0F;&#x78BC;&#xFF1A;Plus-One" class="headerlink" title="&#x7A0B;&#x5F0F;&#x78BC;&#xFF1A;Plus One"></a>&#x7A0B;&#x5F0F;&#x78BC;&#xFF1A;<a href="https://github.com/pandaforme/LeetCode/blob/master/src/PlusOne.java" target="_blank" rel="noopener">Plus One</a></h4>
+<p>&#x6709;&#x9EDE;&#x50CF;&#x8CAA;&#x98DF;&#x86C7;&#xFF0C;&#x5C31;&#x4E00;&#x76F4;&#x5403;&#x76F4;&#x5230;&#x4E0D;&#x80FD;&#x5403;&#x70BA;&#x6B62;&#x3002;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Interval&gt; <span class="title">merge</span><span class="params">(List&lt;Interval&gt; intervals)</span> </span>{</span><br><span class="line">    List&lt;Interval&gt; result = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (intervals.size() == <span class="number">0</span> || intervals.size() == <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> intervals;</span><br><span class="line"></span><br><span class="line">    intervals.sort(Comparator.comparingInt(o -&gt; o.start));</span><br><span class="line"></span><br><span class="line">    Interval merge = intervals.get(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; intervals.size(); i++) {</span><br><span class="line">        <span class="keyword">if</span> (isOverlap(merge, intervals.get(i))) {</span><br><span class="line">            merge = <span class="keyword">new</span> Interval(</span><br><span class="line">                    Math.min(merge.start, intervals.get(i).start),</span><br><span class="line">                    Math.max(merge.end, intervals.get(i).end));</span><br><span class="line">        } <span class="keyword">else</span> {</span><br><span class="line">            result.add(merge);</span><br><span class="line">            merge = intervals.get(i);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">    result.add(merge);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isOverlap</span><span class="params">(Interval interval1, Interval interval2)</span> </span>{</span><br><span class="line">    <span class="keyword">return</span> interval1.start &lt;= interval2.end &amp;&amp; interval2.start &lt;= interval1.end;</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
           
         
       
@@ -2188,7 +1994,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://pandaforme.github.io/2016/12/09/LeetCode-Distinct-Subsequences/">
+    <link itemprop="mainEntityOfPage" href="https://pandaforme.github.io/2016/12/09/Java-lock、tryLock和lockInterruptibly的差別/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="pandaforme">
@@ -2207,8 +2013,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/12/09/LeetCode-Distinct-Subsequences/" itemprop="url">
-                  [LeetCode] Distinct Subsequences
+                <a class="post-title-link" href="/2016/12/09/Java-lock、tryLock和lockInterruptibly的差別/" itemprop="url">
+                  [Java] lock、tryLock和lockInterruptibly的差別
                 </a>
               
             
@@ -2234,7 +2040,7 @@
                 
               
 
-              <time title="Created: 2016-12-09 17:19:10" itemprop="dateCreated datePublished" datetime="2016-12-09T17:19:10+08:00">2016-12-09</time>
+              <time title="Created: 2016-12-09 17:16:50" itemprop="dateCreated datePublished" datetime="2016-12-09T17:16:50+08:00">2016-12-09</time>
             
 
             
@@ -2251,7 +2057,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2016-12-13 15:36:43" itemprop="dateModified" datetime="2016-12-13T15:36:43+08:00">2016-12-13</time>
+                <time title="Modified: 2016-12-13 15:24:30" itemprop="dateModified" datetime="2016-12-13T15:24:30+08:00">2016-12-13</time>
               
             
           </span>
@@ -2268,7 +2074,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
 
                 
                 
@@ -2283,9 +2089,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2016/12/09/LeetCode-Distinct-Subsequences/#comments" itemprop="discussionUrl">
+                <a href="/2016/12/09/Java-lock、tryLock和lockInterruptibly的差別/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/12/09/LeetCode-Distinct-Subsequences/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2016/12/09/Java-lock、tryLock和lockInterruptibly的差別/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -2315,18 +2121,223 @@
       
         
           
-            <h4 id="&#x984C;&#x76EE;&#xFF1A;"><a href="#&#x984C;&#x76EE;&#xFF1A;" class="headerlink" title="&#x984C;&#x76EE;&#xFF1A;"></a>&#x984C;&#x76EE;&#xFF1A;</h4><p><a href="https://oj.leetcode.com/problems/distinct-subsequences/" target="_blank" rel="noopener">Distinct Subsequences</a></p>
-<p><pre><code><br>Given a string S and a string T, count the number of distinct subsequences of T in S.</code></pre></p>
-<p>A subsequence of a string is a new string which is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (ie, &#x201C;ACE&#x201D; is a subsequence of &#x201C;ABCDE&#x201D; while &#x201C;AEC&#x201D; is not).</p>
-<p>Here is an example:<br>S = &#x201C;rabbbit&#x201D;, T = &#x201C;rabbit&#x201D;</p>
-<p>Return 3.<br></p>
-<h4 id="&#x89E3;&#x6CD5;&#xFF1A;"><a href="#&#x89E3;&#x6CD5;&#xFF1A;" class="headerlink" title="&#x89E3;&#x6CD5;&#xFF1A;"></a>&#x89E3;&#x6CD5;&#xFF1A;</h4><p>&#x525B;&#x770B;&#x5230;&#x984C;&#x76EE;&#x4E00;&#x76F4;&#x641E;&#x4E0D;&#x6E05;&#x695A;<code>count the number of distinct subsequences of T in S</code>&#x9019;&#x53E5;&#x8A71;&#x7684;&#x6DB5;&#x7FA9;&#x2026;&#xFF0C;&#x5F8C;&#x4F86;&#x627E;&#x5230;&#x9019;&#x7BC7;<a href="http://stackoverflow.com/questions/25100194/number-of-distinct-subsequence" target="_blank" rel="noopener">number of distinct subsequence</a>&#x89E3;&#x91CB;&#x4E86;&#x9019;&#x53E5;&#x8A71;&#x3002;&#x539F;&#x4F86;&#x662F;&#x6211;&#x8AA4;&#x89E3;&#x4E86;&#xFF0C;&#x984C;&#x76EE;&#x662F;&#x60F3;&#x77E5;&#x9053;S&#x6709;&#x591A;&#x5C11;&#x500B;&#x5B50;&#x5B57;&#x4E32;&#x7B49;&#x65BC;T&#x3002;</p>
-<p>&#x5047;&#x8A2D;$S = (s_1, s_2, &#x2026;, s_m)$&#xFF0C;$T = (t_1, t_2, &#x2026;, t_n)$&#x3002;<br>&#x82E5;$s_m == t_n$&#xFF0C;&#x5247;$S = (s_1, s_2, &#x2026;, s_m-1)$&#xFF0C;$T = (t_1, t_2, &#x2026;, t_n-1)$&#x70BA;&#x5B50;&#x554F;&#x984C;&#xFF0C;$S = (s_1, s_2, &#x2026;, s_m-1)$&#xFF0C;$T = (t_1, t_2, &#x2026;, t_n)$&#x4E5F;&#x70BA;&#x5B50;&#x554F;&#x984C;&#x3002;</p>
-<p>&#x525B;&#x958B;&#x59CB;&#x53EA;&#x6709;&#x5217;&#x51FA;&#x7B2C;&#x4E00;&#x9805;&#xFF0C;&#x6E2C;&#x4E86;&#x5E7E;&#x500B;test case&#x7D50;&#x679C;&#x7E3D;&#x662F;&#x5C11;&#x5E7E;&#x500B;&#x3002;&#x5F8C;&#x4F86;&#x624D;&#x60F3;&#x5230;&#x7B2C;&#x4E8C;&#x9805;&#x8981;&#x8003;&#x616E;&#x9032;&#x53BB;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;S=&#x201D;cbaa&#x201D;&#xFF0C; T=&#x201D;ba&#x201D;&#x3002;</p>
-<p>&#x82E5;$s_m != t_n$&#xFF0C;&#x5247;$S = (s_1, s_2, &#x2026;, s_m-1)$&#xFF0C;$T = (t_1, t_2, &#x2026;, t_n)$&#x70BA;&#x5B50;&#x554F;&#x984C;&#x3002;</p>
-<p>&#x9019;&#x6A23;&#x5C31;&#x53EF;&#x4EE5;&#x900F;&#x904E;&#x4EE5;&#x4E0A;&#x7684;&#x905E;&#x8FF4;&#x5F0F;&#x5BEB;&#x7A0B;&#x5F0F;&#x4E86;&#xFF0C;&#x4F46;&#x662F;&#x7576;&#x5B57;&#x5143;&#x904E;&#x591A;&#x6642;&#x5F8C;&#x5C31;&#x6703;&#x7206;&#x6389;&#x6216;&#x662F;&#x5F88;&#x6162;&#xFF0C;&#x53EF;&#x4EE5;&#x6539;&#x5BEB;&#x6210;Dynamic programming&#x7684;&#x7248;&#x672C;&#x3002;</p>
-<p>&#x5BA3;&#x544A;&#x4E00;&#x500B;&#x4E8C;&#x7DAD;&#x9663;&#x5217;matrix[T.length() + 1][S.length() + 1]&#xFF0C;matrix[i][j]&#x4EE3;&#x8868;$S = (s_1, s_2, &#x2026;, s_j)$&#xFF0C;$T = (t_1, t_2, &#x2026;, t_i)$&#x7684;&#x89E3;&#x3002;<br>&#x82E5;$s_j == t_i$&#xFF0C;&#x5247;matrix[i][j] = matrix[i - 1][j - 1] + matrix[i][j - 1]&#x3002;<br>&#x82E5;$s_j != t_i$&#xFF0C;&#x5247;matrix[i][j] = matrix[i][j - 1]&#x3002;</p>
-<h4 id="&#x7A0B;&#x5F0F;&#x78BC;&#xFF1A;Distinct-Subsequences"><a href="#&#x7A0B;&#x5F0F;&#x78BC;&#xFF1A;Distinct-Subsequences" class="headerlink" title="&#x7A0B;&#x5F0F;&#x78BC;&#xFF1A;Distinct Subsequences"></a>&#x7A0B;&#x5F0F;&#x78BC;&#xFF1A;<a href="https://github.com/pandaforme/LeetCode/blob/master/src/DistinctSubsequences.java" target="_blank" rel="noopener">Distinct Subsequences</a></h4>
+            <p>&#x5728;Java&#x4E2D;&#x7684;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/locks/Lock.html" target="_blank" rel="noopener">Lock</a>&#x4ECB;&#x9762;&#x6709;lock&#x3001;tryLock&#x548C;lockInterruptibly&#x4E09;&#x500B;&#x529F;&#x80FD;&#x5F88;&#x76F8;&#x8FD1;&#x7684;method&#xFF0C;&#x770B;&#x5B8C;javadoc&#x5F8C;&#x9084;&#x662F;&#x641E;&#x4E0D;&#x592A;&#x6E05;&#x695A;&#x5B83;&#x5011;&#x4E4B;&#x9593;&#x7684;&#x5DEE;&#x7570;&#x6027;&#xFF0C;&#x7D42;&#x65BC;&#x627E;&#x5230;&#x4E00;&#x7BC7;&#x89E3;&#x91CB;&#x6E05;&#x695A;&#x7684;&#x6587;&#x7AE0;&#x4E86;&#x3002;</p>
+<ul>
+<li>lock()&#xFF1A;&#x82E5;lock&#x88AB;thread A&#x53D6;&#x5F97;&#xFF0C;thread B&#x6703;&#x9032;&#x5165;block&#x72C0;&#x614B;&#xFF0C;&#x76F4;&#x5230;&#x53D6;&#x5F97;lock&#x3002;</li>
+<li>tryLock()&#xFF1A;&#x82E5;&#x7576;&#x4E0B;&#x4E0D;&#x80FD;&#x53D6;&#x5F97;lock&#xFF0C;thread&#x5C31;&#x6703;&#x653E;&#x68C4;&#x3002;</li>
+<li>lockInterruptibly()&#xFF1A;&#x8DDF;lock()&#x60C5;&#x6CC1;&#x4E00;&#x4E0B;&#xFF0C;&#x4F46;&#x662F;thread B&#x53EF;&#x4EE5;&#x900F;&#x904E;interrupt&#x88AB;&#x559A;&#x9192;&#x8655;&#x7406;InterruptedException&#x3002;</li>
+</ul>
+<p>&#x7BC4;&#x4F8B;&#xFF1A;</p>
+<ul>
+<li>lock()&#xFF1A;</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.locks.ReentrantLock;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LockDemo</span> </span>{</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> ReentrantLock	lock;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">LockDemo</span><span class="params">()</span> </span>{</span><br><span class="line">		lock = <span class="keyword">new</span> ReentrantLock();</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>{</span><br><span class="line">		LockDemo lockDemo = <span class="keyword">new</span> LockDemo();</span><br><span class="line">		Runnable runnable = <span class="keyword">new</span> Runnable() {</span><br><span class="line">			<span class="meta">@Override</span></span><br><span class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>{</span><br><span class="line">				lockDemo.lock.lock();</span><br><span class="line">				System.out.println(String.format(<span class="string">&quot;%s %s locked&quot;</span>, <span class="keyword">new</span> Date(System.currentTimeMillis()), Thread.currentThread().getName()));</span><br><span class="line">			}</span><br><span class="line">		};</span><br><span class="line">		Thread threadA = <span class="keyword">new</span> Thread(runnable, <span class="string">&quot;Thread A&quot;</span>);</span><br><span class="line">		Thread threadB = <span class="keyword">new</span> Thread(runnable, <span class="string">&quot;Thread B&quot;</span>);</span><br><span class="line"></span><br><span class="line">		threadA.start();</span><br><span class="line">		threadB.start();</span><br><span class="line">	}</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>&#x53EF;&#x4EE5;&#x767C;&#x73FE;ThreadB&#x5448;&#x73FE;block&#x72C0;&#x614B;&#xFF0C;&#x4E00;&#x76F4;&#x5728;&#x7B49;&#x5F85;Thread A&#x91CB;&#x653E;lock&#x3002;</p>
+<ul>
+<li>tryLock()&#xFF1A;</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.locks.ReentrantLock;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TryLockDemo</span> </span>{</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> ReentrantLock	lock;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">TryLockDemo</span><span class="params">()</span> </span>{</span><br><span class="line">		lock = <span class="keyword">new</span> ReentrantLock();</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>{</span><br><span class="line">		TryLockDemo lockDemo = <span class="keyword">new</span> TryLockDemo();</span><br><span class="line">		Runnable runnable = <span class="keyword">new</span> Runnable() {</span><br><span class="line">			<span class="meta">@Override</span></span><br><span class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>{</span><br><span class="line">				<span class="keyword">if</span> (lockDemo.lock.tryLock()) {</span><br><span class="line">					System.out.println(String.format(<span class="string">&quot;%s %s locked&quot;</span>, <span class="keyword">new</span> Date(System.currentTimeMillis()), Thread.currentThread().getName()));</span><br><span class="line">				}</span><br><span class="line">			}</span><br><span class="line">		};</span><br><span class="line">		Thread threadA = <span class="keyword">new</span> Thread(runnable, <span class="string">&quot;Thread A&quot;</span>);</span><br><span class="line">		Thread threadB = <span class="keyword">new</span> Thread(runnable, <span class="string">&quot;Thread B&quot;</span>);</span><br><span class="line"></span><br><span class="line">		threadA.start();</span><br><span class="line">		threadB.start();</span><br><span class="line">	}</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>&#x82E5;&#x4E00;&#x958B;&#x59CB;lock&#x88AB;Thread A&#x53D6;&#x5F97;&#xFF0C;Thread B&#x900F;&#x904E;tryLock()&#x7576;&#x4E0B;&#x82E5;&#x6C92;&#x6709;&#x53D6;&#x5F97;&#x5230;lock&#xFF0C;&#x5C31;&#x6703;&#x653E;&#x68C4;&#x3002;</p>
+<ul>
+<li>lockInterruptibly()&#xFF1A;</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.locks.ReentrantLock;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LockInterruptiblyDemo</span> </span>{</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> ReentrantLock	lock;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">LockInterruptiblyDemo</span><span class="params">()</span> </span>{</span><br><span class="line">		lock = <span class="keyword">new</span> ReentrantLock();</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>{</span><br><span class="line">		LockInterruptiblyDemo lockDemo = <span class="keyword">new</span> LockInterruptiblyDemo();</span><br><span class="line"></span><br><span class="line">		Runnable runnable = <span class="keyword">new</span> Runnable() {</span><br><span class="line">			<span class="meta">@Override</span></span><br><span class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>{</span><br><span class="line">				<span class="keyword">try</span> {</span><br><span class="line">					lockDemo.lock.lockInterruptibly();</span><br><span class="line">					System.out.println(String.format(<span class="string">&quot;%s %s locked&quot;</span>, <span class="keyword">new</span> Date(System.currentTimeMillis()), Thread.currentThread().getName()));</span><br><span class="line">				}</span><br><span class="line">				<span class="keyword">catch</span> (InterruptedException e) {</span><br><span class="line">					System.out.println(String.format(<span class="string">&quot;%s %s interrupted&quot;</span>, <span class="keyword">new</span> Date(System.currentTimeMillis()), Thread.currentThread().getName()));</span><br><span class="line">				}							</span><br><span class="line">			}</span><br><span class="line">		};</span><br><span class="line">		Thread threadA = <span class="keyword">new</span> Thread(runnable, <span class="string">&quot;Thread A&quot;</span>);</span><br><span class="line">		Thread threadB = <span class="keyword">new</span> Thread(runnable, <span class="string">&quot;Thread B&quot;</span>);</span><br><span class="line"></span><br><span class="line">		threadA.start();</span><br><span class="line">		Thread.sleep(<span class="number">1000</span>);		</span><br><span class="line">		threadB.start();</span><br><span class="line">		threadB.interrupt();</span><br><span class="line">	}</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>Thread A&#x5148;&#x53D6;&#x5F97;lock&#xFF0C;Thread B&#x7121;&#x6CD5;&#x53D6;&#x5F97;lock&#x9032;&#x5165;block&#x72C0;&#x614B;&#xFF0C;&#x53EF;&#x4EE5;&#x900F;&#x904E;&#x767C;&#x51FA;interrupt&#x65B9;&#x5F0F;&#x559A;&#x9192;Thread B&#x3002;</p>
+<p>Lock&#x548C;synchronized&#x5E7E;&#x4E4E;&#x662F;&#x5927;&#x540C;&#x5C0F;&#x7570;&#xFF0C;&#x4F46;&#x662F;Lock&#x53EF;&#x4EE5;&#x505A;&#x66F4;&#x7D30;&#x5FAE;&#x7684;&#x540C;&#x6B65;&#x65B9;&#x5F0F;&#x3002;</p>
+<h4 id="&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;"><a href="#&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;" class="headerlink" title="&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;"></a>&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;</h4><p><a href="http://www.dewen.io/q/9077" target="_blank" rel="noopener">&#x7528;&#x901A;&#x4FD7;&#x7684;&#x8A9E;&#x8A00;&#x8AAA;&#x8AAA;lock&#x548C;lockInterruptibly&#x7684;&#x5340;&#x5225;</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://pandaforme.github.io/2016/12/09/Java-Semaphore的使用時機/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="pandaforme">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Programming blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/12/09/Java-Semaphore的使用時機/" itemprop="url">
+                  [Java] Semaphore的使用時機
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-12-09 17:15:16" itemprop="dateCreated datePublished" datetime="2016-12-09T17:15:16+08:00">2016-12-09</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2016-12-13 15:25:14" itemprop="dateModified" datetime="2016-12-13T15:25:14+08:00">2016-12-13</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/12/09/Java-Semaphore的使用時機/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/12/09/Java-Semaphore的使用時機/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Java&#x6240;&#x63D0;&#x4F9B;&#x7684;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/Semaphore.html" target="_blank" rel="noopener">Semaphore</a>&#x8DDF;<a href="http://os-book.com/" target="_blank" rel="noopener">Operating System Concepts</a>&#x4E0A;&#x6240;&#x8B1B;&#x7684;Semaphore&#x4E00;&#x6A23;&#x3002;</p>
+<p>&#x53EF;&#x4EE5;&#x7528;&#x5B83;&#x4F86;&#x89E3;&#x6C7A;&#xFF1A;</p>
+<ul>
+<li><a href="https://pandaforme.ghost.io/producer-and-consumer-problem/" target="_blank" rel="noopener">Producer and Consumer Problem</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Readers%E2%80%93writers_problem" target="_blank" rel="noopener">The Readers-Writers Problem</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Dining_philosophers_problem" target="_blank" rel="noopener">The Dining-Philosophers Problem</a></li>
+<li>Pool&#x7684;&#x5BE6;&#x4F5C;</li>
+<li>&#x63A7;&#x5236;critical region</li>
+</ul>
+<p>####&#x7BC4;&#x4F8B;&#xFF1A;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.concurrent.Semaphore;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SemaphoreDemo</span> </span>{</span><br><span class="line"></span><br><span class="line">	Semaphore	pool	= <span class="keyword">new</span> Semaphore(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>{</span><br><span class="line">		<span class="keyword">final</span> SemaphoreDemo demo = <span class="keyword">new</span> SemaphoreDemo();</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">30</span>; i++) {</span><br><span class="line">			<span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() {</span><br><span class="line"></span><br><span class="line">				<span class="meta">@Override</span></span><br><span class="line">				<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>{</span><br><span class="line">					demo.mutualExclusion();</span><br><span class="line">				}</span><br><span class="line"></span><br><span class="line">			}, <span class="string">&quot;Thread&quot;</span> + i).start();</span><br><span class="line"></span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">mutualExclusion</span><span class="params">()</span> </span>{</span><br><span class="line">		<span class="keyword">try</span> {</span><br><span class="line">			pool.acquire();</span><br><span class="line"></span><br><span class="line">			System.out.println(Thread.currentThread().getName() + <span class="string">&quot; inside mutual exclusive region&quot;</span>);</span><br><span class="line">			Thread.sleep(<span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line">		}</span><br><span class="line">		<span class="keyword">catch</span> (InterruptedException e) {</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		}</span><br><span class="line">		<span class="keyword">finally</span> {</span><br><span class="line">			pool.release();</span><br><span class="line">			System.out.println(Thread.currentThread().getName() + <span class="string">&quot; outside of mutual exclusive region&quot;</span>);</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></table></figure></p>
+<p>&#x7576;pool&#x70BA;&#x7A7A;&#x7684;&#x6642;&#x5019;&#xFF0C;&#x60F3;&#x8981;&#x4F7F;&#x7528;pool&#x8CC7;&#x6E90;&#x7684;thread&#x6703;&#x9032;&#x5165;blocking&#x72C0;&#x614B;&#xFF0C;&#x76F4;&#x5230;&#x6709;&#x5176;&#x4ED6;thread&#x57F7;&#x884C;release()&#x91CB;&#x653E;pool&#x8CC7;&#x6E90;&#xFF0C;&#x559A;&#x9192;&#x5176;&#x4E2D;&#x5728;blocking&#x72C0;&#x614B;&#x7684;thread&#x3002;</p>
+<h4 id="&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;"><a href="#&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;" class="headerlink" title="&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;"></a>&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;</h4><p><a href="http://javarevisited.blogspot.com/2012/05/counting-semaphore-example-in-java-5.html#ixzz3HL0w0Wav" target="_blank" rel="noopener">Counting Semaphore Example in Java 5 &#x2013; Concurrency Tutorial</a></p>
+
           
         
       
@@ -2411,7 +2422,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-count">32</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
