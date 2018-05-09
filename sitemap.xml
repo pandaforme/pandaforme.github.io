@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://pandaforme.github.io/2016/12/09/Java-Difference-between-synchronized-vs-ReentrantLock/</loc>
+    
+    <lastmod>2018-05-09T00:06:08.635Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://pandaforme.github.io/2016/12/09/Java-Synchronize-in-Java/</loc>
+    
+    <lastmod>2018-05-09T00:04:30.290Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://pandaforme.github.io/2016/12/09/Celebrity-Problem/</loc>
     
     <lastmod>2018-05-07T10:56:48.403Z</lastmod>
@@ -198,23 +212,9 @@
   </url>
   
   <url>
-    <loc>https://pandaforme.github.io/2016/12/09/Java-Synchronize-in-Java/</loc>
-    
-    <lastmod>2016-12-09T10:04:50.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://pandaforme.github.io/2016/12/09/The-Law-of-Demeter/</loc>
     
     <lastmod>2016-12-09T09:27:32.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://pandaforme.github.io/2016/12/09/Java-Difference-between-synchronized-vs-ReentrantLock/</loc>
-    
-    <lastmod>2016-12-09T09:16:27.000Z</lastmod>
     
   </url>
   

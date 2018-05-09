@@ -102,18 +102,18 @@
 
 
 
-  <meta name="description" content="&amp;#x6839;&amp;#x64DA;&amp;#x53C3;&amp;#x8003;&amp;#x8CC7;&amp;#x6599;&amp;#x6574;&amp;#x7406;&amp;#x4E86;ReentrantLock&amp;#x548C;synchronized&amp;#x7684;&amp;#x6BD4;&amp;#x8F03;&amp;#x8868;&amp;#xFF1A;           ReentrantLock    synchronized        &amp;#x9396">
+  <meta name="description" content="&amp;#x6839;&amp;#x64DA;&amp;#x53C3;&amp;#x8003;&amp;#x8CC7;&amp;#x6599;&amp;#x6574;&amp;#x7406;&amp;#x4E86;ReentrantLock&amp;#x548C;synchronized&amp;#x7684;&amp;#x6BD4;&amp;#x8F03;&amp;#x8868;&amp;#xFF1A;     ReentrantLock synchronized     &amp;#x9396;&amp;#x5B9A;&amp;#x">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[Java] Difference between synchronized vs ReentrantLock">
 <meta property="og:url" content="https://pandaforme.github.io/2016/12/09/Java-Difference-between-synchronized-vs-ReentrantLock/index.html">
 <meta property="og:site_name" content="Programming blog">
-<meta property="og:description" content="&amp;#x6839;&amp;#x64DA;&amp;#x53C3;&amp;#x8003;&amp;#x8CC7;&amp;#x6599;&amp;#x6574;&amp;#x7406;&amp;#x4E86;ReentrantLock&amp;#x548C;synchronized&amp;#x7684;&amp;#x6BD4;&amp;#x8F03;&amp;#x8868;&amp;#xFF1A;           ReentrantLock    synchronized        &amp;#x9396">
+<meta property="og:description" content="&amp;#x6839;&amp;#x64DA;&amp;#x53C3;&amp;#x8003;&amp;#x8CC7;&amp;#x6599;&amp;#x6574;&amp;#x7406;&amp;#x4E86;ReentrantLock&amp;#x548C;synchronized&amp;#x7684;&amp;#x6BD4;&amp;#x8F03;&amp;#x8868;&amp;#xFF1A;     ReentrantLock synchronized     &amp;#x9396;&amp;#x5B9A;&amp;#x">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2016-12-09T09:16:27.000Z">
+<meta property="og:updated_time" content="2018-05-09T00:06:08.635Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[Java] Difference between synchronized vs ReentrantLock">
-<meta name="twitter:description" content="&amp;#x6839;&amp;#x64DA;&amp;#x53C3;&amp;#x8003;&amp;#x8CC7;&amp;#x6599;&amp;#x6574;&amp;#x7406;&amp;#x4E86;ReentrantLock&amp;#x548C;synchronized&amp;#x7684;&amp;#x6BD4;&amp;#x8F03;&amp;#x8868;&amp;#xFF1A;           ReentrantLock    synchronized        &amp;#x9396">
+<meta name="twitter:description" content="&amp;#x6839;&amp;#x64DA;&amp;#x53C3;&amp;#x8003;&amp;#x8CC7;&amp;#x6599;&amp;#x6574;&amp;#x7406;&amp;#x4E86;ReentrantLock&amp;#x548C;synchronized&amp;#x7684;&amp;#x6BD4;&amp;#x8F03;&amp;#x8868;&amp;#xFF1A;     ReentrantLock synchronized     &amp;#x9396;&amp;#x5B9A;&amp;#x">
 
 
 
@@ -386,12 +386,24 @@
                 
               
 
-              <time title="Created: 2016-12-09 17:15:00 / Modified: 17:16:27" itemprop="dateCreated datePublished" datetime="2016-12-09T17:15:00+08:00">2016-12-09</time>
+              <time title="Created: 2016-12-09 17:15:00" itemprop="dateCreated datePublished" datetime="2016-12-09T17:15:00+08:00">2016-12-09</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-05-09 08:06:08" itemprop="dateModified" datetime="2018-05-09T08:06:08+08:00">2018-05-09</time>
               
             
           </span>
@@ -454,14 +466,43 @@
 
       
         <p>&#x6839;&#x64DA;&#x53C3;&#x8003;&#x8CC7;&#x6599;&#x6574;&#x7406;&#x4E86;ReentrantLock&#x548C;synchronized&#x7684;&#x6BD4;&#x8F03;&#x8868;&#xFF1A;</p>
-<table style="border:3px solid;padding:5px;" rules="all" cellpadding="5" ;=""><br>  <tr><br>    <th></th><br>    <th>ReentrantLock</th><br>    <th>synchronized</th><br>  </tr><br>  <tr><br>    <td>&#x9396;&#x5B9A;&#x5C0D;&#x8C61;</td><br>    <td>&#x7531;current thread&#x6C7A;&#x5B9A;&#x3002;&#x5047;&#x5982;lock&#x662F;Thread A&#x4E0A;&#x9396;&#xFF0C;&#x53EA;&#x80FD;&#x7531;Thread A&#x89E3;&#x958B;&#x3002;</td><br>    <td>Object&#x6216;&#x662F;Class</td><br>  </tr><br>  <tr><br>    <td>&#x529F;&#x80FD;</td><br>    <td><br>        <li>fairness</li><br>        <li>tryLock</li><br>        <li>lockInterruptibly</li><br>        <li>&#x5176;&#x4ED6;&#x529F;&#x80FD;</li><br>    </td><br>    <td>&#x53EA;&#x80FD;&#x4E00;&#x76F4;&#x7B49;&#x5F85;&#xFF0C;&#x76F4;&#x5230;&#x53D6;&#x5F97;lock</td><br>  </tr><br>  <tr><br>    <td>lock&#x7684;&#x9396;&#x5B9A;&#x548C;&#x91CB;&#x653E;</td><br>    <td>&#x7531;&#x7A0B;&#x5F0F;&#x8A2D;&#x8A08;&#x5E2B;&#x63A7;&#x5236;&#x3002;</td><br>    <td>&#x6703;&#x81EA;&#x52D5;&#x63A7;&#x7BA1;lock&#x7684;&#x4E0A;&#x9396;&#x548C;&#x91CB;&#x653E;&#x3002;</td><br>  </tr><br></table>
-
+<table>
+<thead>
+<tr>
+<th></th>
+<th>ReentrantLock</th>
+<th>synchronized</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x9396;&#x5B9A;&#x5C0D;&#x8C61;</td>
+<td>&#x53EF;&#x4EE5;&#x5C0D;&#x4EFB;&#x4F55;&#x5C0D;&#x8C61;&#x4E0A;&#x9396;</td>
+<td>class literal, the instance of class</td>
+</tr>
+<tr>
+<td>&#x6548;&#x80FD;</td>
+<td>&#x8F03;&#x597D;</td>
+<td>&#x8F03;&#x5DEE;</td>
+</tr>
+<tr>
+<td>&#x4E2D;&#x65B7;</td>
+<td>&#x53EF;&#x4EE5;&#x653E;&#x68C4;&#x53D6;&#x9396;</td>
+<td>&#x4E00;&#x65E6;&#x5617;&#x8A66;&#x7372;&#x53D6;&#x9396;&#x5C31;&#x6703;&#x4E00;&#x76F4;&#x7B49;&#x5F85;&#x76F4;&#x5230;&#x7372;&#x53D6;&#x5230;&#x9396;</td>
+</tr>
+<tr>
+<td>lock&#x7684;&#x9396;&#x5B9A;&#x548C;&#x91CB;&#x653E;</td>
+<td>&#x7A0B;&#x5F0F;&#x8A2D;&#x8A08;&#x5E2B;&#x63A7;&#x5236;</td>
+<td>JVM&#x63A7;&#x5236;</td>
+</tr>
+</tbody>
+</table>
 <ul>
 <li>ReentrantLock&#x7684;&#x63A7;&#x5236;&#x7A0B;&#x5EA6;&#x6BD4;&#x8F03;&#x5927;&#xFF0C;synchronized&#x7684;&#x63A7;&#x5236;&#x7A0B;&#x5EA6;&#x6BD4;&#x8F03;&#x5C0F;&#x3002;</li>
 <li>&#x6B63;&#x78BA;&#x4F7F;&#x7528;&#x7684;&#x60C5;&#x6CC1;&#x4E0B;&#xFF0C;&#x4F7F;&#x7528;ReentrantLock&#x6703;&#x6BD4;&#x4F7F;&#x7528;synchronized&#x7684;&#x6548;&#x80FD;&#x8F03;&#x597D;&#x3002;</li>
 <li>&#x82E5;&#x5C0D;&#x540C;&#x6B65;&#x554F;&#x984C;&#x4E0D;&#x719F;&#x6089;&#xFF0C;&#x9396;&#x5B9A;&#x548C;&#x91CB;&#x653E;ReentrantLock&#x7684;&#x9806;&#x5E8F;&#x4E0D;&#x5C0D;&#x5BB9;&#x6613;&#x9020;&#x6210;deadlock&#x3002;</li>
 </ul>
-<h4 id="&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;"><a href="#&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;" class="headerlink" title="&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;"></a>&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;</h4><p><a href="http://javarevisited.blogspot.com/2013/03/reentrantlock-example-in-java-synchronized-difference-vs-lock.html#ixzz3HKuhKEpI" target="_blank" rel="noopener">ReentrantLock Example in Java, Difference between synchronized vs ReentrantLock</a></p>
+<h1 id="&#x53C3;&#x8003;&#x8CC7;&#x6599;"><a href="#&#x53C3;&#x8003;&#x8CC7;&#x6599;" class="headerlink" title="&#x53C3;&#x8003;&#x8CC7;&#x6599;"></a>&#x53C3;&#x8003;&#x8CC7;&#x6599;</h1><p><a href="http://javarevisited.blogspot.com/2013/03/reentrantlock-example-in-java-synchronized-difference-vs-lock.html#ixzz3HKuhKEpI" target="_blank" rel="noopener">ReentrantLock Example in Java, Difference between synchronized vs ReentrantLock</a></p>
 
       
     </div>
@@ -722,7 +763,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#參考資料："><span class="nav-number">1.</span> <span class="nav-text">參考資料：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#參考資料"><span class="nav-number">1.</span> <span class="nav-text">參考資料</span></a></li></ol></div>
             
 
           </div>
