@@ -343,6 +343,204 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://pandaforme.github.io/2016/12/09/Java-Object-equality-in-Java/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="pandaforme">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Programming blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/12/09/Java-Object-equality-in-Java/" itemprop="url">
+                  [Java] Object equality in Java
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-12-09 17:26:05" itemprop="dateCreated datePublished" datetime="2016-12-09T17:26:05+08:00">2016-12-09</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2016-12-13 15:25:19" itemprop="dateModified" datetime="2016-12-13T15:25:19+08:00">2016-12-13</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/12/09/Java-Object-equality-in-Java/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/12/09/Java-Object-equality-in-Java/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>&#x5728;Java&#x4E2D;&#xFF0C;&#x8981;&#x6BD4;&#x8F03;&#x5169;&#x500B;&#x57FA;&#x672C;&#x578B;&#x614B;&#x7684;&#x8B8A;&#x6578;&#xFF0C;&#x8981;&#x4F7F;&#x7528;<code>==</code>&#x3002;<br>&#x8981;&#x6BD4;&#x8F03;&#x5169;&#x500B;&#x7269;&#x4EF6;&#x578B;&#x614B;&#x7684;&#x8B8A;&#x6578;&#xFF0C;&#x8981;&#x4F7F;&#x7528;<code>equals</code>&#x3002;</p>
+<p>&#x56E0;&#x70BA;&#x6240;&#x6709;&#x7684;&#x7269;&#x4EF6;&#x90FD;&#x662F;&#x7E7C;&#x627F;Object&#xFF0C;&#x52A0;&#x4E0A;Object&#x7684;equals()&#x662F;&#x4F7F;&#x7528;<code>==</code>&#x5224;&#x5B9A;&#xFF0C;&#x6240;&#x4EE5;&#x9700;&#x8981;Override Object&#x7684;<code>equals()</code>&#x51FD;&#x5F0F;&#x3002;</p>
+<p>Object&#x7684;<code>equals()</code>&#x51FD;&#x5F0F;&#xFF1A;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object paramObject)</span> </span>{</span><br><span class="line">	<span class="keyword">return</span> (<span class="keyword">this</span> == paramObject);</span><br><span class="line">}</span><br></pre></td></tr></table></figure></p>
+<h4 id="&#x7BC4;&#x4F8B;&#xFF1A;"><a href="#&#x7BC4;&#x4F8B;&#xFF1A;" class="headerlink" title="&#x7BC4;&#x4F8B;&#xFF1A;"></a>&#x7BC4;&#x4F8B;&#xFF1A;</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Point</span> </span>{</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span>	x;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span>	y;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Point</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>{</span><br><span class="line">		<span class="keyword">this</span>.x = x;</span><br><span class="line">		<span class="keyword">this</span>.y = y;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object that)</span> </span>{</span><br><span class="line">		<span class="keyword">if</span> (that <span class="keyword">instanceof</span> Point) {</span><br><span class="line">			Point point = (Point) that;</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">this</span>.x == point.x &amp;&amp; <span class="keyword">this</span>.y == point.y;</span><br><span class="line">		}</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">	}</span><br><span class="line">    </span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>{</span><br><span class="line">		<span class="keyword">return</span> Objects.hash(x,y);</span><br><span class="line">	}    </span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<ul>
+<li>&#x6CE8;&#x610F;&#xFF1A;&#x7576;Override equals&#x6642;&#xFF0C;hashCode&#x6700;&#x597D;&#x4E5F;&#x8981;Override&#x3002;</li>
+</ul>
+<p>&#x4F8B;&#x5982;&#xFF1A;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PointTest</span> </span>{</span><br><span class="line">	<span class="keyword">private</span> Object	point1;</span><br><span class="line">	<span class="keyword">private</span> Point	point2;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Before</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> </span>{</span><br><span class="line">		point1 = <span class="keyword">new</span> Point(<span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">		point2 = <span class="keyword">new</span> Point(<span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testCase</span><span class="params">()</span> </span>{</span><br><span class="line">		Set&lt;Object&gt; set = <span class="keyword">new</span> HashSet&lt;Object&gt;();</span><br><span class="line">		set.add(point1);</span><br><span class="line">		assertTrue(set.contains(point2));</span><br><span class="line">	}</span><br><span class="line">}</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>&#x8A08;&#x7B97;point2&#x7684;hashCode</li>
+<li>&#x8A08;&#x7B97;point1&#x7684;hashCode</li>
+<li>&#x82E5;hashCode&#x4E00;&#x6A23;&#x4EE3;&#x8868;&#x843D;&#x5728;&#x540C;&#x4E00;&#x500B;bucket</li>
+<li>&#x518D;&#x900F;&#x904E;equals&#x5224;&#x5225;&#x662F;&#x5426;&#x76F8;&#x7B49;</li>
+</ol>
+<p>hashCode&#x53EF;&#x4EE5;&#x900F;&#x904E;Objects.hash()&#x5354;&#x52A9;&#x8A08;&#x7B97;&#xFF0C;&#x6216;&#x662F;&#x81EA;&#x884C;&#x8A2D;&#x8A08;&#x516C;&#x5F0F;&#x3002;<br>&#x4F8B;&#x5982;&#xFF1A;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html#hashCode(" target="_blank" rel="noopener">String&#x7684;hashCode</a>)&#x3002;</p>
+<p>&#x6709;&#x883B;&#x591A;&#x985E;&#x4F3C;&#x7684;&#x6587;&#x7AE0;&#x63D0;&#x5230;&#x70BA;&#x4EC0;&#x9EBC;&#x8981;&#x7528;31&#x7576;&#x4E58;&#x6578;&#x5462;?&#x4F8B;&#x5982;&#xFF1A;<a href="http://stackoverflow.com/questions/299304/why-does-javas-hashcode-in-string-use-31-as-a-multiplier" target="_blank" rel="noopener">Why does Java&#x2019;s hashCode() in String use 31 as a multiplier?</a></p>
+<p>&#x67E5;&#x4E86;&#x76F8;&#x95DC;&#x7684;&#x8A0E;&#x8AD6;&#x5E7E;&#x4E4E;&#x90FD;&#x662F;31&#x5F0F;&#x8CEA;&#x6578;&#x4E26;&#x4E14;jvm&#x53EF;&#x4EE5;&#x5C0D;&#x5176;&#x505A;&#x6700;&#x4F73;&#x5316;&#xFF0C;&#x500B;&#x4EBA;&#x63A8;&#x6E2C;&#x4E3B;&#x8981;&#x539F;&#x56E0;31&#x53EF;&#x4EE5;&#x5927;&#x5E45;&#x964D;&#x4F4E;collision&#x7684;&#x6A5F;&#x6703;&#xFF0C;&#x6216;&#x8A31;&#x6F14;&#x7B97;&#x6CD5;&#x6216;&#x662F;&#x6709;&#x76F8;&#x95DC;&#x7684;&#x8AD6;&#x6587;&#x6703;&#x6709;&#x66F4;&#x8A73;&#x7D30;&#x7684;&#x8AAA;&#x660E;&#x3002;</p>
+<h4 id="&#x76F8;&#x95DC;&#x8CC7;&#x6599;&#xFF1A;"><a href="#&#x76F8;&#x95DC;&#x8CC7;&#x6599;&#xFF1A;" class="headerlink" title="&#x76F8;&#x95DC;&#x8CC7;&#x6599;&#xFF1A;"></a>&#x76F8;&#x95DC;&#x8CC7;&#x6599;&#xFF1A;</h4><p><a href="http://www.codedata.com.tw/java/object-equality-1/" target="_blank" rel="noopener">&#x7269;&#x4EF6;&#x76F8;&#x7B49;&#x6027;&#xFF08;&#x4E0A;&#xFF09;</a></p>
+<h4 id="&#x7BC4;&#x4F8B;&#x7684;&#x539F;&#x59CB;&#x78BC;&#xFF1A;https-github-com-pandaforme-ObjectEqual"><a href="#&#x7BC4;&#x4F8B;&#x7684;&#x539F;&#x59CB;&#x78BC;&#xFF1A;https-github-com-pandaforme-ObjectEqual" class="headerlink" title="&#x7BC4;&#x4F8B;&#x7684;&#x539F;&#x59CB;&#x78BC;&#xFF1A;https://github.com/pandaforme/ObjectEqual"></a>&#x7BC4;&#x4F8B;&#x7684;&#x539F;&#x59CB;&#x78BC;&#xFF1A;<a href="https://github.com/pandaforme/ObjectEqual" target="_blank" rel="noopener">https://github.com/pandaforme/ObjectEqual</a></h4>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://pandaforme.github.io/2016/12/09/Java-Multiple-parameters-in-a-constructor/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2183,198 +2381,6 @@ Explanation: Intervals [1,4] and [4,5] are considerred overlapping.
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://pandaforme.github.io/2016/12/09/Java-Semaphore的使用時機/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="pandaforme">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Programming blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/12/09/Java-Semaphore的使用時機/" itemprop="url">
-                  [Java] Semaphore的使用時機
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-12-09 17:15:16" itemprop="dateCreated datePublished" datetime="2016-12-09T17:15:16+08:00">2016-12-09</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2016-12-13 15:25:14" itemprop="dateModified" datetime="2016-12-13T15:25:14+08:00">2016-12-13</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/12/09/Java-Semaphore的使用時機/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/12/09/Java-Semaphore的使用時機/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Java&#x6240;&#x63D0;&#x4F9B;&#x7684;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/Semaphore.html" target="_blank" rel="noopener">Semaphore</a>&#x8DDF;<a href="http://os-book.com/" target="_blank" rel="noopener">Operating System Concepts</a>&#x4E0A;&#x6240;&#x8B1B;&#x7684;Semaphore&#x4E00;&#x6A23;&#x3002;</p>
-<p>&#x53EF;&#x4EE5;&#x7528;&#x5B83;&#x4F86;&#x89E3;&#x6C7A;&#xFF1A;</p>
-<ul>
-<li><a href="https://pandaforme.ghost.io/producer-and-consumer-problem/" target="_blank" rel="noopener">Producer and Consumer Problem</a></li>
-<li><a href="http://en.wikipedia.org/wiki/Readers%E2%80%93writers_problem" target="_blank" rel="noopener">The Readers-Writers Problem</a></li>
-<li><a href="http://en.wikipedia.org/wiki/Dining_philosophers_problem" target="_blank" rel="noopener">The Dining-Philosophers Problem</a></li>
-<li>Pool&#x7684;&#x5BE6;&#x4F5C;</li>
-<li>&#x63A7;&#x5236;critical region</li>
-</ul>
-<p>####&#x7BC4;&#x4F8B;&#xFF1A;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.concurrent.Semaphore;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SemaphoreDemo</span> </span>{</span><br><span class="line"></span><br><span class="line">	Semaphore	pool	= <span class="keyword">new</span> Semaphore(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>{</span><br><span class="line">		<span class="keyword">final</span> SemaphoreDemo demo = <span class="keyword">new</span> SemaphoreDemo();</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">30</span>; i++) {</span><br><span class="line">			<span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() {</span><br><span class="line"></span><br><span class="line">				<span class="meta">@Override</span></span><br><span class="line">				<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>{</span><br><span class="line">					demo.mutualExclusion();</span><br><span class="line">				}</span><br><span class="line"></span><br><span class="line">			}, <span class="string">&quot;Thread&quot;</span> + i).start();</span><br><span class="line"></span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">mutualExclusion</span><span class="params">()</span> </span>{</span><br><span class="line">		<span class="keyword">try</span> {</span><br><span class="line">			pool.acquire();</span><br><span class="line"></span><br><span class="line">			System.out.println(Thread.currentThread().getName() + <span class="string">&quot; inside mutual exclusive region&quot;</span>);</span><br><span class="line">			Thread.sleep(<span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line">		}</span><br><span class="line">		<span class="keyword">catch</span> (InterruptedException e) {</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		}</span><br><span class="line">		<span class="keyword">finally</span> {</span><br><span class="line">			pool.release();</span><br><span class="line">			System.out.println(Thread.currentThread().getName() + <span class="string">&quot; outside of mutual exclusive region&quot;</span>);</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></table></figure></p>
-<p>&#x7576;pool&#x70BA;&#x7A7A;&#x7684;&#x6642;&#x5019;&#xFF0C;&#x60F3;&#x8981;&#x4F7F;&#x7528;pool&#x8CC7;&#x6E90;&#x7684;thread&#x6703;&#x9032;&#x5165;blocking&#x72C0;&#x614B;&#xFF0C;&#x76F4;&#x5230;&#x6709;&#x5176;&#x4ED6;thread&#x57F7;&#x884C;release()&#x91CB;&#x653E;pool&#x8CC7;&#x6E90;&#xFF0C;&#x559A;&#x9192;&#x5176;&#x4E2D;&#x5728;blocking&#x72C0;&#x614B;&#x7684;thread&#x3002;</p>
-<h4 id="&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;"><a href="#&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;" class="headerlink" title="&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;"></a>&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;</h4><p><a href="http://javarevisited.blogspot.com/2012/05/counting-semaphore-example-in-java-5.html#ixzz3HL0w0Wav" target="_blank" rel="noopener">Counting Semaphore Example in Java 5 &#x2013; Concurrency Tutorial</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2422,7 +2428,7 @@ Explanation: Intervals [1,4] and [4,5] are considerred overlapping.
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">32</span>
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

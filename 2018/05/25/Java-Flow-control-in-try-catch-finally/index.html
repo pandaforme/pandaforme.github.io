@@ -102,18 +102,18 @@
 
 
 
-  <meta name="description" content="[&amp;#x66F4;&amp;#x65B0;]&amp;#x6709;&amp;#x66F4;&amp;#x7C21;&amp;#x6F54;&amp;#x7684;&amp;#x505A;&amp;#x6CD5;&amp;#xFF0C;&amp;#x8ACB;&amp;#x53C3;&amp;#x8003; Duplicating a repository &amp;#x5728;&amp;#x5DE5;&amp;#x4F5C;&amp;#x4E0A;&amp;#x9047;&amp;#x5230;&amp;#x8981;&amp;#x5C07;git">
-<meta name="keywords" content="Git">
+  <meta name="description" content="&amp;#x5728;&amp;#x6B63;&amp;#x5E38;&amp;#x60C5;&amp;#x6CC1;&amp;#x4E0B;&amp;#xFF0C;&amp;#x7576;&amp;#x57F7;&amp;#x884C;&amp;#x5B8C; try &amp;#x7684;&amp;#x6700;&amp;#x5F8C;&amp;#x4E00;&amp;#x884C;&amp;#x6216;&amp;#x662F;&amp;#x8981;&amp;#x628A;&amp;#x63A7;&amp;#x5236;&amp;#x6B0A;&amp;#x8F49;&amp;#x">
+<meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[Git] Moving A Git Repository To A New Server">
-<meta property="og:url" content="https://pandaforme.github.io/2016/12/09/Git-Moving-A-Git-Repository-To-A-New-Server/index.html">
+<meta property="og:title" content="[Java] Flow control in try catch finally">
+<meta property="og:url" content="https://pandaforme.github.io/2018/05/25/Java-Flow-control-in-try-catch-finally/index.html">
 <meta property="og:site_name" content="Programming blog">
-<meta property="og:description" content="[&amp;#x66F4;&amp;#x65B0;]&amp;#x6709;&amp;#x66F4;&amp;#x7C21;&amp;#x6F54;&amp;#x7684;&amp;#x505A;&amp;#x6CD5;&amp;#xFF0C;&amp;#x8ACB;&amp;#x53C3;&amp;#x8003; Duplicating a repository &amp;#x5728;&amp;#x5DE5;&amp;#x4F5C;&amp;#x4E0A;&amp;#x9047;&amp;#x5230;&amp;#x8981;&amp;#x5C07;git">
+<meta property="og:description" content="&amp;#x5728;&amp;#x6B63;&amp;#x5E38;&amp;#x60C5;&amp;#x6CC1;&amp;#x4E0B;&amp;#xFF0C;&amp;#x7576;&amp;#x57F7;&amp;#x884C;&amp;#x5B8C; try &amp;#x7684;&amp;#x6700;&amp;#x5F8C;&amp;#x4E00;&amp;#x884C;&amp;#x6216;&amp;#x662F;&amp;#x8981;&amp;#x628A;&amp;#x63A7;&amp;#x5236;&amp;#x6B0A;&amp;#x8F49;&amp;#x">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2016-12-13T07:26:07.000Z">
+<meta property="og:updated_time" content="2018-05-25T03:55:13.569Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[Git] Moving A Git Repository To A New Server">
-<meta name="twitter:description" content="[&amp;#x66F4;&amp;#x65B0;]&amp;#x6709;&amp;#x66F4;&amp;#x7C21;&amp;#x6F54;&amp;#x7684;&amp;#x505A;&amp;#x6CD5;&amp;#xFF0C;&amp;#x8ACB;&amp;#x53C3;&amp;#x8003; Duplicating a repository &amp;#x5728;&amp;#x5DE5;&amp;#x4F5C;&amp;#x4E0A;&amp;#x9047;&amp;#x5230;&amp;#x8981;&amp;#x5C07;git">
+<meta name="twitter:title" content="[Java] Flow control in try catch finally">
+<meta name="twitter:description" content="&amp;#x5728;&amp;#x6B63;&amp;#x5E38;&amp;#x60C5;&amp;#x6CC1;&amp;#x4E0B;&amp;#xFF0C;&amp;#x7576;&amp;#x57F7;&amp;#x884C;&amp;#x5B8C; try &amp;#x7684;&amp;#x6700;&amp;#x5F8C;&amp;#x4E00;&amp;#x884C;&amp;#x6216;&amp;#x662F;&amp;#x8981;&amp;#x628A;&amp;#x63A7;&amp;#x5236;&amp;#x6B0A;&amp;#x8F49;&amp;#x">
 
 
 
@@ -122,7 +122,7 @@
 
 
 
-  <link rel="canonical" href="https://pandaforme.github.io/2016/12/09/Git-Moving-A-Git-Repository-To-A-New-Server/"/>
+  <link rel="canonical" href="https://pandaforme.github.io/2018/05/25/Java-Flow-control-in-try-catch-finally/"/>
 
 
 
@@ -132,7 +132,7 @@
   };
 </script>
 
-  <title>[Git] Moving A Git Repository To A New Server | Programming blog</title>
+  <title>[Java] Flow control in try catch finally | Programming blog</title>
   
 
 
@@ -344,7 +344,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://pandaforme.github.io/2016/12/09/Git-Moving-A-Git-Repository-To-A-New-Server/">
+    <link itemprop="mainEntityOfPage" href="https://pandaforme.github.io/2018/05/25/Java-Flow-control-in-try-catch-finally/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="pandaforme">
@@ -361,7 +361,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">[Git] Moving A Git Repository To A New Server
+          <h1 class="post-title" itemprop="name headline">[Java] Flow control in try catch finally
               
             
           </h1>
@@ -386,46 +386,16 @@
                 
               
 
-              <time title="Created: 2016-12-09 16:55:57" itemprop="dateCreated datePublished" datetime="2016-12-09T16:55:57+08:00">2016-12-09</time>
+              <time title="Created: 2018-05-25 11:35:00 / Modified: 11:55:13" itemprop="dateCreated datePublished" datetime="2018-05-25T11:35:00+08:00">2018-05-25</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2016-12-13 15:26:07" itemprop="dateModified" datetime="2016-12-13T15:26:07+08:00">2016-12-13</time>
               
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a></span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -435,9 +405,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2016/12/09/Git-Moving-A-Git-Repository-To-A-New-Server/#comments" itemprop="discussionUrl">
+                <a href="/2018/05/25/Java-Flow-control-in-try-catch-finally/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/12/09/Git-Moving-A-Git-Repository-To-A-New-Server/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/05/25/Java-Flow-control-in-try-catch-finally/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -465,19 +435,18 @@
       
 
       
-        <p><strong><em>[&#x66F4;&#x65B0;]&#x6709;&#x66F4;&#x7C21;&#x6F54;&#x7684;&#x505A;&#x6CD5;&#xFF0C;&#x8ACB;&#x53C3;&#x8003;</em></strong> <a href="https://help.github.com/articles/duplicating-a-repository/" target="_blank" rel="noopener">Duplicating a repository</a></p>
-<p>&#x5728;&#x5DE5;&#x4F5C;&#x4E0A;&#x9047;&#x5230;&#x8981;&#x5C07;git repository&#x5F9E;&#x820A;&#x7684;server&#x8F49;&#x79FB;&#x5230;&#x65B0;&#x7684;sever&#xFF0C;&#x53C3;&#x8003;&#x9019;&#x7BC7;&#x6587;&#x7AE0;<a href="http://www.smashingmagazine.com/2014/05/moving-git-repository-new-server/" target="_blank" rel="noopener">Moving A Git Repository To A New Server</a>&#x9032;&#x884C;&#x8F49;&#x79FB;&#xFF0E;</p>
-<p>Step 1: fetch&#x6240;&#x6709;&#x7684;remote branch<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git fetch origin</span><br></pre></td></tr></table></figure></p>
-<p>Step 2: &#x5C07;&#x6240;&#x6709;remote branch clone&#x5230;&#x672C;&#x5730;&#x7AEF;<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> branch <span class="keyword">in</span> `git branch -a | grep remotes | grep -v HEAD`; <span class="keyword">do</span></span><br><span class="line">        git branch --track <span class="variable">${branch##*/}</span> <span class="variable">$branch</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line">git fetch --all</span><br><span class="line">git pull --all</span><br></pre></td></tr></table></figure></p>
-<p>Step 3: &#x65B0;&#x589E;&#x65B0;&#x7684;repository&#xFF0C;&#x540D;&#x7A31;&#x70BA;new-origin<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add new-origin git@[new server url]:[group]/[project].git</span><br></pre></td></tr></table></figure></p>
-<p>Step 4: push&#x6240;&#x6709;&#x7684;branch&#x548C;tag&#x5230;&#x65B0;&#x7684;repository<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git push --all new-origin</span><br><span class="line">git push --tags new-origin</span><br></pre></td></tr></table></figure></p>
-<p>Step 5: &#x780D;&#x6389;&#x820A;&#x7684;repository&#xFF0C;&#x4E26;&#x4E14;&#x65B0;&#x7684;repository&#x6539;&#x540D;&#x70BA;origin<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote rm origin</span><br><span class="line">git remote rename new-origin origin</span><br></pre></td></tr></table></figure></p>
-<p>&#x5C07;&#x4EE5;&#x4E0A;&#x7684;&#x64CD;&#x4F5C;&#x6B65;&#x9A5F;&#x5BEB;&#x6210;script:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">rm -rf <span class="variable">$1</span></span><br><span class="line">git <span class="built_in">clone</span> git@old-repo:old-group/<span class="variable">$1</span>.git</span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$1</span></span><br><span class="line">git fetch origin</span><br><span class="line"><span class="keyword">for</span> branch <span class="keyword">in</span> `git branch -a | grep remotes | grep -v HEAD`; <span class="keyword">do</span></span><br><span class="line">        git branch --track <span class="variable">${branch##*/}</span> <span class="variable">$branch</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line">git fetch --all</span><br><span class="line">git pull --all</span><br><span class="line">git remote add new-origin git@new-repo:new-group/<span class="variable">$1</span>.git</span><br><span class="line">git push --all new-origin</span><br><span class="line">git push --tags new-origin</span><br><span class="line">git remote rm origin</span><br><span class="line">git remote rename new-origin origin</span><br></pre></td></tr></table></figure></p>
-<h4 id="&#x53C3;&#x8003;&#xFF1A;"><a href="#&#x53C3;&#x8003;&#xFF1A;" class="headerlink" title="&#x53C3;&#x8003;&#xFF1A;"></a>&#x53C3;&#x8003;&#xFF1A;</h4><ul>
-<li><a href="http://www.smashingmagazine.com/2014/05/moving-git-repository-new-server/" target="_blank" rel="noopener">Moving A Git Repository To A New Server</a></li>
-<li><a href="http://stackoverflow.com/a/4754797/1834805" target="_blank" rel="noopener">Clone all remote branches with Git?</a></li>
-<li><a href="https://help.github.com/articles/duplicating-a-repository/" target="_blank" rel="noopener">Duplicating a repository</a></li>
-</ul>
+        <p>&#x5728;&#x6B63;&#x5E38;&#x60C5;&#x6CC1;&#x4E0B;&#xFF0C;&#x7576;&#x57F7;&#x884C;&#x5B8C; try &#x7684;&#x6700;&#x5F8C;&#x4E00;&#x884C;&#x6216;&#x662F;&#x8981;&#x628A;&#x63A7;&#x5236;&#x6B0A;&#x8F49;&#x4EA4;&#x7D66;&#x5B83;&#x7684;&#x547C;&#x53EB;&#x8005; (return &#x6216;&#x4E1F;&#x51FA; exception)&#x6642;&#xFF0C;&#x6703;&#x57F7;&#x884C; finally &#xFF0C;&#x7576; finally &#x57F7;&#x884C;&#x5B8C;&#x7562;&#xFF0C;&#x518D;&#x628A;&#x63A7;&#x5236;&#x6B0A;&#x8F49;&#x4EA4;&#x7D66; try&#x3002;</p>
+<p>&#x4F46;&#x662F;&#x7576;&#x5728; finally &#x88E1;&#x9762;&#x5BEB;&#x4E0B; return, throw exception, continue, break &#x6703;&#x6C92;&#x6709;&#x8FA6;&#x6CD5;&#x628A;&#x63A7;&#x5236;&#x6B0A;&#x8F49;&#x4EA4;&#x7D66; try&#xFF0C;&#x9020;&#x6210;&#x4E0D;&#x53EF;&#x4EE5;&#x9810;&#x671F;&#x7684;&#x7D50;&#x679C;&#x3002;&#x6240;&#x4EE5;<strong>&#x5343;&#x842C;</strong>&#x4E0D;&#x8981;&#x5728; finally &#x88E1;&#x9762; return &#x6216;&#x4E1F;&#x51FA; exception&#xFF0C;&#x96D6;&#x7136;&#x73FE;&#x5728;&#x7684; IDE &#x90FD;&#x6703;&#x8070;&#x660E;&#x5230;&#x5E6B;&#x4F60;&#x6AA2;&#x67E5;&#x51FA;&#x4F86;&#x3002;</p>
+<p>&#x4E3B;&#x8981;&#x539F;&#x56E0; try-finally &#x8F49;&#x6210; Java byte code &#x6642;&#x5019;&#xFF0C;finally &#x662F;&#x4E00;&#x500B;&#x526F;&#x7A0B;&#x5F0F;&#xFF0C;&#x7576; try &#x57F7;&#x884C;&#x5B8C;&#x7562;&#x6642;&#x5019;&#x5C31;&#x6703;&#x53BB;&#x547C;&#x53EB; finally &#x526F;&#x7A0B;&#x5F0F;&#x3002;&#x7576; finally &#x526F;&#x7A0B;&#x5F0F;&#x57F7;&#x884C;&#x5B8C;&#x7562;&#xFF0C;&#x6703;&#x8DF3;&#x5230; try &#x7684;&#x8A18;&#x61B6;&#x9AD4;&#x4F4D;&#x7F6E;&#x3002;&#x4F46;&#x5728; finally &#x88E1;&#x9762;&#x52A0;&#x4E86;&#x9019;&#x4E9B;return, throw exception, continue, break&#xFF0C;&#x5B83;&#x5C31;&#x63D0;&#x524D;&#x8DF3;&#x51FA;&#x7A0B;&#x5F0F;&#x56DE;&#x4E0D;&#x5230;&#x6B63;&#x78BA;&#x7684;&#x4F4D;&#x7F6E;&#x3002;</p>
+<p>&#x53E6;&#x5916;&#xFF0C;&#x7576; try &#x88E1;&#x9762;&#x5F37;&#x5236;&#x4E2D;&#x65B7; JVM &#x6216;&#x662F;&#x975E;&#x9810;&#x671F;&#x7684;&#x60C5;&#x6CC1;&#x767C;&#x751F;&#x63D0;&#x65E9;&#x7D50;&#x675F; (&#x9019;&#x88E1;&#x6240;&#x6307;&#x7684;&#x975E;&#x9810;&#x671F;&#x7684;&#x60C5;&#x6CC1;&#x4E0D;&#x662F;&#x4E1F;&#x51FA; exception&#xFF0C;&#x800C;&#x662F;&#x7576;&#x4E0B;&#x7684; thread &#x7A81;&#x7136;&#x6B7B;&#x6389;&#x6216;&#x662F; JVM &#x7A81;&#x7136;&#x6709;&#x554F;&#x984C;&#x9019;&#x985E;&#x7684;&#x3002;)&#xFF0C;finally &#x662F;&#x4E0D;&#x6703;&#x57F7;&#x884C;&#x7684;&#x3002;</p>
+<h1 id="Try-finally-clause"><a href="#Try-finally-clause" class="headerlink" title="Try-finally clause"></a>Try-finally clause</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> {</span><br><span class="line">      <span class="comment">// Block of code with multiple exit points</span></span><br><span class="line">}</span><br><span class="line"><span class="keyword">finally</span> {</span><br><span class="line">      <span class="comment">// Block of code that is always executed when the try block is exited,</span></span><br><span class="line">      <span class="comment">// no matter how the try block is exited</span></span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h2 id="Example-1"><a href="#Example-1" class="headerlink" title="Example 1"></a>Example 1</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>; </span><br><span class="line"><span class="keyword">try</span> { </span><br><span class="line">  i = i + <span class="number">1</span>; </span><br><span class="line">  System.out.println(i);</span><br><span class="line">}</span><br><span class="line"><span class="keyword">finally</span>{</span><br><span class="line">  i = i + <span class="number">2</span>; </span><br><span class="line">  System.out.println(i);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">//1</span></span><br><span class="line"><span class="comment">//3</span></span><br></pre></td></tr></table></figure>
+<h1 id="Example-2"><a href="#Example-2" class="headerlink" title="Example 2"></a>Example 2</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>{</span><br><span class="line">  System.out.println(doSomeThing());</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">doSomeThing</span><span class="params">()</span></span>{</span><br><span class="line">  <span class="keyword">try</span> { </span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  }</span><br><span class="line">  <span class="keyword">finally</span>{</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">//2</span></span><br></pre></td></tr></table></figure>
+<h1 id="Example-3"><a href="#Example-3" class="headerlink" title="Example 3"></a>Example 3</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>{</span><br><span class="line">    System.out.println(doSomeThing(<span class="keyword">true</span>));</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">doSomeThing</span><span class="params">(<span class="keyword">boolean</span> bVal)</span> <span class="keyword">throws</span> Exception </span>{</span><br><span class="line">    <span class="keyword">try</span> {</span><br><span class="line">        <span class="keyword">if</span> (bVal) {</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    } <span class="keyword">finally</span> {</span><br><span class="line">        System.out.println(<span class="string">&quot;Got old fashioned.&quot;</span>);</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// Got old fashioned.</span></span><br><span class="line"><span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<h1 id="Example-4"><a href="#Example-4" class="headerlink" title="Example 4"></a>Example 4</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>{</span><br><span class="line">    System.out.println(doSomeThing());</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">doSomeThing</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>{</span><br><span class="line">    <span class="keyword">try</span> {</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">&quot;from try&quot;</span>);</span><br><span class="line">    } <span class="keyword">finally</span> {</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">&quot;from finally&quot;</span>);</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// Exception in thread &quot;main&quot; java.lang.Exception: from finally</span></span><br></pre></td></tr></table></figure>
+<h1 id="Example-5"><a href="#Example-5" class="headerlink" title="Example 5"></a>Example 5</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>{</span><br><span class="line">  System.out.println(doSomeThing(<span class="keyword">true</span>));</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">doSomeThing</span><span class="params">(<span class="keyword">boolean</span> bVal)</span> <span class="keyword">throws</span> Exception </span>{</span><br><span class="line">  <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span> (<span class="keyword">true</span>) {</span><br><span class="line">      <span class="keyword">try</span> {</span><br><span class="line">          <span class="keyword">try</span> {</span><br><span class="line">              i = <span class="number">1</span>;</span><br><span class="line">          } <span class="keyword">finally</span> {    <span class="comment">// the first finally clause</span></span><br><span class="line">              i = <span class="number">2</span>;</span><br><span class="line">          }</span><br><span class="line">          i = <span class="number">3</span>;</span><br><span class="line">          <span class="keyword">return</span> i;    <span class="comment">// this never completes, because of the continue</span></span><br><span class="line">      } <span class="keyword">finally</span> {        <span class="comment">// the second finally clause</span></span><br><span class="line">          <span class="keyword">if</span> (i == <span class="number">3</span>) {</span><br><span class="line">              <span class="keyword">continue</span>; <span class="comment">// this continue overrides the return statement</span></span><br><span class="line">          }</span><br><span class="line">      }</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<h1 id="Example-6"><a href="#Example-6" class="headerlink" title="Example 6"></a>Example 6</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>{</span><br><span class="line">    System.out.println(doSomeThing());</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">doSomeThing</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>{</span><br><span class="line">    <span class="keyword">try</span> {</span><br><span class="line">        System.exit(<span class="number">1</span>);</span><br><span class="line">    } <span class="keyword">finally</span> {</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">&quot;from finally&quot;</span>);</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// terminates JVM and doesn&apos;t execute finally block</span></span><br></pre></td></tr></table></figure>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><p><a href="https://www.javaworld.com/article/2077609/core-java/try-finally-clauses-defined-and-demonstrated.html" target="_blank" rel="noopener">Try-finally clauses defined and demonstrated</a></p>
 
       
     </div>
@@ -498,7 +467,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Git/" rel="tag"># Git</a>
+            <a href="/tags/Java/" rel="tag"># Java</a>
           
         </div>
       
@@ -511,8 +480,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/09/AOP-Monitor-Legacy-System/" rel="next" title="[AOP] Monitor Legacy System">
-                <i class="fa fa-chevron-left"></i> [AOP] Monitor Legacy System
+              <a href="/2017/04/26/Scala-The-importance-of-recursion/" rel="next" title="[Scala] The importance of recursion">
+                <i class="fa fa-chevron-left"></i> [Scala] The importance of recursion
               </a>
             
           </div>
@@ -520,10 +489,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/12/09/Scala-Tail-recursion/" rel="prev" title="[Scala] Tail recursion">
-                [Scala] Tail recursion <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -738,7 +703,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#參考："><span class="nav-number">1.</span> <span class="nav-text">參考：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Try-finally-clause"><span class="nav-number">1.</span> <span class="nav-text">Try-finally clause</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Example-1"><span class="nav-number">1.1.</span> <span class="nav-text">Example 1</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Example-2"><span class="nav-number">2.</span> <span class="nav-text">Example 2</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Example-3"><span class="nav-number">3.</span> <span class="nav-text">Example 3</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Example-4"><span class="nav-number">4.</span> <span class="nav-text">Example 4</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Example-5"><span class="nav-number">5.</span> <span class="nav-text">Example 5</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Example-6"><span class="nav-number">6.</span> <span class="nav-text">Example 6</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#References"><span class="nav-number">7.</span> <span class="nav-text">References</span></a></li></ol></div>
             
 
           </div>
@@ -899,9 +864,9 @@
   
     <script type="text/javascript">
       var disqus_config = function () {
-        this.page.url = 'https://pandaforme.github.io/2016/12/09/Git-Moving-A-Git-Repository-To-A-New-Server/';
-        this.page.identifier = '2016/12/09/Git-Moving-A-Git-Repository-To-A-New-Server/';
-        this.page.title = '[Git] Moving A Git Repository To A New Server';
+        this.page.url = 'https://pandaforme.github.io/2018/05/25/Java-Flow-control-in-try-catch-finally/';
+        this.page.identifier = '2018/05/25/Java-Flow-control-in-try-catch-finally/';
+        this.page.title = '[Java] Flow control in try catch finally';
       };
       function loadComments () {
         var d = document, s = d.createElement('script');

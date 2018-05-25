@@ -343,6 +343,198 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://pandaforme.github.io/2016/12/09/Java-Semaphore的使用時機/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="pandaforme">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Programming blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/12/09/Java-Semaphore的使用時機/" itemprop="url">
+                  [Java] Semaphore的使用時機
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-12-09 17:15:16" itemprop="dateCreated datePublished" datetime="2016-12-09T17:15:16+08:00">2016-12-09</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2016-12-13 15:25:14" itemprop="dateModified" datetime="2016-12-13T15:25:14+08:00">2016-12-13</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/12/09/Java-Semaphore的使用時機/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/12/09/Java-Semaphore的使用時機/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Java&#x6240;&#x63D0;&#x4F9B;&#x7684;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/Semaphore.html" target="_blank" rel="noopener">Semaphore</a>&#x8DDF;<a href="http://os-book.com/" target="_blank" rel="noopener">Operating System Concepts</a>&#x4E0A;&#x6240;&#x8B1B;&#x7684;Semaphore&#x4E00;&#x6A23;&#x3002;</p>
+<p>&#x53EF;&#x4EE5;&#x7528;&#x5B83;&#x4F86;&#x89E3;&#x6C7A;&#xFF1A;</p>
+<ul>
+<li><a href="https://pandaforme.ghost.io/producer-and-consumer-problem/" target="_blank" rel="noopener">Producer and Consumer Problem</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Readers%E2%80%93writers_problem" target="_blank" rel="noopener">The Readers-Writers Problem</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Dining_philosophers_problem" target="_blank" rel="noopener">The Dining-Philosophers Problem</a></li>
+<li>Pool&#x7684;&#x5BE6;&#x4F5C;</li>
+<li>&#x63A7;&#x5236;critical region</li>
+</ul>
+<p>####&#x7BC4;&#x4F8B;&#xFF1A;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.concurrent.Semaphore;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SemaphoreDemo</span> </span>{</span><br><span class="line"></span><br><span class="line">	Semaphore	pool	= <span class="keyword">new</span> Semaphore(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>{</span><br><span class="line">		<span class="keyword">final</span> SemaphoreDemo demo = <span class="keyword">new</span> SemaphoreDemo();</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">30</span>; i++) {</span><br><span class="line">			<span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() {</span><br><span class="line"></span><br><span class="line">				<span class="meta">@Override</span></span><br><span class="line">				<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>{</span><br><span class="line">					demo.mutualExclusion();</span><br><span class="line">				}</span><br><span class="line"></span><br><span class="line">			}, <span class="string">&quot;Thread&quot;</span> + i).start();</span><br><span class="line"></span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">mutualExclusion</span><span class="params">()</span> </span>{</span><br><span class="line">		<span class="keyword">try</span> {</span><br><span class="line">			pool.acquire();</span><br><span class="line"></span><br><span class="line">			System.out.println(Thread.currentThread().getName() + <span class="string">&quot; inside mutual exclusive region&quot;</span>);</span><br><span class="line">			Thread.sleep(<span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line">		}</span><br><span class="line">		<span class="keyword">catch</span> (InterruptedException e) {</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		}</span><br><span class="line">		<span class="keyword">finally</span> {</span><br><span class="line">			pool.release();</span><br><span class="line">			System.out.println(Thread.currentThread().getName() + <span class="string">&quot; outside of mutual exclusive region&quot;</span>);</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></table></figure></p>
+<p>&#x7576;pool&#x70BA;&#x7A7A;&#x7684;&#x6642;&#x5019;&#xFF0C;&#x60F3;&#x8981;&#x4F7F;&#x7528;pool&#x8CC7;&#x6E90;&#x7684;thread&#x6703;&#x9032;&#x5165;blocking&#x72C0;&#x614B;&#xFF0C;&#x76F4;&#x5230;&#x6709;&#x5176;&#x4ED6;thread&#x57F7;&#x884C;release()&#x91CB;&#x653E;pool&#x8CC7;&#x6E90;&#xFF0C;&#x559A;&#x9192;&#x5176;&#x4E2D;&#x5728;blocking&#x72C0;&#x614B;&#x7684;thread&#x3002;</p>
+<h4 id="&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;"><a href="#&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;" class="headerlink" title="&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;"></a>&#x53C3;&#x8003;&#x8CC7;&#x6599;&#xFF1A;</h4><p><a href="http://javarevisited.blogspot.com/2012/05/counting-semaphore-example-in-java-5.html#ixzz3HL0w0Wav" target="_blank" rel="noopener">Counting Semaphore Example in Java 5 &#x2013; Concurrency Tutorial</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://pandaforme.github.io/2016/12/09/Java-Difference-between-synchronized-vs-ReentrantLock/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2120,237 +2312,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://pandaforme.github.io/2016/12/09/AOP-Monitor-Legacy-System/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="pandaforme">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Programming blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/12/09/AOP-Monitor-Legacy-System/" itemprop="url">
-                  [AOP] Monitor Legacy System
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-12-09 16:48:00 / Modified: 16:54:43" itemprop="dateCreated datePublished" datetime="2016-12-09T16:48:00+08:00">2016-12-09</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/12/09/AOP-Monitor-Legacy-System/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/12/09/AOP-Monitor-Legacy-System/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>&#x6700;&#x8FD1;&#x8981;&#x5728;&#x4E00;&#x500B;&#x820A;&#x7684;scala&#x7CFB;&#x7D71;&#x52A0;&#x5165;&#x4E00;&#x4E9B;&#x76E3;&#x63A7;&#x7684;&#x7A0B;&#x5F0F;&#x78BC;&#xFF0C;&#x627E;&#x51FA;&#x5F71;&#x97FF;&#x6548;&#x80FD;&#x7684;&#x5730;&#x65B9;&#xFF0E;</p>
-<p>&#x60F3;&#x4E86;&#x5169;&#x500B;&#x505A;&#x6CD5;&#x53EF;&#x4EE5;&#x89E3;&#x6C7A;&#xFF1A;</p>
-<p>&#x65B9;&#x6CD5;&#x4E00;&#xFF1A; &#x5728;&#x61F7;&#x7591;&#x7684;&#x7A0B;&#x5F0F;&#x78BC;&#x5730;&#x65B9;&#x4E0A;&#x4E0B;&#x593E;log&#xFF0C;&#x8A08;&#x7B97;&#x51FA;&#x57F7;&#x884C;&#x6642;&#x9593;&#xFF0E;</p>
-<p>&#x65B9;&#x6CD5;&#x4E8C;&#xFF1A; &#x5229;&#x7528;AOP&#x65B9;&#x5F0F;&#x6514;&#x622A;&#x6BCF;&#x500B;function&#x57F7;&#x884C;&#x6642;&#x958B;&#x59CB;&#x9EDE;&#x548C;&#x7D50;&#x675F;&#x9EDE;&#xFF0C;&#x8A08;&#x7B97;&#x51FA;&#x57F7;&#x884C;&#x6642;&#x9593;&#xFF0E;</p>
-<p>&#x4F86;&#x5206;&#x6790;&#x4E00;&#x4E0B;&#x9019;&#x5169;&#x500B;&#x65B9;&#x6CD5;&#x7684;&#x512A;&#x7F3A;&#x9EDE;&#xFF1A;</p>
-<p>&#x65B9;&#x6CD5;&#x4E00;&#xFF1A;</p>
-<p>&#x512A;&#x9EDE;&#xFF1A;&#x4E0D;&#x7528;&#x5927;&#x8166;&#x5C31;&#x53EF;&#x4EE5;&#x89E3;&#x6C7A;</p>
-<p>&#x7F3A;&#x9EDE;&#xFF1A;&#x9700;&#x8981;&#x5728;&#x6240;&#x6709;&#x7684;&#x9EDE;&#x63D2;&#x5165;log&#xFF0C;&#x9020;&#x6210;&#x7A0B;&#x5F0F;&#x5145;&#x6EFF;&#x4E00;&#x5806;log</p>
-<p>&#x65B9;&#x6CD5;&#x4E8C;&#xFF1A;</p>
-<p>&#x512A;&#x9EDE;&#xFF1A;&#x53EF;&#x4EE5;&#x4E0D;&#x7528;&#x52D5;&#x5230;&#x539F;&#x672C;&#x7684;&#x7A0B;&#x5F0F;&#x78BC;</p>
-<p>&#x7F3A;&#x9EDE;&#xFF1A;&#x9700;&#x8981;&#x5BEB;&#x4E00;&#x4E9B;&#x7A0B;&#x5F0F;&#x78BC;</p>
-<p>&#x5F8C;&#x4F86;&#x63A1;&#x7528;<a href="https://eclipse.org/aspectj/" target="_blank" rel="noopener">Aspectj</a>&#x4F86;&#x89E3;&#x6C7A;&#x9019;&#x500B;&#x554F;&#x984C;.</p>
-<ul>
-<li><p>&#x65B0;&#x589E;&#x4E00;&#x500B;Monitor Aspect</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> aspectj;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.JoinPoint;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.After;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Aspect;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Before;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MonitorAspect</span> </span>{</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">long</span> startTime;</span><br><span class="line">  <span class="keyword">private</span> Logger logger = LoggerFactory.getLogger(MonitorAspect.class);</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Before</span>(value = <span class="string">&quot;execution (* *(..))&quot;</span>, argNames = <span class="string">&quot;joinPoint&quot;</span>)</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">before</span><span class="params">(JoinPoint joinPoint)</span> </span>{</span><br><span class="line">    startTime = System.currentTimeMillis();</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="meta">@After</span>(value = <span class="string">&quot;execution (* *(..))&quot;</span>, argNames = <span class="string">&quot;joinPoint&quot;</span>)</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">after</span><span class="params">(JoinPoint joinPoint)</span> </span>{</span><br><span class="line">    <span class="keyword">long</span> executionTime = System.currentTimeMillis() - startTime;</span><br><span class="line">    logger.debug(<span class="string">&quot;Signature : {}, Source Line : {}, Execute Time : {}&quot;</span>,</span><br><span class="line">                 joinPoint.getSignature(),</span><br><span class="line">                 joinPoint.getSourceLocation(),</span><br><span class="line">                 executionTime);</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>&#x52A0;&#x5165;aspectj jar</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;org.aspectj&quot;</span> % <span class="string">&quot;aspectjweaver&quot;</span> % <span class="string">&quot;1.8.7&quot;</span>,</span><br><span class="line"><span class="string">&quot;org.aspectj&quot;</span> % <span class="string">&quot;aspectjrt&quot;</span>     % <span class="string">&quot;1.8.7&quot;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>&#x5229;&#x7528;load time weaving&#x65B9;&#x5F0F;&#xFF0E;&#x9700;&#x8981;&#x5728;resource&#x8CC7;&#x6599;&#x593E;&#x4E0B;&#x65B0;&#x589E;<code>META-INF/aop.xml</code></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aspectj</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aspects</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aspect</span> <span class="attr">name</span>=<span class="string">&quot;aspectj.MonitorAspect&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">aspects</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">weaver</span> <span class="attr">options</span>=<span class="string">&quot;-verbose -showWeaveInfo&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">include</span> <span class="attr">within</span>=<span class="string">&quot;xxx.yyy.*&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">include</span> <span class="attr">within</span>=<span class="string">&quot;xxx.zzz.*&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">include</span> <span class="attr">within</span>=<span class="string">&quot;aspectj.*&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">weaver</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">aspectj</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>&#x8A73;&#x7D30;&#x53C3;&#x6578;&#x53EF;&#x4EE5;&#x53C3;&#x8003;&#xFF1A;<a href="https://eclipse.org/aspectj/doc/next/devguide/ltw-configuration.html" target="_blank" rel="noopener">Chapter 5. Load-Time Weaving</a></p>
-<ul>
-<li>&#x56E0;&#x70BA;&#x820A;&#x7CFB;&#x7D71;&#x662F;&#x7528;<code>java</code>&#x555F;&#x52D5;&#xFF0C;&#x6240;&#x4EE5;&#x9700;&#x8981;&#x52A0;&#x5165;<code>javaagent</code>&#x53C3;&#x6578;&#xFF0C;&#x6307;&#x5B9A;<code>aspectjweaver.jar</code>&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;<code>java -javaagent=/jars/aspectjweaver-1.8.7.jar ...</code></li>
-</ul>
-<p>&#x5728;&#x5BE6;&#x4F5C;&#x904E;&#x7A0B;&#x4E2D;&#x9047;&#x5230;&#x4E86;&#x4E0D;&#x5C11;&#x7684;&#x5751;&#xFF0C;&#x7D00;&#x9304;&#x4E00;&#x4E0B;&#xFF1A;</p>
-<ul>
-<li>&#x7B2C;&#x4E00;&#x500B;&#x5751;&#xFF1A;</li>
-</ul>
-<p>&#x5728;&#x5BE6;&#x4F5C;Aspect&#x6642;&#xFF0C;Annotation&#x4E2D;&#x53EF;&#x4EE5;&#x51C6;&#x8A31;&#x4E0D;&#x7528;&#x5C0D;&#x6BCF;&#x500B;&#x53C3;&#x6578;&#x7D66;&#x503C;&#xFF0C;&#x4F46;&#x662F;&#x6703;&#x5674;&#x932F;&#x2026;</p>
-<p>&#x4EE5;&#x4E0B;&#x5BEB;&#x6CD5;&#x662F;&#x51C6;&#x8A31;&#x7684;&#xFF0C;&#x4F46;&#x662F;load time weaving&#x6642;&#x6703;&#x5674;&#x932F;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Before</span>(<span class="string">&quot;execution (* *(..))&quot;</span>)</span><br></pre></td></tr></table></figure></p>
-<p>&#x5F8C;&#x4F86;&#x6539;&#x6210;&#x4EE5;&#x4E0B;&#x5BEB;&#x6CD5;&#x5C31;&#x6C92;&#x4E8B;&#x4E86;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Before</span>(value = <span class="string">&quot;execution (* *(..))&quot;</span>, argNames = <span class="string">&quot;joinPoint&quot;</span>)</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>&#x7B2C;&#x4E8C;&#x500B;&#x5751;&#xFF1A;</li>
-</ul>
-<p>&#x70BA;&#x4E86;&#x53EF;&#x4EE5;&#x52D5;&#x614B;&#x4FEE;&#x6539;aop.xml&#xFF0C;&#x5FC5;&#x9808;&#x5C07;&#x9019;&#x500B;&#x6A94;&#x6848;&#x5F9E;jar&#x62C9;&#x51FA;&#x4F86;&#x653E;&#xFF0E;&#x53EF;&#x4EE5;&#x900F;&#x904E;<code>-Dorg.aspectj.weaver.loadtime.configuration=file:{aop.xml&#x4F4D;&#x7F6E;}</code><br>&#x4F86;&#x6307;&#x5B9A;aop&#x4F4D;&#x7F6E;&#xFF0E;</p>
-<p>&#x4F46;&#x662F;&#x555F;&#x52D5;&#x7A0B;&#x5F0F;&#x6642;&#x537B;&#x53C8;&#x5674;&#x932F;<code>java.lang.RuntimeException: Cannot register non aspect:...</code>&#xFF0C;<br>&#x539F;&#x56E0;&#x662F;<code>javax.management.remote.rmi.NoCallStackClassLoader</code><br>&#x4E0D;&#x80FD;&#x8F09;&#x5165;&#x6211;&#x5BEB;&#x597D;&#x7684;aspect&#xFF0E;&#xFF08;&#x9019;&#x908A;&#x65E5;&#x5F8C;&#x6709;&#x6642;&#x9593;&#x9700;&#x8981;&#x4F86;&#x7814;&#x7A76;&#x4E00;&#x4E0B;&#xFF0C;&#x61C9;&#x8A72;&#x662F;&#x57F7;&#x884C;&#x9806;&#x5E8F;&#x7684;&#x554F;&#x984C;&#x2026;&#xFF09;</p>
-<p>&#x900F;&#x904E;<code>-Daj.weaving.loadersToSkip=javax.management.remote.rmi.NoCallStackClassLoader</code><br>&#x7565;&#x904E;&#x5B83;&#x5C31;&#x53EF;&#x4EE5;&#x57F7;&#x884C;&#x4E86;&#xFF0E;<br>&#x8A73;&#x7D30;&#x53EF;&#x53C3;&#x8003;&#xFF1A;<a href="http://stackoverflow.com/questions/18194719/aspectj-classloading-issue-when-trying-to-use-external-aop-xml-file" target="_blank" rel="noopener">AspectJ: ClassLoading issue when trying to use external aop.xml file</a></p>
-<ul>
-<li>&#x7B2C;&#x4E09;&#x500B;&#x5751;&#xFF1A;</li>
-</ul>
-<p>&#x4E00;&#x958B;&#x59CB;&#x6C92;&#x6709;&#x5728;<code>aop.xml</code>&#x7684;<code>weaver</code> tag&#x4E2D;&#x52A0;&#x5165;MonitorAspect&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x53C8;&#x5674;&#x932F;<br><code>java.lang.NoSuchMethodError: aspectj.MonitorAspect.aspectOf()Laspectj/MonitorAspect</code><br>&#x52A0;&#x5165;MonitorAspect&#x7684;&#x4F4D;&#x7F6E;&#x5C31;&#x6B63;&#x5E38;&#x4E86;&#xFF01;<br>&#x8A73;&#x7D30;&#x53EF;&#x53C3;&#x8003;&#xFF1A;<a href="http://findingthecomputer.blogspot.tw/2013/09/aspectj-javalangnosuchmethoderror.html" target="_blank" rel="noopener">AspectJ java.lang.NoSuchMethodError: aspectOf</a></p>
-<ul>
-<li>&#x7B2C;&#x56DB;&#x500B;&#x5751;&#xFF1A;</li>
-</ul>
-<p>&#x70BA;&#x4E86;&#x53EF;&#x4EE5;&#x5728;<code>aop.xml</code>&#x52D5;&#x614B;&#x6307;&#x5B9A;&#x8981;waving&#x7684;type&#xFF0C;&#x5343;&#x842C;&#x4E0D;&#x80FD;&#x5728;annotation&#x7684;value&#x6B04;&#x4F4D;&#x5BEB;&#x6B7B;&#xFF0E;</p>
-<p>&#x4F8B;&#x5982;&#xFF1A;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Before</span>(value = <span class="string">&quot;execution (* xxx.yyy.*(..))&quot;</span>, argNames = <span class="string">&quot;joinPoint&quot;</span>)</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aspectj</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aspects</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aspect</span> <span class="attr">name</span>=<span class="string">&quot;aspectj.MonitorAspect&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">aspects</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">weaver</span> <span class="attr">options</span>=<span class="string">&quot;-verbose -showWeaveInfo&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">include</span> <span class="attr">within</span>=<span class="string">&quot;xxx.yyy.*&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">include</span> <span class="attr">within</span>=<span class="string">&quot;xxx.zzz.*&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">include</span> <span class="attr">within</span>=<span class="string">&quot;aspectj.*&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">weaver</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">aspectj</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>&#x7D50;&#x679C;&#xFF1A;&#x53EA;&#x80FD;waving&#x5230;<code>xxx.yyy.*</code>&#xFF0C;&#x4E0D;&#x80FD;waving <code>xxx.zzz.*</code></p>
-<p>&#x6539;&#x6210;&#x4EE5;&#x4E0B;&#xFF1A;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Before</span>(value = <span class="string">&quot;execution (* *(..))&quot;</span>, argNames = <span class="string">&quot;joinPoint&quot;</span>)</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aspectj</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aspects</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aspect</span> <span class="attr">name</span>=<span class="string">&quot;aspectj.MonitorAspect&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">aspects</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">weaver</span> <span class="attr">options</span>=<span class="string">&quot;-verbose -showWeaveInfo&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">include</span> <span class="attr">within</span>=<span class="string">&quot;xxx.yyy.*&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">include</span> <span class="attr">within</span>=<span class="string">&quot;xxx.zzz.*&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">include</span> <span class="attr">within</span>=<span class="string">&quot;aspectj.*&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">weaver</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">aspectj</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>&#x7D50;&#x679C;&#xFF1A;&#x53EF;&#x4EE5;waving&#x5230;<code>xxx.yyy.*</code>&#x548C;<code>xxx.zzz.*</code></p>
-<h4 id="&#x5FC3;&#x5F97;&#xFF1A;"><a href="#&#x5FC3;&#x5F97;&#xFF1A;" class="headerlink" title="&#x5FC3;&#x5F97;&#xFF1A;"></a>&#x5FC3;&#x5F97;&#xFF1A;</h4><p>AOP&#x7684;&#x6982;&#x5FF5;&#x771F;&#x7684;&#x5F88;&#x5F37;&#x5927;&#xFF0C;&#x53EF;&#x4EE5;&#x8B93;&#x4F60;&#x4E0D;&#x8CBB;&#x5439;&#x7070;&#x4E4B;&#x529B;&#x53BB;&#x76E3;&#x63A7;Legacy System&#xFF0E;&#x4E0D;&#x7528;&#x66F4;&#x6539;&#x820A;&#x6709;&#x7A0B;&#x5F0F;&#xFF0C;&#x4E5F;&#x4E0D;&#x6703;&#x6709;&#x591A;&#x9918;&#x4E14;&#x91CD;&#x8907;&#x7684;&#x7A0B;&#x5F0F;&#x78BC;&#xFF0C;&#x4E4B;&#x5F8C;&#x53EF;&#x4EE5;&#x4F86;&#x60F3;&#x770B;&#x770B;&#x6709;&#x4EC0;&#x9EBC;&#x5730;&#x65B9;&#x53EF;&#x4EE5;&#x5229;&#x7528;AOP&#xFF0E;</p>
-<p>&#x56E0;&#x70BA;scala&#x7248;&#x672C;&#x592A;&#x820A;&#x4E86;(2.9.1, jdk 6)&#xFF0C;&#x5229;&#x7528;compile weaving&#x65B9;&#x5F0F;&#x5931;&#x6557;&#x4E86;&#xFF0C;&#x53EA;&#x597D;&#x7528;load time weaving&#x65B9;&#x5F0F;&#xFF0E;<br>&#x5047;&#x5982;&#x63A1;&#x7528;&#x8F03;&#x65B0;&#x7684;scala&#x7248;&#x672C;&#x6216;&#x8A31;&#x53EF;&#x4EE5;&#x8003;&#x616E; <a href="https://github.com/sbt/sbt-aspectj/tree/v0.10.4/src/sbt-test/weave/load-time" target="_blank" rel="noopener">sbt-aspectj</a>&#xFF0E;</p>
-<h4 id="&#x53C3;&#x8003;&#xFF1A;"><a href="#&#x53C3;&#x8003;&#xFF1A;" class="headerlink" title="&#x53C3;&#x8003;&#xFF1A;"></a>&#x53C3;&#x8003;&#xFF1A;</h4><ul>
-<li><a href="https://dzone.com/articles/aspectj-akka-and-scala" target="_blank" rel="noopener">AspectJ with Akka and Scala</a></li>
-<li><a href="http://stackoverflow.com/questions/18194719/aspectj-classloading-issue-when-trying-to-use-external-aop-xml-file" target="_blank" rel="noopener">AspectJ: ClassLoading issue when trying to use external aop.xml file</a></li>
-<li><a href="http://findingthecomputer.blogspot.tw/2013/09/aspectj-javalangnosuchmethoderror.html" target="_blank" rel="noopener">AspectJ java.lang.NoSuchMethodError: aspectOf</a></li>
-<li><a href="https://eclipse.org/aspectj/doc/next/devguide/ltw-configuration.html" target="_blank" rel="noopener">Chapter 5. Load-Time Weaving</a></li>
-<li><a href="https://github.com/sbt/sbt-aspectj/tree/v0.10.4/src/sbt-test/weave/load-time" target="_blank" rel="noopener">sbt-aspectj</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2398,7 +2359,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">32</span>
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
